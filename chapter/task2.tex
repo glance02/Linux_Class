@@ -1,0 +1,80 @@
+\section{LINUX 下的shell编程案例}
+
+本次作业我设计并实现了一个基于 Bash Shell 的 Linux 命令答题系统。程序通过菜单提供开始答题、查看历史成绩、清空历史成绩和退出系统等功能，题目从外部题库文件中读取，答题结束后会把本次成绩保存到成绩文件中。这个案例既能练习 Linux 基础命令，也能体现 Shell 脚本中条件判断、循环控制、函数封装、文件读写和程序调试等知识点。
+
+\subsection{程序功能说明}
+
+本程序的主要功能如下：
+
+\begin{itemize}
+    \item 显示主菜单，用户可以通过输入编号选择不同功能。
+    \item 从 \cmd{questions.txt} 题库文件中逐行读取题目和标准答案。
+    \item 判断用户输入是否为空、是否与标准答案一致，并根据结果计算得分和错误次数。
+    \item 当答错次数达到设定上限时，系统自动结束本轮答题。
+    \item 将每次答题的时间、得分、已答题数和错误题数保存到 \cmd{score.txt} 文件。
+    \item 支持查看历史成绩，并使用 \cmd{awk} 统计历史最高分。
+    \item 支持清空历史成绩，清空前需要用户再次确认，避免误操作。
+\end{itemize}
+
+程序采用“主菜单 + 功能函数”的结构，整体逻辑比较清晰。用户进入程序后，主循环会不断显示菜单，直到用户选择退出。每个功能被封装成独立函数，例如 \cmd{init\_env}、\cmd{show\_menu}、\cmd{start\_quiz}、\cmd{save\_score}、\cmd{show\_history} 和 \cmd{clear\_history}，这样可以减少重复代码。
+
+\subsection{Shell脚本执行方法}
+
+在 Linux 平台下，可以进入脚本所在目录后执行以下命令运行程序：
+
+\begin{minted}{bash}
+cd task2
+chmod +x linux_quiz.sh
+./linux_quiz.sh
+\end{minted}
+
+其中，\cmd{chmod +x linux\_quiz.sh} 用于给脚本添加可执行权限，\cmd{./linux\_quiz.sh} 表示执行当前目录下的脚本文件。
+
+\subsection{案例展示}
+
+接上次的作业，这次这个也是在我的 Ubuntu 服务器上运行和测试这个shell文件，之后的调试也是在这台服务器上进行。
+
+首先创建一个目录来存放本次作业。然后加入sh文件和txt题库文件。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image.png}
+\end{figure}
+
+按照之前的部分运行这个脚本。
+
+主菜单页面：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy.png}
+\end{figure}
+
+
+\subsection{源代码展示}
+
+以下是我的本次shell编程作业的完整源代码：
+
+\inputminted{bash}{code/task2/linux_quiz.sh}
+
+\subsection{Shell程序调试方法}
+
+在编写和测试这个脚本时，可以使用以下方法进行调试：
+
+\begin{enumerate}
+    \item 使用 \cmd{bash -n linux\_quiz.sh} 检查脚本语法错误。该命令只检查语法，不真正执行脚本。
+    \item 使用 \cmd{bash -x linux\_quiz.sh} 跟踪脚本执行过程。执行时每条命令都会在终端显示出来，便于观察变量值和分支执行情况。
+    \item 在关键位置加入 \cmd{echo} 输出，例如输出当前得分、错误次数、读取到的题目和答案，用于确认程序状态是否正确。
+    \item 分模块调试各个函数，例如先测试成绩文件是否能正常创建，再测试答题逻辑，最后测试历史成绩显示和清空功能。
+    \item 构造异常情况进行测试，例如删除 \cmd{questions.txt}、清空 \cmd{score.txt}、输入空答案、输入错误菜单编号等，检查程序是否能给出合理提示。
+\end{enumerate}
+
+例如，可以用下面的命令进行语法检查和执行跟踪：
+
+\begin{minted}{bash}
+bash -n linux_quiz.sh
+bash -x linux_quiz.sh
+\end{minted}
+
+通过调试可以发现，程序对题库文件不存在、成绩文件为空、用户输入错误等情况都做了处理，因此整体运行比较稳定。
+

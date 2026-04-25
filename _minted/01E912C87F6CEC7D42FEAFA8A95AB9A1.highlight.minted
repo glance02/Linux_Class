@@ -1,0 +1,5 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd}\PYG{+w}{ }code/task2
+chmod\PYG{+w}{ }+x\PYG{+w}{ }linux\PYGZus{}quiz.sh
+./linux\PYGZus{}quiz.sh
+\end{MintedVerbatim}

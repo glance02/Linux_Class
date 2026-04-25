@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.1.9)  25 APR 2026 16:29
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.1.9)  25 APR 2026 20:48
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1393,11 +1393,11 @@ File: pic/task1/image copy 2.png Graphic file (type bmp)
 \pydata@fh@_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted=\write7
 \openout7 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260425162944 FAD58DE7366495DB4650CF
+runsystem(latexminted config  --timestamp 20260425204810 FAD58DE7366495DB4650CF
 EFAC2FCD61)...executed.
 
  (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260425162944 FAD58DE7366495DB4
+runsystem(latexminted cleanconfig  --timestamp 20260425204810 FAD58DE7366495DB4
 650CFEFAC2FCD61)...executed.
 
 
@@ -1458,21 +1458,53 @@ File: pic/task1/image copy 17.png Graphic file (type bmp)
 
 [9])
 
-[10] (./main.aux)
+[10] (./chapter/task2.tex
+(./_minted/01E912C87F6CEC7D42FEAFA8A95AB9A1.highlight.minted)
+
+[11]
+File: pic/task2/image.png Graphic file (type bmp)
+<pic/task2/image.png>
+ (./_minted/70BE233DC2B767678BE61A231A1A2445.highlight.minted
+
+LaTeX Font Warning: Font shape `TU/FangSong(0)/m/it' undefined
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 8.
+
+
+
+[12]
+
+[13]
+
+[14]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 132.
+
+
+[15]
+
+[16]) (./_minted/DE931C58455FA1D27C274BBC4A2CE72A.highlight.minted
+
+[17]))
+
+[18] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2022/08/05>
  ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E92328DD094793EFD085440BA2EA7634;729.
+(rerunfilecheck)             Checksum: D1BD32B49338BBF7CAA05BA1852E7F70;1432.
  ) 
 Here is how much of TeX's memory you used:
- 38421 strings out of 473885
- 889960 string characters out of 5725213
- 1413654 words of memory out of 5000000
- 60812 multiletter control sequences out of 15000+600000
- 564247 words of font info for 92 fonts, out of 8000000 for 9000
+ 38584 strings out of 473885
+ 898805 string characters out of 5725213
+ 1435654 words of memory out of 5000000
+ 60957 multiletter control sequences out of 15000+600000
+ 564279 words of font info for 96 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,12n,115p,1190b,792s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,13n,115p,1190b,913s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (10 pages).
+Output written on main.pdf (18 pages).
