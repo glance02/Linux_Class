@@ -1,0 +1,151 @@
+\documentclass[UTF8,a4paper,12pt]{ctexart}
+
+% Page layout
+\usepackage[
+  left=2.6cm,
+  right=2.6cm,
+  top=2.5cm,
+  bottom=2.5cm,
+  headheight=15pt
+]{geometry}
+\usepackage{setspace}
+\setstretch{1.35}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+
+% Colors
+\usepackage{xcolor}
+\definecolor{ReportBlue}{HTML}{1F4E79}
+\definecolor{ReportLightBlue}{HTML}{EAF2F8}
+\definecolor{ReportGray}{HTML}{F5F7FA}
+\definecolor{ReportDarkGray}{HTML}{4A5568}
+\definecolor{ReportLine}{HTML}{D9E2EC}
+
+% Figures, tables, floats
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{caption}
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  labelsep=quad
+}
+
+% Lists
+\usepackage{enumitem}
+\setlist{
+  itemsep=0.25em,
+  topsep=0.4em,
+  parsep=0em
+}
+\setlist[enumerate]{label=\arabic*.}
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\newcommand{\reporttitle}{Linux 课程报告}
+\fancyhead[L]{\small \reporttitle}
+\fancyhead[R]{\small \leftmark}
+\fancyfoot[C]{\small \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Section styles
+\usepackage{titlesec}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}}
+\ctexset{
+  section = {
+    format = \centering\zihao{3}\heiti,
+    name = {},
+    number = \chinese{section},
+    aftername = \quad,
+    beforeskip = 1.6em,
+    afterskip = 1.0em
+  },
+  subsection = {
+    format = \zihao{4}\heiti,
+    beforeskip = 1.1em,
+    afterskip = 0.55em
+  },
+  subsubsection = {
+    format = \zihao{-4}\heiti,
+    beforeskip = 0.9em,
+    afterskip = 0.4em
+  }
+}
+\titleformat{\subsection}
+  {\zihao{4}\heiti}
+  {\thesubsection}
+  {0.75em}
+  {}
+  [{\color{ReportLine}\titlerule[0.5pt]}]
+
+% Links
+\usepackage[
+  colorlinks=true,
+  linkcolor=ReportBlue,
+  urlcolor=ReportBlue,
+  citecolor=ReportBlue
+]{hyperref}
+
+% Code blocks
+\usepackage{fvextra}
+\usepackage{minted}
+\setminted{
+  fontsize=\small,
+  linenos,
+  numbersep=8pt,
+  breaklines,
+  breakanywhere,
+  autogobble,
+  frame=lines,
+  framesep=2mm,
+  rulecolor=\color{ReportLine},
+  bgcolor=ReportGray,
+  tabsize=4
+}
+
+% Note boxes
+\usepackage[most]{tcolorbox}
+\tcbset{
+  enhanced,
+  boxrule=0.6pt,
+  arc=2mm,
+  left=1em,
+  right=1em,
+  top=0.75em,
+  bottom=0.75em
+}
+
+\newtcolorbox{notebox}[1][说明]{
+  title=#1,
+  colback=ReportLightBlue,
+  colframe=ReportBlue,
+  coltitle=white,
+  fonttitle=\bfseries
+}
+
+\newtcolorbox{stepbox}[1][实验步骤]{
+  title=#1,
+  colback=white,
+  colframe=ReportDarkGray,
+  coltitle=white,
+  fonttitle=\bfseries
+}
+
+% A compact command style for inline commands.
+\newcommand{\cmd}[1]{\texttt{\color{ReportBlue}#1}}
+
+\begin{document}
+
+\tableofcontents
+\newpage
+
+% Add your chapter files here when needed.
+\input{chapter/task1.tex}
+% \input{chapter/tesk2.tex}
+
+\end{document}

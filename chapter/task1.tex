@@ -1,0 +1,215 @@
+\section{LINUX平台下的基本命令}
+
+作业中要求使用Linux平台进行操作，我正好在阿里云租了一台2核2g的服务器，安装的系统是Ubuntu 24.04。这个作业我将会使用ssh连接到我的服务器，并在服务器上进行操作。我使用termius这个工具来连接服务器。
+
+我会分类别来操作一些基础命令。
+
+\subsection{文件和目录操作}
+
+\begin{enumerate}
+\item 查看当前所在目录：\cmd{pwd}
+\item 查看当前目录下的文件：\cmd{ls}
+\item 以详细形式查看文件：\cmd{ls -l}
+\item 查看隐藏文件：\cmd{ls -a}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image.png}
+    \caption{命令1.1-1.4}
+\end{figure}
+
+\item 创建一个目录
+\item 进入目录
+\item 创建空文件
+\item 向文件写入内容
+\item 查看文件内容
+\item 复制文件
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy.png}
+    \caption{命令1.5-1.10}
+\end{figure}
+
+\item 重命名文件
+\item 删除文件
+\item 返回上一级目录
+\item 删除目录
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 2.png}
+    \caption{命令1.11-1.14}
+\end{figure}
+
+\end{enumerate}
+
+\subsection{文件内容查看与处理命令}
+
+我先使用如下命令创建了一个测试文件夹，然后测试命令
+
+\begin{minted}{bash}
+mkdir linux_homework
+cd linux_homework\
+echo -e "apple\nbanana\napple\norange\nbanana\nlinux\ncommand\npipe" > words.txt    
+\end{minted}
+
+\begin{enumerate}
+\item 查看完整内容
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 3.png}
+    \caption{命令2.1}
+\end{figure}
+
+\item 查看文件前3行
+\item 查看文件后3行
+\item 统计文件行数、单词数、字符数
+\item 统计文件行数
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 4.png}
+    \caption{命令2.2-2.5}
+\end{figure}
+
+\item 对文件内容排序
+\item 去除相邻重复行
+\item 查找包含 apple 的行
+\item 查找包含 banana 的行，并显示行号
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 5.png}
+    \caption{命令2.6-2.9}
+\end{figure}
+
+\end{enumerate}
+
+\subsection{系统信息查看命令}
+
+\begin{enumerate}
+\item 查看系统内核和系统信息
+\item 查看当前用户名
+\item 查看当前日期时间
+\item 显示日历
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 6.png}
+    \caption{命令3.1-3.4}
+\end{figure}
+
+其中第四个命令需要先安装ncal，我使用 \cmd{sudo apt install ncal} 安装之后就可以正常使用了。
+
+\item 查看磁盘空间
+\item 查看内存使用情况
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 7.png}
+    \caption{命令3.5-3.6}
+\end{figure}
+
+\item 查看系统进程和资源占用
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 8.png}
+    \caption{命令3.7}
+\end{figure}
+
+\item 查看当前系统进程
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 9.png}
+    \caption{命令3.8}
+\end{figure}
+
+由于使用的是我的服务器，所以系统进程比较多。没有全部截下来。
+
+\item 查看历史命令
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 10.png}
+    \caption{命令3.9}
+\end{figure}
+
+历史记录中包含了我之前使用过的命令，包括一些测试命令和安装命令等。这里只截了本次课程展示的几个历史命令。
+
+\end{enumerate}
+
+\subsection{权限相关命令}
+
+\begin{enumerate}
+\item 创建脚本文件
+\item 查看文件权限
+\item 给文件添加可执行权限
+\item 再次查看权限变化
+\item 查看文件详细状态信息
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 11.png}
+    \caption{命令4.1-4.5}
+\end{figure}
+
+\end{enumerate}
+
+\subsection{管道符组合命令}
+
+\begin{enumerate}
+\item 把文件内容传给 sort 排序后去重
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 12.png}
+    \caption{命令5.1}
+\end{figure}
+
+\item 统计每个单词出现次数
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 13.png}
+    \caption{命令5.2}
+\end{figure}
+
+\item 找出包含字母 a 的行，并排序
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 14.png}
+    \caption{命令5.3}
+\end{figure}
+
+\item 在当前目录中筛选 .txt 文件
+\item 在进程列表中查找 bash 相关进程
+\item 查看最近使用的命令
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 15.png}
+    \caption{命令5.4-5.6}
+\end{figure}
+
+\item 筛选磁盘挂载信息
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 16.png}
+    \caption{命令5.7}
+\end{figure}
+
+\item 统计文件行数
+\item 统计单词出现次数，并按出现次数从高到低排序
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task1/image copy 17.png}
+    \caption{命令5.8-5.9}
+\end{figure}
+
+\end{enumerate}

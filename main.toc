@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {一}LINUX平台下的基本命令}{2}{section.1}%
+\contentsline {subsection}{\numberline {1}文件和目录操作}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {2}文件内容查看与处理命令}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {3}系统信息查看命令}{5}{subsection.1.3}%
+\contentsline {subsection}{\numberline {4}权限相关命令}{7}{subsection.1.4}%
+\contentsline {subsection}{\numberline {5}管道符组合命令}{8}{subsection.1.5}%
