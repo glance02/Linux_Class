@@ -4,11 +4,11 @@
 
 本项目名为 TermSync，是一个使用 Python 标准库实现的终端多人协作代码编辑器。项目的目标不是复刻完整的图形化 IDE，而是在 Linux 环境下实现一个可实际运行、可多人连接、可同步编辑、可保存和可测试验证的轻量级协作编辑系统。用户在终端中运行客户端，通过 TCP 连接到服务端；服务端维护唯一权威文档状态，并负责对所有编辑操作进行排序、变换、应用和广播。
 
-从课程实践角度看，本项目覆盖了 Linux 程序设计中的多个核心主题：网络编程、线程创建与同步、进程间通信、文件系统操作、终端界面编程和自动化测试。服务端使用 socket 监听客户端连接，为每个客户端创建独立线程；文档对象使用锁保护共享状态；自动保存和日志写入被拆分到独立进程中，通过 \cmd{multiprocessing.Queue} 与主服务端通信；客户端使用 \cmd{curses} 构建终端交互界面。
+本项目覆盖了 Linux 程序设计中的多个核心主题：网络编程、线程创建与同步、进程间通信、文件系统操作、终端界面编程和自动化测试。服务端使用 socket 监听客户端连接，为每个客户端创建独立线程；文档对象使用锁保护共享状态；自动保存和日志写入被拆分到独立进程中，通过 \cmd{multiprocessing.Queue} 与主服务端通信；客户端使用 \cmd{curses} 构建终端交互界面。
 
 项目采用“服务端主导 OT（Operational Transformation）”的同步方案。客户端只负责将键盘输入转换为字符级编辑操作，并按 ACK 节奏发送到服务端。服务端作为唯一权威状态源，在临界区内为每个操作分配递增的 \cmd{server\_version}，并根据历史操作对旧版本操作进行位置变换。这样既降低了客户端实现复杂度，也能清晰展示并发编辑时的一致性处理过程。
 
-在实际部署中，服务端运行在我自己的 Linux 服务器上。这台服务器已经绑定域名 \cmd{glance02.xyz}，因此客户端后续不需要直接记忆服务器公网 IP，而是通过域名连接服务端。例如服务端在 Linux 服务器上监听 \cmd{0.0.0.0:8765}，客户端可以使用 \cmd{glance02.xyz:8765} 加入同一个协作文档。
+在实际部署中，服务端运行在我自己的 Linux 服务器上。这台服务器是拥有独立公网IP的阿里云ECS服务器，已经绑定了我的域名 \cmd{glance02.xyz}，因此客户端后续不需要直接记忆服务器公网 IP，而是通过域名连接服务端。例如服务端在 Linux 服务器上监听 \cmd{0.0.0.0:8765}，客户端可以使用 \cmd{glance02.xyz:8765} 加入同一个协作文档。对于客户端，由于我的两台电脑都是windows，所以客户端运行在 Windows 的 WSL（Windows Subsystem for Linux）环境中。WSL 提供了一个完整的 Linux 用户空间环境，支持 Python、curses 和 TCP 网络编程，因此客户端可以直接在 WSL 终端中运行，并通过公网域名连接到服务器。
 
 \textbf{截图占位：这里插入服务端在 Linux 服务器上启动并监听端口的截图，截图中应能看到服务端绑定的文档路径和监听端口。}
 
@@ -18,7 +18,7 @@
 
 多人协作编辑是一个典型的分布式一致性问题。多个用户可能在同一时间对同一份文本进行修改，如果系统只按照客户端本地光标位置直接修改文档，很容易出现字符位置错乱、删除目标错误、不同客户端内容不一致等问题。例如初始文本为 \cmd{hello world}，一个用户在位置 5 连续插入多个字符，另一个用户仍然基于旧版本请求删除位置 5 的字符。如果服务端不做额外处理，第二个用户想删除的字符和服务端当前文档中的位置就不再对应。
 
-传统协作编辑系统常见的解决方案包括 OT 和 CRDT。本项目选择 OT，是因为 OT 的核心思想适合课程项目展示：每个编辑操作携带自己基于的文档版本，服务端根据该版本之后已经发生的历史操作修正位置，最后将操作应用到当前文档。与更复杂的全客户端协同 OT 不同，本项目采用服务端主导方案，将全局排序和位置变换集中放在服务端，从而使实现更清晰，也更容易验证正确性。
+传统协作编辑系统常见的解决方案包括 OT 和 CRDT。本项目选择 OT：每个编辑操作携带自己基于的文档版本，服务端根据该版本之后已经发生的历史操作修正位置，最后将操作应用到当前文档。与更复杂的全客户端协同 OT 不同，本项目采用服务端主导方案，将全局排序和位置变换集中放在服务端，从而使实现更清晰，也更容易验证正确性。
 
 本项目也具有明确的 Linux 课程背景。首先，服务端是一个典型的 TCP 长连接服务，涉及 socket 创建、地址绑定、监听、接受连接和消息收发。其次，每个客户端连接由独立线程处理，多个线程会同时访问共享文档，因此必须使用锁保护临界区。再次，自动保存和日志写入使用独立进程完成，主进程通过队列向工作进程发送快照、保存和日志事件，体现了进程间通信的使用。最后，文件加载、原子写入、备份文件、自动保存文件和编辑日志都体现了 Linux 文件系统编程的基本实践。
 
@@ -89,7 +89,17 @@
 典型的编辑操作消息包含消息类型、客户端标识、操作编号、基准版本和操作内容。例如：
 
 \begin{minted}{json}
-{"type":"OP","client_id":"u1","op_id":"u1-12","base_version":8,"op":{"kind":"insert","pos":5,"char":"a"}}
+{
+    "type": "OP",
+    "client_id": "u1",
+    "op_id": "u1-12",
+    "base_version": 8,
+    "op": {
+        "kind": "insert",
+        "pos": 5,
+        "char": "a"
+    }
+}
 \end{minted}
 
 服务端处理成功后会给提交者返回 \cmd{ACK}，并向其他客户端广播 \cmd{REMOTE\_OP}。这两类消息都携带服务端确认后的 \cmd{server\_version} 和变换后的权威操作。客户端只应用服务端确认的操作，而不把本地预测结果直接作为最终文档。
@@ -134,7 +144,7 @@
 项目使用 Python 标准库 \cmd{unittest} 进行自动化测试，测试命令如下：
 
 \begin{minted}{bash}
-python -m unittest discover -s tests -v
+python3 -m unittest discover -s tests -v
 \end{minted}
 
 本地执行结果显示，共运行 17 个测试用例，所有测试均通过，输出结尾为 \cmd{Ran 17 tests ... OK}。
@@ -151,6 +161,13 @@ python -m unittest discover -s tests -v
   \item 中文字符可以被插入，终端显示宽度辅助函数能正确处理宽字符。
   \item 手动保存时会在覆盖正式文件前生成备份文件。
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/cowork/test1.png}
+    \caption{测试结果}
+\end{figure}
+
 
 \subsubsection{手动验证}
 
@@ -204,7 +221,7 @@ python3 client.py --host glance02.xyz --port 8765 --client-id u1
 
 问题：如果服务端永久保存所有操作历史，长时间运行后内存占用会持续增加。
 
-解决方案：历史记录使用 \cmd{deque(maxlen=history\_limit)} 限制长度，并维护 \cmd{history\_start\_version}。当客户端版本太旧，已经无法根据保留历史进行 OT 时，服务端返回 \cmd{RESYNC\_REQUIRED} 并发送完整文档。
+解决方案：历史记录使用 \cmd{deque(maxlen=history\_limit)} 限制长度，并维护 \\ \cmd{history\_start\_version}。当客户端版本太旧，已经无法根据保留历史进行 OT 时，服务端返回 \cmd{RESYNC\_REQUIRED} 并发送完整文档。
 
 \subsubsection{文件保存可能覆盖旧内容}
 
@@ -230,31 +247,31 @@ python3 client.py --host glance02.xyz --port 8765 --client-id u1
 
 编辑操作被抽象为 \cmd{Operation}，支持 \cmd{insert}、\cmd{delete} 和 \cmd{noop}。从网络消息解析操作时会进行类型检查，例如插入操作必须携带单个字符。
 
-\inputminted[firstline=15,lastline=49]{python}{code/cowork/document.py}
+\inputminted[firstline=11,lastline=54]{python}{code/cowork/document.py}
 
 \subsubsection{OT 位置变换规则}
 
 \cmd{transform\_against} 是 OT 核心函数。它根据一条已经发生的历史操作，调整当前操作的位置，或者在重复删除同一字符时将操作转换为 \cmd{noop}。
 
-\inputminted[firstline=102,lastline=140]{python}{code/cowork/document.py}
+\inputminted[firstline=102,lastline=131]{python}{code/cowork/document.py}
 
 \subsubsection{服务端权威文档处理流程}
 
 \cmd{process\_operation} 展示了服务端主导 OT 的完整流程：解析操作、检查版本、遍历历史、执行变换、规范化操作、分配版本号、应用文本修改、写入历史并生成 ACK 和广播消息。
 
-\inputminted[firstline=163,lastline=282]{python}{code/cowork/document.py}
+\inputminted[firstline=163,lastline=287]{python}{code/cowork/document.py}
 
 \subsubsection{服务端锁外发送与广播}
 
 服务端处理操作时，文档修改已经在 \cmd{process\_operation} 内完成。返回结果后，服务端再发送 ACK 和广播远程操作，从而避免慢客户端阻塞文档锁。
 
-\inputminted[firstline=209,lastline=281]{python}{code/cowork/server.py}
+\inputminted[firstline=209,lastline=284]{python}{code/cowork/server.py}
 
 \subsubsection{客户端发送队列与 ACK 处理}
 
 客户端同步状态使用 \cmd{pending\_queue} 和 \cmd{inflight\_op} 控制发送节奏。它保证连续按键不会丢失，同时把最终文档更新交给服务端 ACK 或远程操作决定。
 
-\inputminted[firstline=20,lastline=121]{python}{code/cowork/client_state.py}
+\inputminted[firstline=13,lastline=120]{python}{code/cowork/client_state.py}
 
 \subsubsection{终端按键处理}
 
@@ -266,16 +283,16 @@ python3 client.py --host glance02.xyz --port 8765 --client-id u1
 
 自动保存进程通过队列接收主服务端发来的事件。它负责定期写入自动保存文件，手动保存时生成备份并写入正式文件，同时追加 JSON 日志.
 
-\inputminted[firstline=15,lastline=102]{python}{code/cowork/autosave.py}
+\inputminted[firstline=15,lastline=103]{python}{code/cowork/autosave.py}
 
 \subsubsection{文档一致性测试}
 
 文档测试覆盖了 OT 中最关键的情况：旧版本删除位置经过多个插入后右移、重复删除变为 \cmd{noop}、历史过期触发重同步，以及版本号严格递增。
 
-\inputminted[firstline=7,lastline=102]{python}{code/cowork/tests/test_document.py}
+\inputminted[firstline=6,lastline=100]{python}{code/cowork/tests/test_document.py}
 
 \subsubsection{客户端队列测试}
 
 客户端状态测试验证了 ACK 驱动发送队列、远程版本缺口处理、服务端分配客户端编号、中文字符输入和宽字符删除等行为。
 
-\inputminted[firstline=9,lastline=98]{python}{code/cowork/tests/test_client_state.py}
+\inputminted[firstline=8,lastline=96]{python}{code/cowork/tests/test_client_state.py}
