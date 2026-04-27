@@ -1,7 +1,8 @@
 import unittest
 from pathlib import Path
+from unittest.mock import Mock, patch
 
-from server import format_operation_event, format_save_event, format_server_event
+from server import CollaborativeServer, format_operation_event, format_save_event, format_server_event
 
 
 class ServerOutputTests(unittest.TestCase):
@@ -45,6 +46,18 @@ class ServerOutputTests(unittest.TestCase):
             format_server_event({"event": "leave", "client_id": "u1"}),
             "LEAVE client=u1",
         )
+
+    def test_shutdown_ignores_non_owner_process(self):
+        with (
+            patch("server.multiprocessing.Queue", return_value=Mock()),
+            patch("server.multiprocessing.Process", return_value=Mock()),
+        ):
+            server = CollaborativeServer("127.0.0.1", 0, Path("shared.py"))
+
+        with patch("server.os.getpid", return_value=server._owner_pid + 1):
+            server.shutdown()
+
+        self.assertFalse(server._stop_event.is_set())
 
 
 if __name__ == "__main__":

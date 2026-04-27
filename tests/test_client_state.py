@@ -1,6 +1,6 @@
 import unittest
 
-from client import display_col_to_char_col, is_insertable_character, text_display_width
+from client import BACKSPACE_KEYS, TerminalClient, display_col_to_char_col, is_insertable_character, text_display_width
 from client_state import ClientSyncState
 from document import Operation
 
@@ -81,6 +81,19 @@ class ClientSyncStateTests(unittest.TestCase):
         self.assertEqual(text_display_width("a你b"), 4)
         self.assertEqual(display_col_to_char_col("a你b", 2), 1)
         self.assertEqual(display_col_to_char_col("a你b", 3), 2)
+
+    def test_wide_character_backspace_queues_delete(self):
+        sent = []
+        client = TerminalClient("127.0.0.1", 8765, "u1")
+        client.state = ClientSyncState("u1", sent.append)
+        client.state.set_document("ab", 0)
+        client.cursor_pos = 2
+
+        client._handle_key("\x7f")
+
+        self.assertIn("\x7f", BACKSPACE_KEYS)
+        self.assertEqual(sent[0]["op"], {"kind": "delete", "pos": 1})
+        self.assertEqual(client.cursor_pos, 1)
 
 
 if __name__ == "__main__":

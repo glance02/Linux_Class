@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import signal
 import shutil
 import time
 from multiprocessing import Queue
@@ -38,6 +39,7 @@ def autosave_worker(
     log_path: str,
     interval_seconds: float = 5.0,
 ) -> None:
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
     # 自动保存和日志写入放在单独进程中完成。
     # 主服务端只需要通过 multiprocessing.Queue 投递事件，不必在处理
     # 网络请求或文档锁时直接做磁盘 I/O，从而体现进程间通信的使用。

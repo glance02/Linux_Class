@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import multiprocessing
+import os
 import signal
 import socket
 import threading
@@ -69,6 +70,7 @@ class CollaborativeServer:
         self.host = host
         self.port = port
         self.document_path = document_path
+        self._owner_pid = os.getpid()
         initial_text = document_path.read_text(encoding="utf-8") if document_path.exists() else ""
         self.document = CollaborativeDocument(initial_text, history_limit=history_limit)
         self.autosave_interval = autosave_interval
@@ -126,6 +128,8 @@ class CollaborativeServer:
         self.shutdown()
 
     def shutdown(self) -> None:
+        if os.getpid() != self._owner_pid:
+            return
         if self._stop_event.is_set():
             return
         self._stop_event.set()

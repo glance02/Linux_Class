@@ -39,14 +39,14 @@
 启动服务端：
 
 ```bash
-python server.py --host 127.0.0.1 --port 8765 --file shared.py
+python3 server.py --host 0.0.0.0 --port 8765 --file shared.py
 ```
 
 打开两个终端，分别启动两个客户端：
 
 ```bash
-python client.py --host 127.0.0.1 --port 8765 --client-id u1
-python client.py --host 127.0.0.1 --port 8765 --client-id u2
+python3 client.py --host 127.0.0.1 --port 8765 --client-id u1
+python3 client.py --host 127.0.0.1 --port 8765 --client-id u2
 ```
 
 客户端快捷键：
@@ -114,7 +114,7 @@ hello!!!! world
 运行单元测试：
 
 ```bash
-python -m unittest discover -s tests -v
+python3 -m unittest discover -s tests -v
 ```
 
 测试覆盖内容：

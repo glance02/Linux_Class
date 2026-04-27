@@ -24,6 +24,7 @@ CTRL_Q = 17
 CTRL_S = 19
 CONTROL_Q = "\x11"
 CONTROL_S = "\x13"
+BACKSPACE_KEYS = {"\b", "\x7f"}
 IGNORED_INPUT = {"\t", "\r", "\x0b", "\x0c"}
 KeyInput = Union[int, str]
 
@@ -195,6 +196,9 @@ class TerminalClient:
         if key in (CTRL_S, CONTROL_S):
             self.transport.send_message({"type": "SAVE"})
             return
+        if key in BACKSPACE_KEYS:
+            self._delete_before_cursor()
+            return
         if isinstance(key, str):
             if key == "\n":
                 self.state.queue_operation(Operation("insert", self.cursor_pos, "\n"))
@@ -223,14 +227,17 @@ class TerminalClient:
             self.cursor_pos = line_col_to_pos_by_display(self.state.content, line + 1, display_col)
             return
         if key in (curses.KEY_BACKSPACE, 127, 8):
-            if self.cursor_pos > 0:
-                delete_pos = self.cursor_pos - 1
-                self.state.queue_operation(Operation("delete", delete_pos))
-                self.cursor_pos = delete_pos
+            self._delete_before_cursor()
             return
         if key in (curses.KEY_ENTER, 10, 13):
             self.state.queue_operation(Operation("insert", self.cursor_pos, "\n"))
             self.cursor_pos += 1
+
+    def _delete_before_cursor(self) -> None:
+        if self.cursor_pos > 0:
+            delete_pos = self.cursor_pos - 1
+            self.state.queue_operation(Operation("delete", delete_pos))
+            self.cursor_pos = delete_pos
 
 
 def parse_args() -> argparse.Namespace:
