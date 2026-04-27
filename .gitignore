@@ -1,0 +1,55 @@
+# Python cache and test artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Collaborative editor runtime files
+/shared.py
+*.autosave
+*.edit.log
+*.bak
+*.tmp
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+_minted*/
+*.minted
+
+# Keep final PDFs trackable for course reports.
+# Uncomment the next line if you do not want generated PDFs in Git.
+# *.pdf
+
+# Editor and OS local files
+.vscode/*
+!.vscode/*.code-snippets
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
