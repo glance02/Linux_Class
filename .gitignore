@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*.tmp
+*.autosave
+*.bak
+*.edit.log
+shared.py
