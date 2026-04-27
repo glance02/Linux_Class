@@ -1,0 +1,64 @@
+{
+  "LaTeX Figure": {
+    "prefix": "figure",
+    "body": [
+      "\\begin{figure}[H]",
+      "    \\centering",
+      "    \\includegraphics[width=0.8\\textwidth]{${1:Images/Task1/filename.png}}",
+      "    \\caption{${2:图片标题}}",
+      "\\end{figure}",
+	  "",
+	  "$0"
+    ],
+    "description": "插入LaTeX figure环境"
+  },
+  "LaTeX Multiple Figures": {
+    "prefix": "twofigures",
+    "body": [
+      "\\begin{figure}[H]",
+      "    \\centering",
+      "    \\subfigure{",
+      "        \\includegraphics[width=0.48\\textwidth]{${1:Images/image1.png}}",
+      "    }",
+      "    \\hfill",
+      "    \\subfigure{",
+      "        \\includegraphics[width=0.48\\textwidth]{${2:Images/image2.png}}",
+      "    }",
+      "    \\caption{${3:总体标题}}",
+      "\\end{figure}",
+	  "",
+	  "$0"
+    ],
+    "description": "插入LaTeX并排显示两张图片（使用subfigure）"
+  },
+  "LaTeX Figure Grid": {
+    "prefix": "gridfigure",
+    "body": [
+      "\\begin{figure}[H]",
+      "    \\centering",
+      "    \\subfigure{",
+      "        \\includegraphics[width=0.48\\textwidth]{${1:Images/image1.png}}",
+      "    }",
+      "    \\hfill",
+      "    \\subfigure{",
+      "        \\includegraphics[width=0.48\\textwidth]{${2:Images/image2.png}}",
+      "    }",
+      "",
+      "    \\\\[1em]",
+      "",
+      "    \\subfigure{",
+      "        \\includegraphics[width=0.48\\textwidth]{${3:Images/image3.png}}",
+      "    }",
+      "    \\hfill",
+      "    \\subfigure{",
+      "        \\includegraphics[width=0.48\\textwidth]{${4:Images/image4.png}}",
+      "    }",
+      "    \\caption{${5:2×2网格布局图片标题}}",
+      "\\end{figure}",
+	  "",
+	  "$0"
+    ],
+    "description": "插入LaTeX 2×2网格布局四张图片（使用subfigure命令）"
+  }
+
+}

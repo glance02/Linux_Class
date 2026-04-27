@@ -1,12 +1,6 @@
-\contentsline {section}{\numberline {一}LINUX平台下的基本命令}{2}{section.1}%
-\contentsline {subsection}{\numberline {1}文件和目录操作}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {2}文件内容查看与处理命令}{3}{subsection.1.2}%
-\contentsline {subsection}{\numberline {3}系统信息查看命令}{5}{subsection.1.3}%
-\contentsline {subsection}{\numberline {4}权限相关命令}{7}{subsection.1.4}%
-\contentsline {subsection}{\numberline {5}管道符组合命令}{8}{subsection.1.5}%
-\contentsline {section}{\numberline {二}LINUX 下的shell编程案例}{11}{section.2}%
-\contentsline {subsection}{\numberline {1}程序功能说明}{11}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2}Shell脚本执行方法}{11}{subsection.2.2}%
-\contentsline {subsection}{\numberline {3}案例展示}{12}{subsection.2.3}%
-\contentsline {subsection}{\numberline {4}源代码展示}{12}{subsection.2.4}%
-\contentsline {subsection}{\numberline {5}Shell程序调试方法}{18}{subsection.2.5}%
+\contentsline {section}{\numberline {一}LINUX 下的shell编程案例}{2}{section.1}%
+\contentsline {subsection}{\numberline {1}程序功能说明}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {2}Shell脚本执行方法}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {3}案例展示}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {4}Shell程序调试方法}{6}{subsection.1.4}%
+\contentsline {subsection}{\numberline {5}源代码展示}{9}{subsection.1.5}%

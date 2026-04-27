@@ -1,5 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-mkdir\PYG{+w}{ }linux\PYGZus{}homework
-\PYG{n+nb}{cd}\PYG{+w}{ }linux\PYGZus{}homework\PYG{l+s+se}{\PYGZbs{}}
-\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}apple\PYGZbs{}nbanana\PYGZbs{}napple\PYGZbs{}norange\PYGZbs{}nbanana\PYGZbs{}nlinux\PYGZbs{}ncommand\PYGZbs{}npipe\PYGZdq{}}\PYG{+w}{ }\PYGZgt{}\PYG{+w}{ }words.txt
-\end{MintedVerbatim}

@@ -1,6 +1,6 @@
 \section{LINUX 下的shell编程案例}
 
-本次作业我设计并实现了一个基于 Bash Shell 的 Linux 命令答题系统。程序通过菜单提供开始答题、查看历史成绩、清空历史成绩和退出系统等功能，题目从外部题库文件中读取，答题结束后会把本次成绩保存到成绩文件中。这个案例既能练习 Linux 基础命令，也能体现 Shell 脚本中条件判断、循环控制、函数封装、文件读写和程序调试等知识点。
+本次作业我设计并实现了一个基于 Bash Shell 的 Linux 命令答题系统。程序通过菜单提供开始答题、查看历史成绩、清空历史成绩和退出系统等功能，题目从外部题库文件中读取，答题结束后会把本次成绩保存到成绩文件中。这个案例既能练习 Linux 基础命令，也能体现 Shell 脚本中条件判断、循环控制、函数封装、文件读写和程序调试等知识点。我会把本次作业的代码在最后面展示出来。
 
 \subsection{程序功能说明}
 
@@ -32,7 +32,7 @@ chmod +x linux_quiz.sh
 
 \subsection{案例展示}
 
-接上次的作业，这次这个也是在我的 Ubuntu 服务器上运行和测试这个shell文件，之后的调试也是在这台服务器上进行。
+接上次的作业，这次作业也在我的 Ubuntu 服务器上运行和测试。之后的调试也是在这台服务器上进行。
 
 首先创建一个目录来存放本次作业。然后加入sh文件和txt题库文件。
 
@@ -50,6 +50,149 @@ chmod +x linux_quiz.sh
     \includegraphics[width=0.8\textwidth]{pic/task2/image copy.png}
 \end{figure}
 
+开始答题界面：
+
+\begin{figure}[H]
+    \centering
+    \subfigure{
+        \includegraphics[width=0.48\textwidth]{pic/task2/image copy 3.png}
+    }
+    \hfill
+    \subfigure{
+        \includegraphics[width=0.48\textwidth]{pic/task2/image copy 4.png}
+    }
+
+    \\[1em]
+
+    \subfigure{
+        \includegraphics[width=0.48\textwidth]{pic/task2/image copy 5.png}
+    }
+    \hfill
+    \subfigure{
+        \includegraphics[width=0.48\textwidth]{pic/task2/image copy 6.png}
+    }
+    \caption{答题界面}
+\end{figure}
+
+
+
+答题结束界面：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 2.png}
+    \caption{答题结束界面}
+\end{figure}
+
+历史成绩界面：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 7.png}
+    \caption{历史成绩}
+\end{figure}
+
+注意，题库和历史成绩都是保存在当前目录下的txt文件中。目前题库只加了25道题。以后如要添加可以直接在 \cmd{questions.txt} 文件中添加题目和答案，格式为“题目|答案”，每行一题。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 8.png}
+    \caption{题库和历史txt}
+\end{figure}
+
+清空历史，可以选择清空或者不清空。
+
+\begin{figure}[H]
+    \centering
+    \subfigure{
+        \includegraphics[width=0.48\textwidth]{pic/task2/image copy 9.png}
+    }
+    \hfill
+    \subfigure{
+        \includegraphics[width=0.48\textwidth]{pic/task2/image copy 10.png}
+    }
+    \caption{清空历史成绩}
+\end{figure}
+
+退出系统。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 11.png}
+    \caption{退出系统}
+\end{figure}
+
+
+\subsection{Shell程序调试方法}
+
+在开发和调试 Shell 脚本时，我主要使用 \cmd{bash -n linux\_quiz.sh} 命令来检查脚本的语法错误。这个命令会解析脚本但不执行它，可以快速发现语法问题。
+
+如果正常的话，命令行会没有输出，表示没有语法错误。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 12.png}
+\end{figure}
+
+如果有错误，会显示错误信息和所在行号，方便定位问题。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 13.png}
+\end{figure}
+
+使用 \cmd{vim} 打开这个文件，可以看到，是这里少了一个 \cmd{fi}，导致语法错误。修复后再次运行检查后就没有错误了。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 14.png}
+    \caption{错误修正}
+\end{figure}
+
+完成shell文件之后，可以使用 \cmd{bash -x linux\_quiz.sh} 来执行脚本并显示每条命令的执行过程，这样可以更细致地调试程序逻辑和变量值。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 15.png}
+    \caption{执行跟踪调试}
+\end{figure}
+
+另外，我还构造了一些情况来进行测试，比如删除 \cmd{questions.txt}，输入非法选项等，来验证程序的健壮性和错误处理能力。
+
+删除 \cmd{questions.txt} 后运行程序：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 16.png}
+    \caption{删除题库文件}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 17.png}
+    \caption{运行程序}
+\end{figure}
+
+可以看出程序并没有崩溃，而是提示了题库文件不存在，说明程序的错误处理机制是有效的。
+
+恢复题库文件后，答题输入中文选项：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 18.png}
+    \caption{输入中文选项}
+\end{figure}
+
+程序能够正确识别并说明该答案错误，说明程序对输入的处理也是正确的。
+
+以及在主菜单页面，输入非法选项，程序不会崩溃，而是继续进行循环，提示用户输入正确选项。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/task2/image copy 19.png}
+    \caption{输入非法选项}
+\end{figure}
+
 
 \subsection{源代码展示}
 
@@ -57,24 +200,4 @@ chmod +x linux_quiz.sh
 
 \inputminted{bash}{code/task2/linux_quiz.sh}
 
-\subsection{Shell程序调试方法}
-
-在编写和测试这个脚本时，可以使用以下方法进行调试：
-
-\begin{enumerate}
-    \item 使用 \cmd{bash -n linux\_quiz.sh} 检查脚本语法错误。该命令只检查语法，不真正执行脚本。
-    \item 使用 \cmd{bash -x linux\_quiz.sh} 跟踪脚本执行过程。执行时每条命令都会在终端显示出来，便于观察变量值和分支执行情况。
-    \item 在关键位置加入 \cmd{echo} 输出，例如输出当前得分、错误次数、读取到的题目和答案，用于确认程序状态是否正确。
-    \item 分模块调试各个函数，例如先测试成绩文件是否能正常创建，再测试答题逻辑，最后测试历史成绩显示和清空功能。
-    \item 构造异常情况进行测试，例如删除 \cmd{questions.txt}、清空 \cmd{score.txt}、输入空答案、输入错误菜单编号等，检查程序是否能给出合理提示。
-\end{enumerate}
-
-例如，可以用下面的命令进行语法检查和执行跟踪：
-
-\begin{minted}{bash}
-bash -n linux_quiz.sh
-bash -x linux_quiz.sh
-\end{minted}
-
-通过调试可以发现，程序对题库文件不存在、成绩文件为空、用户输入错误等情况都做了处理，因此整体运行比较稳定。
 
