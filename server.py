@@ -16,6 +16,37 @@ from document import CollaborativeDocument, ProcessResult
 from protocol import JsonLineSocket, Message
 
 
+def format_operation_event(entry: Message) -> str:
+    op = entry.get("transformed_op", {})
+    kind = op.get("kind", "unknown") if isinstance(op, dict) else "unknown"
+    pos = op.get("pos", "?") if isinstance(op, dict) else "?"
+    message = (
+        f"OP v{entry.get('server_version')} client={entry.get('client_id')} "
+        f"{kind} pos={pos}"
+    )
+    if isinstance(op, dict) and kind == "insert":
+        message += f" char={op.get('char')!r}"
+    message += f" base={entry.get('base_version')}"
+    return message
+
+
+def format_server_event(entry: Message) -> Optional[str]:
+    event = entry.get("event")
+    if event == "operation":
+        return format_operation_event(entry)
+    if event == "join":
+        return f"JOIN client={entry.get('client_id')} address={entry.get('address')}"
+    if event == "leave":
+        return f"LEAVE client={entry.get('client_id')}"
+    return None
+
+
+def format_save_event(reason: str, client_id: Optional[str], version: object, path: Path) -> str:
+    if client_id:
+        return f"SAVE {reason} client={client_id} version={version} file={path}"
+    return f"SAVE {reason} version={version} file={path}"
+
+
 @dataclass
 class ClientConnection:
     client_id: str
@@ -74,8 +105,8 @@ class CollaborativeServer:
             server_sock.listen()
             server_sock.settimeout(0.5)
             bound_host, bound_port = server_sock.getsockname()
-            print(f"Collaborative server listening on {bound_host}:{bound_port}")
-            print(f"Document: {self.document_path}")
+            print(f"Collaborative server listening on {bound_host}:{bound_port}", flush=True)
+            print(f"Document: {self.document_path}", flush=True)
 
             while not self._stop_event.is_set():
                 try:
@@ -95,6 +126,8 @@ class CollaborativeServer:
         self.shutdown()
 
     def shutdown(self) -> None:
+        if self._stop_event.is_set():
+            return
         self._stop_event.set()
         if self._server_socket is not None:
             try:
@@ -108,6 +141,7 @@ class CollaborativeServer:
                 "version": self.document.version,
             }
         )
+        self._print_event(format_save_event("shutdown", None, self.document.version, self.document_path))
         self._autosave_queue.put({"type": "STOP"})
         if self._autosave_process.is_alive():
             self._autosave_process.join(timeout=2.0)
@@ -156,6 +190,9 @@ class CollaborativeServer:
                     "content": snapshot["content"],
                     "version": snapshot["version"],
                 }
+            )
+            self._print_event(
+                format_save_event("requested", client.client_id, snapshot["version"], self.document_path)
             )
             client.send({"type": "SAVE_QUEUED", "version": snapshot["version"]})
         elif message_type == "REQUEST_DOC":
@@ -244,6 +281,11 @@ class CollaborativeServer:
 
     def _log(self, entry: Message) -> None:
         self._autosave_queue.put({"type": "LOG", "entry": entry})
+        self._print_event(format_server_event(entry))
+
+    def _print_event(self, message: Optional[str]) -> None:
+        if message:
+            print(message, flush=True)
 
 
 def parse_args() -> argparse.Namespace:

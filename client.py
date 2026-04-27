@@ -3,12 +3,17 @@
 from __future__ import annotations
 
 import argparse
-import curses
+import locale
 import queue
 import socket
-import string
 import threading
-from typing import List, Tuple
+import unicodedata
+from typing import List, Tuple, Union
+
+try:
+    import curses
+except ModuleNotFoundError:
+    curses = None  # type: ignore[assignment]
 
 from client_state import ClientSyncState
 from document import Operation
@@ -17,6 +22,10 @@ from protocol import JsonLineSocket, Message
 
 CTRL_Q = 17
 CTRL_S = 19
+CONTROL_Q = "\x11"
+CONTROL_S = "\x13"
+IGNORED_INPUT = {"\t", "\r", "\x0b", "\x0c"}
+KeyInput = Union[int, str]
 
 
 def pos_to_line_col(content: str, pos: int) -> Tuple[int, int]:
@@ -25,6 +34,41 @@ def pos_to_line_col(content: str, pos: int) -> Tuple[int, int]:
     last_newline = content.rfind("\n", 0, pos)
     col = pos if last_newline < 0 else pos - last_newline - 1
     return line, col
+
+
+def char_display_width(char: str) -> int:
+    if not char:
+        return 0
+    if unicodedata.combining(char):
+        return 0
+    if unicodedata.east_asian_width(char) in {"F", "W"}:
+        return 2
+    return 1
+
+
+def text_display_width(text: str) -> int:
+    return sum(char_display_width(char) for char in text)
+
+
+def display_col_to_char_col(text: str, display_col: int) -> int:
+    display_col = max(0, display_col)
+    current_col = 0
+    for index, char in enumerate(text):
+        width = char_display_width(char)
+        if current_col + width > display_col:
+            return index
+        current_col += width
+    return len(text)
+
+
+def line_col_to_pos_by_display(content: str, line: int, display_col: int) -> int:
+    lines = content.splitlines(keepends=True)
+    if not lines:
+        return 0
+    line = max(0, min(line, len(lines) - 1))
+    line_start = sum(len(part) for part in lines[:line])
+    line_text = lines[line].rstrip("\n")
+    return line_start + display_col_to_char_col(line_text, display_col)
 
 
 def line_col_to_pos(content: str, line: int, col: int) -> int:
@@ -41,6 +85,12 @@ def line_col_to_pos(content: str, line: int, col: int) -> int:
 def split_lines_for_display(content: str) -> List[str]:
     lines = content.split("\n")
     return lines if lines else [""]
+
+
+def is_insertable_character(value: str) -> bool:
+    if len(value) != 1 or value in IGNORED_INPUT:
+        return False
+    return unicodedata.category(value)[0] != "C"
 
 
 class TerminalClient:
@@ -66,6 +116,8 @@ class TerminalClient:
         self.reader_thread.start()
 
     def run(self) -> None:
+        if curses is None:
+            raise RuntimeError("client.py requires curses; please run it in Linux or WSL")
         self.connect()
         curses.wrapper(self._curses_main)
 
@@ -84,8 +136,9 @@ class TerminalClient:
         while self.running:
             self._drain_messages()
             self._render(stdscr)
-            key = stdscr.getch()
-            if key == -1:
+            try:
+                key = stdscr.get_wch()
+            except curses.error:
                 curses.napms(25)
                 continue
             self._handle_key(key)
@@ -129,17 +182,27 @@ class TerminalClient:
         help_text = "Ctrl-S save | Ctrl-Q quit"
         stdscr.addnstr(height - 1, 0, help_text, max(0, width - 1), curses.A_REVERSE)
         screen_row = cursor_line - self.scroll_line + 1
-        screen_col = cursor_col + 5
+        current_line = lines[cursor_line] if cursor_line < len(lines) else ""
+        screen_col = text_display_width(current_line[:cursor_col]) + 5
         if 1 <= screen_row < height - 1 and 0 <= screen_col < width:
             stdscr.move(screen_row, screen_col)
         stdscr.refresh()
 
-    def _handle_key(self, key: int) -> None:
-        if key == CTRL_Q:
+    def _handle_key(self, key: KeyInput) -> None:
+        if key in (CTRL_Q, CONTROL_Q):
             self.running = False
             return
-        if key == CTRL_S:
+        if key in (CTRL_S, CONTROL_S):
             self.transport.send_message({"type": "SAVE"})
+            return
+        if isinstance(key, str):
+            if key == "\n":
+                self.state.queue_operation(Operation("insert", self.cursor_pos, "\n"))
+                self.cursor_pos += 1
+                return
+            if is_insertable_character(key):
+                self.state.queue_operation(Operation("insert", self.cursor_pos, key))
+                self.cursor_pos += 1
             return
         if key == curses.KEY_LEFT:
             self.cursor_pos = max(0, self.cursor_pos - 1)
@@ -149,11 +212,15 @@ class TerminalClient:
             return
         if key == curses.KEY_UP:
             line, col = pos_to_line_col(self.state.content, self.cursor_pos)
-            self.cursor_pos = line_col_to_pos(self.state.content, line - 1, col)
+            current_line = split_lines_for_display(self.state.content)[line]
+            display_col = text_display_width(current_line[:col])
+            self.cursor_pos = line_col_to_pos_by_display(self.state.content, line - 1, display_col)
             return
         if key == curses.KEY_DOWN:
             line, col = pos_to_line_col(self.state.content, self.cursor_pos)
-            self.cursor_pos = line_col_to_pos(self.state.content, line + 1, col)
+            current_line = split_lines_for_display(self.state.content)[line]
+            display_col = text_display_width(current_line[:col])
+            self.cursor_pos = line_col_to_pos_by_display(self.state.content, line + 1, display_col)
             return
         if key in (curses.KEY_BACKSPACE, 127, 8):
             if self.cursor_pos > 0:
@@ -164,12 +231,6 @@ class TerminalClient:
         if key in (curses.KEY_ENTER, 10, 13):
             self.state.queue_operation(Operation("insert", self.cursor_pos, "\n"))
             self.cursor_pos += 1
-            return
-        if 0 <= key <= 255:
-            char = chr(key)
-            if char in string.printable and char not in "\x0b\x0c\r\t":
-                self.state.queue_operation(Operation("insert", self.cursor_pos, char))
-                self.cursor_pos += 1
 
 
 def parse_args() -> argparse.Namespace:
@@ -181,6 +242,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    locale.setlocale(locale.LC_ALL, "")
     args = parse_args()
     client = TerminalClient(args.host, args.port, args.client_id)
     client.run()

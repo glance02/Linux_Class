@@ -86,6 +86,19 @@ class CollaborativeDocumentTests(unittest.TestCase):
         self.assertEqual(versions, [1, 2, 3])
         self.assertEqual(doc.content(), "abc")
 
+    def test_insert_chinese_character(self):
+        doc = CollaborativeDocument("")
+        result = doc.process_operation(
+            client_id="A",
+            op_id="A-1",
+            base_version=0,
+            op_payload={"kind": "insert", "pos": 0, "char": "你"},
+        )
+
+        self.assertEqual(result.status, "ok")
+        self.assertEqual(result.ack["server_version"], 1)
+        self.assertEqual(doc.content(), "你")
+
 
 if __name__ == "__main__":
     unittest.main()

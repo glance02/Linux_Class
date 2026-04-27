@@ -1,5 +1,6 @@
 import unittest
 
+from client import display_col_to_char_col, is_insertable_character, text_display_width
 from client_state import ClientSyncState
 from document import Operation
 
@@ -70,6 +71,16 @@ class ClientSyncStateTests(unittest.TestCase):
         self.assertEqual(state.client_id, "u2")
         self.assertEqual(op_id, "u2-1")
         self.assertEqual(sent[0]["client_id"], "u2")
+
+    def test_chinese_character_is_insertable(self):
+        self.assertTrue(is_insertable_character("你"))
+        self.assertFalse(is_insertable_character("\x13"))
+        self.assertFalse(is_insertable_character("\t"))
+
+    def test_chinese_display_width_helpers(self):
+        self.assertEqual(text_display_width("a你b"), 4)
+        self.assertEqual(display_col_to_char_col("a你b", 2), 1)
+        self.assertEqual(display_col_to_char_col("a你b", 3), 2)
 
 
 if __name__ == "__main__":
