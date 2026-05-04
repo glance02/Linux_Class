@@ -10,9 +10,21 @@
 
 在实际部署中，服务端运行在我自己的 Linux 服务器上。这台服务器是拥有独立公网IP的阿里云ECS服务器，已经绑定了我的域名 \cmd{glance02.xyz}，因此客户端后续不需要直接记忆服务器公网 IP，而是通过域名连接服务端。例如服务端在 Linux 服务器上监听 \cmd{0.0.0.0:8765}，客户端可以使用 \cmd{glance02.xyz:8765} 加入同一个协作文档。对于客户端，由于我的两台电脑都是windows，所以客户端运行在 Windows 的 WSL（Windows Subsystem for Linux）环境中。WSL 提供了一个完整的 Linux 用户空间环境，支持 Python、curses 和 TCP 网络编程，因此客户端可以直接在 WSL 终端中运行，并通过公网域名连接到服务器。
 
-\textbf{截图占位：这里插入服务端在 Linux 服务器上启动并监听端口的截图，截图中应能看到服务端绑定的文档路径和监听端口。}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/cowork/服务端运行界面.png}
+    \caption{服务端运行界面}
+\end{figure}
 
-\textbf{截图占位：这里插入两个客户端通过 \texttt{glance02.xyz} 连接同一服务端后的终端界面截图。}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth]{pic/cowork/客户1连接服务端.png}
+    \vspace{0.5em}
+
+    \includegraphics[width=0.82\textwidth]{pic/cowork/客户2连接服务端.png}
+    \caption{两个客户端连接服务端}
+\end{figure}
+
 
 \subsection{项目背景}
 
@@ -38,6 +50,25 @@
 
 客户端终端界面将用户按键转换为这些基础操作。普通可显示字符会生成 \cmd{insert}；回车会生成插入换行符；Backspace 会生成删除光标前一个字符的 \cmd{delete}。客户端本地光标会随着输入移动，但文档内容最终以服务端返回的 ACK 或远程广播为准。
 
+这些操作在代码中的定义集中在 \cmd{code/cowork/document.py}：\cmd{VALID\_KINDS} 限定操作类型只能是 \cmd{insert}、\cmd{delete} 和 \cmd{noop}，\cmd{Operation} 数据类保存 \cmd{kind}、\cmd{pos}、\cmd{char} 和可选的 \cmd{reason}。客户端在 \cmd{code/cowork/client.py} 的按键处理函数中把普通字符、回车和 Backspace 转换成 \cmd{Operation}，再由 \cmd{code/cowork/client\_state.py} 封装成网络层的 \cmd{OP} 消息。服务端终端上看到的 \cmd{OP v...} 并不是另一种新的操作模型，而是 \cmd{code/cowork/server.py} 中 \cmd{format\_operation\_event} 对服务端日志事件的可读化输出。
+
+例如一条服务端输出 \cmd{OP v7 client=sputnik insert pos=76 char='S' base=6} 表示：服务端把这次操作确认为全局第 7 个版本，操作来自 \cmd{sputnik} 客户端，最终权威操作是在位置 76 插入字符 \cmd{S}，而客户端提交时基于的是版本 6。换行也按普通字符参与协同编辑，所以回车会显示为 \cmd{char='\textbackslash{}n'}。
+
+字符可以输入英文、数字、符号，也可以输入中文等宽字符。客户端使用 Python 的 \cmd{unicodedata} 模块，通过 \cmd{east\_asian\_width} 判断字符宽度，并提供显示列和字符列之间的转换函数，确保光标移动和文本显示在终端中正确对齐。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/cowork/服务端u1英文演示.png}
+    \caption{服务端英文输入}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/cowork/服务端u1中文演示.png}
+    \caption{服务端中文输入}
+\end{figure}
+
+
 \subsubsection{ACK 驱动的客户端发送队列}
 
 为了避免用户连续快速输入时丢失按键，客户端维护 \cmd{pending\_queue}。每次用户输入产生的操作都会先进入队列。与此同时，客户端同一时刻最多只允许存在一个 \cmd{inflight\_op}，也就是已经发送但尚未收到服务端 ACK 的操作。
@@ -56,7 +87,14 @@
 
 用户在客户端按下 \cmd{Ctrl-S} 后，客户端发送 \cmd{SAVE} 消息。服务端收到后将当前快照投递给自动保存进程，由工作进程写入正式文件。为了降低误覆盖风险，正式保存前会生成 \cmd{.bak} 备份文件。同时，服务端会记录加入、离开、操作、自动保存和手动保存等事件，形成 JSON Lines 格式的编辑日志。
 
-\textbf{截图占位：这里插入执行手动保存后，服务器目录中出现正式文件、备份文件、自动保存文件和编辑日志文件的截图。}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/cowork/服务日志图片.png}
+    \caption{服务端编辑日志与自动保存记录}
+    \label{fig:log and bak}
+\end{figure}
+
+图~\ref{fig:log and bak}中展示了服务端运行目录中的保存产物和编辑日志。左侧可以看到正式文档 \cmd{shared.py}、自动保存文件 \cmd{shared.py.autosave}、备份文件 \cmd{shared.py.bak} 以及编辑日志 \cmd{shared.py.edit.log} 同时存在，说明服务端把文档内容、自动保存快照、覆盖前备份和事件记录分开管理。右侧打开的日志文件由多条 JSON 事件组成，每条记录包含 \cmd{event}、\cmd{path}、\cmd{timestamp} 和 \cmd{version} 等字段；其中 \cmd{autosave} 事件表示自动保存进程已经按固定间隔将当前快照写入 \cmd{.autosave} 文件。后续发生手动保存或编辑操作时，同一日志文件还会继续追加 \cmd{manual\_save}、\cmd{operation} 等记录，用于追踪服务端文档状态的变化过程。
 
 \subsubsection{历史裁剪与重同步}
 
@@ -179,17 +217,56 @@ python3 client.py --host glance02.xyz --port 8765 --client-id u1
 
 随后在不同终端中启动两个客户端，分别使用不同 \cmd{client\_id}。当其中一个客户端输入字符或换行时，另一个客户端会收到 \cmd{REMOTE\_OP} 并同步显示更新。服务端终端会输出类似 \cmd{JOIN}、\cmd{OP v...}、\cmd{SAVE requested}、\cmd{LEAVE} 的事件日志，便于观察连接、编辑和保存流程。
 
-\textbf{截图占位：这里插入客户端 u1 输入内容、客户端 u2 自动同步显示内容的对比截图。}
+下面是客户端 \cmd{sputnik} 连续输入换行和 \cmd{I am Sput} 时，服务端终端打印出的操作序列。可以看到每一次按键都会形成一条字符级 \cmd{insert} 操作，\cmd{v1} 到 \cmd{v10} 是服务端分配的全局递增版本号，\cmd{base} 则是客户端发送该操作时已确认的版本号。
 
-\textbf{截图占位：这里插入服务端终端输出 JOIN、OP、SAVE、LEAVE 等事件日志的截图。}
+\begin{minted}{text}
+OP v1 client=sputnik insert pos=70 char='\n' base=0
+OP v2 client=sputnik insert pos=71 char='I' base=1
+OP v3 client=sputnik insert pos=72 char=' ' base=2
+OP v4 client=sputnik insert pos=73 char='a' base=3
+OP v5 client=sputnik insert pos=74 char='m' base=4
+OP v6 client=sputnik insert pos=75 char=' ' base=5
+OP v7 client=sputnik insert pos=76 char='S' base=6
+OP v8 client=sputnik insert pos=77 char='p' base=7
+OP v9 client=sputnik insert pos=78 char='u' base=8
+OP v10 client=sputnik insert pos=79 char='t' base=9
+\end{minted}
+
+这段日志能够直接反映 ACK 驱动发送队列的效果：客户端收到上一条操作的 ACK 后才继续发送下一条，所以 \cmd{base} 会随着服务端版本逐步递增。另一方面，\cmd{pos} 也连续增加，说明服务端按字符位置把换行和后续英文字符顺序应用到了同一份权威文档中。
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{pic/cowork/client-sync-sputnik.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{pic/cowork/client-sync-glance.png}
+    \end{minipage}
+    \caption{客户端 sputnik 输入内容后客户端 glance 自动同步显示}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{pic/cowork/服务端界面日志.png}
+    \caption{服务端终端输出 JOIN、OP、SAVE、LEAVE 等事件日志}
+\end{figure}
 
 为了验证 OT 行为，可以构造两个客户端基于不同版本编辑同一位置的场景。例如一个客户端连续在某个位置插入字符，另一个客户端基于旧版本删除该位置字符。根据服务端日志中的 \cmd{transform\_trace}，可以观察到操作位置在应用前被转换。最终两个客户端显示的文档内容保持一致。
-
-\textbf{截图占位：这里插入编辑日志中包含 transform\_trace 的内容，展示 OT 变换前后的操作位置。}
 
 \subsubsection{部署验证}
 
 服务器部署验证重点是确认域名连接和服务端监听行为。服务端运行在个人 Linux 服务器上，公网访问入口使用 \cmd{glance02.xyz}。客户端不需要修改协议或代码，只需要把命令行参数中的 \cmd{--host} 设置为该域名即可。该验证说明项目不仅可以在本机 \cmd{127.0.0.1} 上运行，也可以在真实网络环境中作为远程协作工具使用。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/cowork/阿里云开放端口.png}
+    \caption{阿里云开放8765端口}
+\end{figure}
+
+
 
 \subsection{问题与解决方案}
 
@@ -233,7 +310,7 @@ python3 client.py --host glance02.xyz --port 8765 --client-id u1
 
 问题：终端中中文字符通常占两个显示列，如果简单按照字符串长度移动光标，显示位置会错乱。
 
-解决方案：客户端使用 \cmd{unicodedata.east\_asian\_width} 判断宽字符，并提供显示列和字符列之间的转换函数。测试中也包含中文字符插入和显示宽度计算场景。
+解决方案：客户端使用 Python 的 \cmd{unicodedata} 模块，通过 \cmd{east\_asian\_width} 判断宽字符，并提供显示列和字符列之间的转换函数。测试中也包含中文字符插入和显示宽度计算场景。
 
 \subsection{代码展示}
 
@@ -248,6 +325,12 @@ python3 client.py --host glance02.xyz --port 8765 --client-id u1
 编辑操作被抽象为 \cmd{Operation}，支持 \cmd{insert}、\cmd{delete} 和 \cmd{noop}。从网络消息解析操作时会进行类型检查，例如插入操作必须携带单个字符。
 
 \inputminted[firstline=5,lastline=54,firstnumber=5]{python}{code/cowork/document.py}
+
+\subsubsection{服务端 OP 日志输出}
+
+服务端终端中的 \cmd{OP v...} 输出由 \cmd{format\_operation\_event} 生成。它从操作日志事件中取出服务端版本、客户端编号、变换后的操作、字符内容和基准版本，并格式化成便于演示观察的一行文本。
+
+\inputminted[firstline=20,lastline=31,firstnumber=20]{python}{code/cowork/server.py}
 
 \subsubsection{OT 位置变换规则}
 

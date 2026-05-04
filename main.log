@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.1.9)  4 MAY 2026 16:09
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.1.9)  4 MAY 2026 20:25
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1383,23 +1383,42 @@ Package fontspec Info:
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
 
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 15.
+File: pic/cowork/服务端运行界面.png Graphic file (type bmp)
+<pic/cowork/服务端运行界面.png>
 
 
 [3]
+File: pic/cowork/客户1连接服务端.png Graphic file (type bmp)
+<pic/cowork/客户1连接服务端.png>
+File: pic/cowork/客户2连接服务端.png Graphic file (type bmp)
+<pic/cowork/客户2连接服务端.png>
+
 
 [4]
 
 [5]
+File: pic/cowork/服务端u1英文演示.png Graphic file (type bmp)
+<pic/cowork/服务端u1英文演示.png>
+File: pic/cowork/服务端u1中文演示.png Graphic file (type bmp)
+<pic/cowork/服务端u1中文演示.png>
+
+
+[6]
+File: pic/cowork/服务日志图片.png Graphic file (type bmp)
+<pic/cowork/服务日志图片.png>
+
+
+[7]
+
+[8]
 \pydata@fh@_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted=\write7
 \openout7 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260504160957 FAD58DE7366495DB4650CF
+runsystem(latexminted config  --timestamp 20260504202552 FAD58DE7366495DB4650CF
 EFAC2FCD61)...executed.
 
  (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260504160957 FAD58DE7366495DB4
+runsystem(latexminted cleanconfig  --timestamp 20260504202552 FAD58DE7366495DB4
 650CFEFAC2FCD61)...executed.
 
 
@@ -1407,64 +1426,80 @@ runsystem(latexminted cleanconfig  --timestamp 20260504160957 FAD58DE7366495DB4
 (./_minted/54584F3FC4913E214AC9B4B6421F8012.highlight.minted
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 3.
-
-
-[6])
-
-[7] (./_minted/4B131DA7753C51042D9FCB0F1FE3D184.highlight.minted)
-
-[8]
-File: pic/cowork/test1.png Graphic file (type bmp)
-<pic/cowork/test1.png>
- (./_minted/9DD144A7B48683F13B9B006A48EAEF08.highlight.minted)
+)
 
 [9]
 
-[10] (./_minted/ED86AB2D2BCDBAFB7FC71DA20CF96DA6.highlight.minted
+[10] (./_minted/4B131DA7753C51042D9FCB0F1FE3D184.highlight.minted)
+File: pic/cowork/test1.png Graphic file (type bmp)
+<pic/cowork/test1.png>
 
-[11]
+
+[11] (./_minted/9DD144A7B48683F13B9B006A48EAEF08.highlight.minted)
+(./_minted/E99788D82DF66DAC9DAB684915598C3E.highlight.minted)
+File: pic/cowork/client-sync-sputnik.png Graphic file (type bmp)
+<pic/cowork/client-sync-sputnik.png>
+File: pic/cowork/client-sync-glance.png Graphic file (type bmp)
+<pic/cowork/client-sync-glance.png>
+
+
+[12]
+File: pic/cowork/服务端界面日志.png Graphic file (type bmp)
+<pic/cowork/服务端界面日志.png>
+File: pic/cowork/阿里云开放端口.png Graphic file (type bmp)
+<pic/cowork/阿里云开放端口.png>
+
+
+[13]
+
+[14] (./_minted/ED86AB2D2BCDBAFB7FC71DA20CF96DA6.highlight.minted
+
+[15]
 
 LaTeX Font Warning: Font shape `TU/FangSong(0)/m/it' undefined
 (Font)              using `TU/FangSong(0)/m/n' instead on input line 17.
 
-) (./_minted/5AED71F9F77A9A1BB42ACD8EA215F1D4.highlight.minted
 
-[12]) (./_minted/5AED71F9F77A9A1BB42ACD8EA215F1D4.highlight.minted
 
-[13]) (./_minted/5AED71F9F77A9A1BB42ACD8EA215F1D4.highlight.minted
+[16]) (./_minted/5AED71F9F77A9A1BB42ACD8EA215F1D4.highlight.minted
 
-[14]
+[17]) (./_minted/4DA6DD5A6F3493B41C613D90E24F66EF.highlight.minted)
+(./_minted/5AED71F9F77A9A1BB42ACD8EA215F1D4.highlight.minted
 
-[15]
+[18]) (./_minted/5AED71F9F77A9A1BB42ACD8EA215F1D4.highlight.minted
 
-[16]) (./_minted/4DA6DD5A6F3493B41C613D90E24F66EF.highlight.minted
+[19]
 
-[17]) (./_minted/48ADBF936D73C03F3CC17552FCD1D7BC.highlight.minted
-
-[18]
-
-[19]) (./_minted/961DCD3B6B12F8B7C671661C34E6DD91.highlight.minted
-
-[20]) (./_minted/17424EEE0C51B81A9296B729DAEDC43E.highlight.minted
+[20]) (./_minted/4DA6DD5A6F3493B41C613D90E24F66EF.highlight.minted
 
 [21]
 
-[22]) (./_minted/8BD28F5A2934DEF2DCE42CEA80D64331.highlight.minted
+[22]) (./_minted/48ADBF936D73C03F3CC17552FCD1D7BC.highlight.minted
 
 [23]
 
-[24]) (./_minted/C5D17F44DA5D381CE7BAECD65961E78A.highlight.minted
+[24]) (./_minted/961DCD3B6B12F8B7C671661C34E6DD91.highlight.minted
 
-[25]))
+[25]) (./_minted/17424EEE0C51B81A9296B729DAEDC43E.highlight.minted
 
-[26] (./chapter/task1.tex
+[26]) (./_minted/8BD28F5A2934DEF2DCE42CEA80D64331.highlight.minted
+
+[27]
+
+[28]) (./_minted/C5D17F44DA5D381CE7BAECD65961E78A.highlight.minted
+
+[29]
+
+[30]))
+
+[31] (./chapter/task1.tex
 File: pic/task1/image.png Graphic file (type bmp)
 <pic/task1/image.png>
 File: pic/task1/image copy.png Graphic file (type bmp)
 <pic/task1/image copy.png>
 
 
-[27]
+[32]
 File: pic/task1/image copy 2.png Graphic file (type bmp)
 <pic/task1/image copy 2.png>
  (./_minted/8FBBC52FF3A73DF4765364B34D1ACC5F.highlight.minted)
@@ -1472,33 +1507,33 @@ File: pic/task1/image copy 3.png Graphic file (type bmp)
 <pic/task1/image copy 3.png>
 
 
-[28]
+[33]
 File: pic/task1/image copy 4.png Graphic file (type bmp)
 <pic/task1/image copy 4.png>
 File: pic/task1/image copy 5.png Graphic file (type bmp)
 <pic/task1/image copy 5.png>
 
 
-[29]
+[34]
 File: pic/task1/image copy 6.png Graphic file (type bmp)
 <pic/task1/image copy 6.png>
 File: pic/task1/image copy 7.png Graphic file (type bmp)
 <pic/task1/image copy 7.png>
 
 
-[30]
+[35]
 File: pic/task1/image copy 8.png Graphic file (type bmp)
 <pic/task1/image copy 8.png>
 File: pic/task1/image copy 9.png Graphic file (type bmp)
 <pic/task1/image copy 9.png>
 
 
-[31]
+[36]
 File: pic/task1/image copy 10.png Graphic file (type bmp)
 <pic/task1/image copy 10.png>
 
 
-[32]
+[37]
 File: pic/task1/image copy 11.png Graphic file (type bmp)
 <pic/task1/image copy 11.png>
 File: pic/task1/image copy 12.png Graphic file (type bmp)
@@ -1509,7 +1544,7 @@ File: pic/task1/image copy 14.png Graphic file (type bmp)
 <pic/task1/image copy 14.png>
 
 
-[33]
+[38]
 File: pic/task1/image copy 15.png Graphic file (type bmp)
 <pic/task1/image copy 15.png>
 File: pic/task1/image copy 16.png Graphic file (type bmp)
@@ -1518,12 +1553,12 @@ File: pic/task1/image copy 17.png Graphic file (type bmp)
 <pic/task1/image copy 17.png>
 
 
-[34])
+[39])
 
-[35] (./chapter/task2.tex
+[40] (./chapter/task2.tex
 (./_minted/5C77711495CB155BA7073CF06D309696.highlight.minted)
 
-[36]
+[41]
 File: pic/task2/image.png Graphic file (type bmp)
 <pic/task2/image.png>
 File: pic/task2/image copy.png Graphic file (type bmp)
@@ -1538,14 +1573,14 @@ File: pic/task2/image copy 6.png Graphic file (type bmp)
 <pic/task2/image copy 6.png>
 
 
-[37]
+[42]
 File: pic/task2/image copy 2.png Graphic file (type bmp)
 <pic/task2/image copy 2.png>
 File: pic/task2/image copy 7.png Graphic file (type bmp)
 <pic/task2/image copy 7.png>
 
 
-[38]
+[43]
 File: pic/task2/image copy 8.png Graphic file (type bmp)
 <pic/task2/image copy 8.png>
 File: pic/task2/image copy 9.png Graphic file (type bmp)
@@ -1554,7 +1589,7 @@ File: pic/task2/image copy 10.png Graphic file (type bmp)
 <pic/task2/image copy 10.png>
 
 
-[39]
+[44]
 File: pic/task2/image copy 11.png Graphic file (type bmp)
 <pic/task2/image copy 11.png>
 File: pic/task2/image copy 12.png Graphic file (type bmp)
@@ -1563,14 +1598,14 @@ File: pic/task2/image copy 13.png Graphic file (type bmp)
 <pic/task2/image copy 13.png>
 
 
-[40]
+[45]
 File: pic/task2/image copy 14.png Graphic file (type bmp)
 <pic/task2/image copy 14.png>
 File: pic/task2/image copy 15.png Graphic file (type bmp)
 <pic/task2/image copy 15.png>
 
 
-[41]
+[46]
 File: pic/task2/image copy 16.png Graphic file (type bmp)
 <pic/task2/image copy 16.png>
 File: pic/task2/image copy 17.png Graphic file (type bmp)
@@ -1579,20 +1614,20 @@ File: pic/task2/image copy 18.png Graphic file (type bmp)
 <pic/task2/image copy 18.png>
 
 
-[42]
+[47]
 File: pic/task2/image copy 19.png Graphic file (type bmp)
 <pic/task2/image copy 19.png>
  (./_minted/BCE20D16A5A62242C5CCBC62AC8EC21B.highlight.minted
 
-[43]
+[48]
 
-[44]
+[49]
 
-[45]
+[50]
 
-[46]))
+[51]))
 
-[47] (./main.aux)
+[52] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2022/08/05>
@@ -1601,16 +1636,19 @@ L3 programming layer <2022/08/05>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 14C399DE50917729BF39D15244325A0C;6556.
+(rerunfilecheck)             Checksum: 8E4CD420C8A2274A26E189E0E15BB012;6707.
  ) 
 Here is how much of TeX's memory you used:
- 39067 strings out of 473885
- 921595 string characters out of 5725213
- 1457171 words of memory out of 5000000
- 61398 multiletter control sequences out of 15000+600000
- 564287 words of font info for 97 fonts, out of 8000000 for 9000
+ 39141 strings out of 473885
+ 923217 string characters out of 5725213
+ 1457372 words of memory out of 5000000
+ 61458 multiletter control sequences out of 15000+600000
+ 564279 words of font info for 96 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  102i,13n,115p,1190b,936s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (47 pages).
+Output written on main.pdf (52 pages).
