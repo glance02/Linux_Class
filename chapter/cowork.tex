@@ -155,7 +155,7 @@ python3 -m unittest discover -s tests -v
   \item \cmd{server\_version} 严格递增，保证服务端全局顺序明确。
   \item 基于旧版本的删除操作经过历史插入变换后，删除位置正确右移。
   \item 两个客户端删除同一字符时，后到达的删除被转换为 \cmd{noop}。
-  \item 历史记录裁剪后，过旧 \cmd{base\_version} 会触发 \cmd{RESYNC\_REQUIRED} 和完整 \cmd{DOC\_STATE}。
+  \item 历史记录裁剪后，过旧 \cmd{base\_version} 会触发重同步响应，并返回完整文档状态。
   \item 客户端连续输入时，只发送一个未确认操作，后续操作留在 \cmd{pending\_queue} 中等待 ACK。
   \item 客户端发现远程版本不连续时，会发送 \cmd{REQUEST\_DOC} 请求完整文档。
   \item 中文字符可以被插入，终端显示宽度辅助函数能正确处理宽字符。
@@ -241,58 +241,58 @@ python3 client.py --host glance02.xyz --port 8765 --client-id u1
 
 协议层负责把 Python 字典编码为 UTF-8 JSON Lines 数据帧，并在接收端按换行符拆分消息。发送函数内部使用锁，保证同一连接上多线程发送时不会出现字节交叉。
 
-\inputminted[firstline=15,lastline=65]{python}{code/cowork/protocol.py}
+\inputminted[firstline=5,lastline=65,firstnumber=5]{python}{code/cowork/protocol.py}
 
 \subsubsection{编辑操作模型}
 
 编辑操作被抽象为 \cmd{Operation}，支持 \cmd{insert}、\cmd{delete} 和 \cmd{noop}。从网络消息解析操作时会进行类型检查，例如插入操作必须携带单个字符。
 
-\inputminted[firstline=11,lastline=54]{python}{code/cowork/document.py}
+\inputminted[firstline=5,lastline=54,firstnumber=5]{python}{code/cowork/document.py}
 
 \subsubsection{OT 位置变换规则}
 
 \cmd{transform\_against} 是 OT 核心函数。它根据一条已经发生的历史操作，调整当前操作的位置，或者在重复删除同一字符时将操作转换为 \cmd{noop}。
 
-\inputminted[firstline=102,lastline=131]{python}{code/cowork/document.py}
+\inputminted[firstline=102,lastline=131,firstnumber=102]{python}{code/cowork/document.py}
 
 \subsubsection{服务端权威文档处理流程}
 
 \cmd{process\_operation} 展示了服务端主导 OT 的完整流程：解析操作、检查版本、遍历历史、执行变换、规范化操作、分配版本号、应用文本修改、写入历史并生成 ACK 和广播消息。
 
-\inputminted[firstline=163,lastline=287]{python}{code/cowork/document.py}
+\inputminted[firstline=163,lastline=287,firstnumber=163]{python}{code/cowork/document.py}
 
 \subsubsection{服务端锁外发送与广播}
 
 服务端处理操作时，文档修改已经在 \cmd{process\_operation} 内完成。返回结果后，服务端再发送 ACK 和广播远程操作，从而避免慢客户端阻塞文档锁。
 
-\inputminted[firstline=209,lastline=284]{python}{code/cowork/server.py}
+\inputminted[firstline=209,lastline=284,firstnumber=209]{python}{code/cowork/server.py}
 
 \subsubsection{客户端发送队列与 ACK 处理}
 
 客户端同步状态使用 \cmd{pending\_queue} 和 \cmd{inflight\_op} 控制发送节奏。它保证连续按键不会丢失，同时把最终文档更新交给服务端 ACK 或远程操作决定。
 
-\inputminted[firstline=13,lastline=120]{python}{code/cowork/client_state.py}
+\inputminted[firstline=13,lastline=120,firstnumber=13]{python}{code/cowork/client_state.py}
 
 \subsubsection{终端按键处理}
 
 终端客户端将用户按键映射为协作编辑操作。普通字符、回车和 Backspace 分别转化为插入字符、插入换行和删除光标前字符；\cmd{Ctrl-S} 和 \cmd{Ctrl-Q} 分别用于保存和退出。
 
-\inputminted[firstline=192,lastline=240]{python}{code/cowork/client.py}
+\inputminted[firstline=192,lastline=240,firstnumber=192]{python}{code/cowork/client.py}
 
 \subsubsection{自动保存与备份}
 
-自动保存进程通过队列接收主服务端发来的事件。它负责定期写入自动保存文件，手动保存时生成备份并写入正式文件，同时追加 JSON 日志.
+自动保存进程通过队列接收主服务端发来的事件。它负责定期写入自动保存文件，手动保存时生成备份并写入正式文件，同时追加 JSON 日志。
 
-\inputminted[firstline=15,lastline=103]{python}{code/cowork/autosave.py}
+\inputminted[firstline=15,lastline=103,firstnumber=15]{python}{code/cowork/autosave.py}
 
 \subsubsection{文档一致性测试}
 
 文档测试覆盖了 OT 中最关键的情况：旧版本删除位置经过多个插入后右移、重复删除变为 \cmd{noop}、历史过期触发重同步，以及版本号严格递增。
 
-\inputminted[firstline=6,lastline=100]{python}{code/cowork/tests/test_document.py}
+\inputminted[firstline=6,lastline=100,firstnumber=6]{python}{code/cowork/tests/test_document.py}
 
 \subsubsection{客户端队列测试}
 
 客户端状态测试验证了 ACK 驱动发送队列、远程版本缺口处理、服务端分配客户端编号、中文字符输入和宽字符删除等行为。
 
-\inputminted[firstline=8,lastline=96]{python}{code/cowork/tests/test_client_state.py}
+\inputminted[firstline=8,lastline=96,firstnumber=8]{python}{code/cowork/tests/test_client_state.py}
