@@ -8,7 +8,7 @@
 
 项目采用“服务端主导 OT（Operational Transformation）”的同步方案。客户端只负责将键盘输入转换为字符级编辑操作，并按 ACK 节奏发送到服务端。服务端作为唯一权威状态源，在临界区内为每个操作分配递增的 \cmd{server\_version}，并根据历史操作对旧版本操作进行位置变换。这样既降低了客户端实现复杂度，也能清晰展示并发编辑时的一致性处理过程。
 
-在实际部署中，服务端运行在我自己的 Linux 服务器上。这台服务器是拥有独立公网IP的阿里云ECS服务器，已经绑定了我的域名 \cmd{glance02.xyz}，因此客户端后续不需要直接记忆服务器公网 IP，而是通过域名连接服务端。例如服务端在 Linux 服务器上监听 \cmd{0.0.0.0:8765}，客户端可以使用 \cmd{glance02.xyz:8765} 加入同一个协作文档。对于客户端，由于我的两台电脑都是windows，所以客户端运行在 Windows 的 WSL（Windows Subsystem for Linux）环境中。WSL 提供了一个完整的 Linux 用户空间环境，支持 Python、curses 和 TCP 网络编程，因此客户端可以直接在 WSL 终端中运行，并通过公网域名连接到服务器。
+在实际部署中，服务端运行在我的个人 Linux 服务器上。这台服务器是拥有独立公网 IP 的阿里云 ECS 服务器，并已经绑定域名 \cmd{glance02.xyz}，因此客户端后续不需要直接记忆服务器公网 IP，而是通过域名连接服务端。例如服务端在 Linux 服务器上监听 \cmd{0.0.0.0:8765}，客户端可以使用 \cmd{glance02.xyz:8765} 加入同一个协作文档。由于我的两台电脑都是 Windows 系统，客户端实际运行在 Windows 的 WSL（Windows Subsystem for Linux）环境中。WSL 提供了较完整的 Linux 用户空间环境，支持 Python、curses 和 TCP 网络编程，因此客户端可以直接在 WSL 终端中运行，并通过公网域名连接到服务器。
 
 \begin{figure}[H]
     \centering
@@ -36,6 +36,8 @@
 
 此外，终端编辑器本身也与 Linux 使用场景贴合。客户端基于 \cmd{curses} 运行在终端中，支持方向键移动、普通字符输入、回车换行、Backspace 删除、\cmd{Ctrl-S} 保存和 \cmd{Ctrl-Q} 退出。相比网页前端，这种实现更接近 Linux 命令行环境下的工具开发，也便于在服务器和 WSL 中演示。
 
+从项目边界上看，TermSync 更偏向教学型协作编辑器。它重点展示字符级同步、网络通信、并发控制、文件持久化和自动化测试，而不追求语法高亮、代码补全、复杂撤销栈等完整 IDE 功能。这样的取舍使项目能够把主要篇幅集中在 Linux 程序设计课程强调的系统调用、进程线程、终端交互和文件操作上。
+
 \subsection{功能描述}
 
 \subsubsection{多人连接与文档同步}
@@ -50,7 +52,7 @@
 
 客户端终端界面将用户按键转换为这些基础操作。普通可显示字符会生成 \cmd{insert}；回车会生成插入换行符；Backspace 会生成删除光标前一个字符的 \cmd{delete}。客户端本地光标会随着输入移动，但文档内容最终以服务端返回的 ACK 或远程广播为准。
 
-这些操作在代码中的定义集中在 \cmd{code/cowork/document.py}：\cmd{VALID\_KINDS} 限定操作类型只能是 \cmd{insert}、\cmd{delete} 和 \cmd{noop}，\cmd{Operation} 数据类保存 \cmd{kind}、\cmd{pos}、\cmd{char} 和可选的 \cmd{reason}。客户端在 \cmd{code/cowork/client.py} 的按键处理函数中把普通字符、回车和 Backspace 转换成 \cmd{Operation}，再由 \cmd{code/cowork/client\_state.py} 封装成网络层的 \cmd{OP} 消息。服务端终端上看到的 \cmd{OP v...} 并不是另一种新的操作模型，而是 \cmd{code/cowork/server.py} 中 \cmd{format\_operation\_event} 对服务端日志事件的可读化输出。
+这些操作在代码中的定义集中在代码仓库根目录下的 \cmd{document.py}：\cmd{VALID\_KINDS} 限定操作类型只能是 \cmd{insert}、\cmd{delete} 和 \cmd{noop}，\cmd{Operation} 数据类保存 \cmd{kind}、\cmd{pos}、\cmd{char} 和可选的 \cmd{reason}。客户端在 \cmd{client.py} 的按键处理函数中把普通字符、回车和 Backspace 转换成 \cmd{Operation}，再由 \cmd{client\_state.py} 封装成网络层的 \cmd{OP} 消息。服务端终端上看到的 \cmd{OP v...} 并不是另一种新的操作模型，而是 \cmd{server.py} 中日志格式化函数对服务端事件的可读化输出。
 
 例如一条服务端输出 \cmd{OP v7 client=sputnik insert pos=76 char='S' base=6} 表示：服务端把这次操作确认为全局第 7 个版本，操作来自 \cmd{sputnik} 客户端，最终权威操作是在位置 76 插入字符 \cmd{S}，而客户端提交时基于的是版本 6。换行也按普通字符参与协同编辑，所以回车会显示为 \cmd{char='\textbackslash{}n'}。
 
@@ -179,7 +181,7 @@
 
 \subsubsection{单元测试}
 
-项目使用 Python 标准库 \cmd{unittest} 进行自动化测试，测试命令如下：
+项目使用 Python 标准库 \cmd{unittest} 进行自动化测试。实际运行时，可以在 Linux 服务器克隆 \cmd{code} 分支后，进入克隆得到的代码仓库根目录执行测试命令：
 
 \begin{minted}{bash}
 python3 -m unittest discover -s tests -v
@@ -256,6 +258,30 @@ OP v10 client=sputnik insert pos=79 char='t' base=9
 
 为了验证 OT 行为，可以构造两个客户端基于不同版本编辑同一位置的场景。例如一个客户端连续在某个位置插入字符，另一个客户端基于旧版本删除该位置字符。根据服务端日志中的 \cmd{transform\_trace}，可以观察到操作位置在应用前被转换。最终两个客户端显示的文档内容保持一致。
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{pic/cowork/transform_trace日志.png}
+    \caption{编辑日志中的 transform\_trace 位置变换记录}
+\end{figure}
+
+图中将原始 JSON 日志中的 \cmd{transform\_trace} 提取为位置变换过程。该操作的 \cmd{op\_id} 是 \cmd{stale-transform}，提交时基于旧版本 0，并在服务端版本 5 被确认。操作原本希望在位置 120 插入字符，服务端根据之后已经发生的历史插入操作依次调整位置，最终将其应用到位置 124。
+
+\begin{table}[H]
+    \centering
+    \caption{\cmd{transform\_trace} 位置变换摘要}
+    \small
+    \begin{tabular}{c l c}
+        \toprule
+        \cmd{against\_version} & \cmd{against\_op} & \cmd{before\_pos} $\rightarrow$ \cmd{after\_pos} \\
+        \midrule
+        \cmd{1} & \cmd{insert(pos=120, char=旧)} & \cmd{120} $\rightarrow$ \cmd{121} \\
+        \cmd{2} & \cmd{insert(pos=121, char=A)} & \cmd{121} $\rightarrow$ \cmd{122} \\
+        \cmd{3} & \cmd{insert(pos=122, char=B)} & \cmd{122} $\rightarrow$ \cmd{123} \\
+        \cmd{4} & \cmd{insert(pos=123, char=C)} & \cmd{123} $\rightarrow$ \cmd{124} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \subsubsection{部署验证}
 
 服务器部署验证重点是确认域名连接和服务端监听行为。服务端运行在个人 Linux 服务器上，公网访问入口使用 \cmd{glance02.xyz}。客户端不需要修改协议或代码，只需要把命令行参数中的 \cmd{--host} 设置为该域名即可。该验证说明项目不仅可以在本机 \cmd{127.0.0.1} 上运行，也可以在真实网络环境中作为远程协作工具使用。
@@ -298,7 +324,7 @@ OP v10 client=sputnik insert pos=79 char='t' base=9
 
 问题：如果服务端永久保存所有操作历史，长时间运行后内存占用会持续增加。
 
-解决方案：历史记录使用 \cmd{deque(maxlen=history\_limit)} 限制长度，并维护 \\ \cmd{history\_start\_version}。当客户端版本太旧，已经无法根据保留历史进行 OT 时，服务端返回 \cmd{RESYNC\_REQUIRED} 并发送完整文档。
+解决方案：历史记录使用有限长度队列保存最近的操作，最大条数由代码中的历史限制参数控制。同时维护 \cmd{history\_start\_version}，记录当前历史能够支持的最早基准版本。当客户端版本太旧，已经无法根据保留历史进行 OT 时，服务端返回 \cmd{RESYNC\_REQUIRED} 并发送完整文档。
 
 \subsubsection{文件保存可能覆盖旧内容}
 
@@ -312,7 +338,15 @@ OP v10 client=sputnik insert pos=79 char='t' base=9
 
 解决方案：客户端使用 Python 的 \cmd{unicodedata} 模块，通过 \cmd{east\_asian\_width} 判断宽字符，并提供显示列和字符列之间的转换函数。测试中也包含中文字符插入和显示宽度计算场景。
 
+\subsection{项目不足与改进方向}
+
+虽然 TermSync 已经能够完成多人连接、实时同步、保存、自动保存、日志记录和测试验证，但它仍然是一个课程项目规模的协作编辑器，和成熟协作工具相比还存在一些不足。首先，当前编辑粒度是字符级操作，便于说明 OT 原理，但快速输入大量文本时会产生较多网络消息；后续可以考虑把连续输入合并为批量操作。其次，系统暂时没有加入用户认证和权限控制，只适合可信网络或课堂演示场景，如果要公开部署，需要补充连接鉴权、访问控制和异常客户端隔离。再次，客户端的终端界面功能较基础，还可以继续增加状态栏、只读提示、断线重连和冲突恢复提示，使使用体验更加完整。
+
+从实现角度看，后续还可以继续扩展测试范围。例如增加更复杂的并发插入、插入与删除交错、历史裁剪后客户端重连等集成测试；在服务端加入更细粒度的运行日志和错误统计；在保存模块中加入异常注入测试，验证磁盘写入失败时备份文件和自动保存文件是否仍然可靠。这些改进能够进一步提升项目的稳定性，也能让课程报告中的系统设计更加接近真实 Linux 服务程序。
+
 \subsection{代码展示}
+
+本节展示的文件名均以服务器克隆 \cmd{code} 分支后得到的代码仓库根目录为基准。报告工程中的 \cmd{\textbackslash{}inputminted} 路径只用于排版时引入代码片段，不代表服务器上的运行目录结构。
 
 \subsubsection{JSON Lines 协议封装}
 

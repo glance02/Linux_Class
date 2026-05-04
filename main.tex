@@ -9,7 +9,7 @@
   headheight=15pt
 ]{geometry}
 \usepackage{setspace}
-\setstretch{1.35}
+\setstretch{1.5}
 \setlength{\parindent}{2em}
 \setlength{\parskip}{0.25em}
 
@@ -46,6 +46,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \newcommand{\reporttitle}{Linux 课程报告}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
 \fancyhead[L]{\small \reporttitle}
 \fancyhead[R]{\small \leftmark}
 \fancyfoot[C]{\small \thepage}
@@ -60,8 +61,8 @@
   section = {
     format = \centering\zihao{3}\heiti,
     name = {},
-    number = \chinese{section},
-    aftername = \quad,
+    number = {},
+    aftername = {},
     beforeskip = 1.6em,
     afterskip = 1.0em
   },
@@ -94,16 +95,15 @@
 % Code blocks
 \usepackage{fvextra}
 \usepackage{minted}
+{minted}
 \setminted{
   fontsize=\footnotesize,
-  baselinestretch=1,
+  baselinestretch=1.25,
   linenos,
-  numbersep=8pt,
+  numbersep=6pt,
   breaklines,
   breakanywhere,
   autogobble,
-  frame=lines,
-  framesep=2mm,
   rulecolor=\color{ReportLine},
   bgcolor=ReportGray,
   tabsize=4
@@ -153,5 +153,8 @@
 \newpage
 
 \input{chapter/task2.tex}
+\newpage
+
+\input{chapter/summary.tex}
 
 \end{document}
