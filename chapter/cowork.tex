@@ -4,6 +4,8 @@
 
 本项目名为 TermSync，是一个使用 Python 标准库实现的终端多人协作代码编辑器。项目的目标不是复刻完整的图形化 IDE，而是在 Linux 环境下实现一个可实际运行、可多人连接、可同步编辑、可保存和可测试验证的轻量级协作编辑系统。用户在终端中运行客户端，通过 TCP 连接到服务端；服务端维护唯一权威文档状态，并负责对所有编辑操作进行排序、变换、应用和广播。
 
+我刻意减少第三方依赖，主要使用 Python 标准库完成系统实现。网络通信基于 \cmd{socket}，并发处理使用 \cmd{threading} 和 \cmd{multiprocessing}，终端界面使用 \cmd{curses}，消息格式和持久化则基于 \cmd{json}、\cmd{pathlib} 等标准库模块。项目没有依赖现成的 Web 框架、协同编辑库或数据库系统，因此网络协议、客户端状态机、服务端 OT 变换、广播同步和保存机制都由项目代码自行实现，更能体现 Linux 程序设计中对进程、线程、文件和网络等基础能力的直接使用。
+
 本项目覆盖了 Linux 程序设计中的多个核心主题：网络编程、线程创建与同步、进程间通信、文件系统操作、终端界面编程和自动化测试。服务端使用 socket 监听客户端连接，为每个客户端创建独立线程；文档对象使用锁保护共享状态；自动保存和日志写入被拆分到独立进程中，通过 \cmd{multiprocessing.Queue} 与主服务端通信；客户端使用 \cmd{curses} 构建终端交互界面。
 
 项目采用“服务端主导 OT（Operational Transformation）”的同步方案。客户端只负责将键盘输入转换为字符级编辑操作，并按 ACK 节奏发送到服务端。服务端作为唯一权威状态源，在临界区内为每个操作分配递增的 \cmd{server\_version}，并根据历史操作对旧版本操作进行位置变换。这样既降低了客户端实现复杂度，也能清晰展示并发编辑时的一致性处理过程。
@@ -25,6 +27,7 @@
     \caption{两个客户端连接服务端}
 \end{figure}
 
+前面三张运行截图展示了 TermSync 的基本启动和连接流程。第一张图中，服务端已经在 Linux 服务器上启动并监听指定端口，终端输出中可以看到服务端正在等待客户端接入。后两张图分别展示两个不同客户端通过域名连接到同一个服务端实例，并进入终端编辑界面；这说明服务端可以同时维护多个客户端连接，新加入的客户端也能够获得当前共享文档状态，为后续的同步编辑、广播更新和保存验证提供了运行基础。
 
 \subsection{项目背景}
 
@@ -209,9 +212,58 @@ python3 -m unittest discover -s tests -v
 \end{figure}
 
 
-\subsubsection{手动验证}
+\subsubsection{本地验证}
 
-手动验证主要围绕真实运行流程展开。首先在 Linux 服务器上启动服务端，监听 \cmd{0.0.0.0:8765}，并指定协作编辑文件。由于服务器已经绑定域名 \cmd{glance02.xyz}，客户端可以直接通过该域名连接：
+手动验证用于在不依赖公网、域名解析和安全组规则的情况下，先确认协作编辑器本身的核心功能是否正常。验证时在同一台 Linux 服务器上进行：一个终端运行服务端，同时使用 \cmd{tmux} 打开两个客户端窗口进行对比观察。首先在服务端终端中监听本机地址并指定协作编辑文件：
+
+\begin{minted}{bash}
+python3 server.py --host 127.0.0.1 --port 8765 --file shared.py
+\end{minted}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/cowork/本地运行服务端.png}
+    \caption{本地运行服务端界面}
+\end{figure}
+
+从服务端终端输出也可以看到，两个客户端加入时都会打印 \cmd{JOIN} 事件，并且地址字段中的 IP 均为 \cmd{127.0.0.1}。这说明 \cmd{sputnik} 和 \cmd{glance} 两个客户端虽然分别运行在不同的 \cmd{tmux} 窗口中，但网络连接都通过本机回环接口进入同一个服务端进程，符合本地手动验证的设计。
+
+如果启动时出现 \cmd{Address already in use}，说明 \cmd{8765} 端口已经被已有进程占用，通常是前一次启动的服务端仍在运行。此时可以直接使用已有服务端继续启动客户端进行验证；如果需要重新启动服务端，则应先停止原服务端进程，或者临时换用其他端口并让两个客户端使用相同的新端口连接。
+
+随后在 \cmd{tmux} 中打开两个客户端窗口或窗格，两个客户端都连接同一个本机服务端，但使用不同的 \cmd{client\_id}：
+
+\begin{minted}{bash}
+python3 client.py --host 127.0.0.1 --port 8765 --client-id sputnik
+python3 client.py --host 127.0.0.1 --port 8765 --client-id glance
+\end{minted}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{pic/cowork/本地运行客户端界面.png}
+    \caption{tmux 中两个本地客户端同步显示}
+\end{figure}
+
+图中左侧客户端使用 \cmd{sputnik}，右侧客户端使用 \cmd{glance}。两个客户端的状态栏都显示当前处于同步状态，文档内容也保持一致。实际验证时，在任意一个客户端输入英文、中文、换行或删除内容后，另一个客户端都会同步显示相同修改，说明本机环境下的消息发送、ACK 确认、服务端广播和客户端文档更新流程能够正常工作。
+
+进一步验证异常情况时，可以在服务端终端中主动结束服务端进程。服务端关闭后，两个客户端不会继续显示为同步状态，而是在状态栏中显示 \cmd{error: connection closed}，提示与服务端的 TCP 连接已经断开；同时客户端中已经同步到的文档内容仍然保留在界面上，便于观察断线前的最终状态。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{pic/cowork/服务端关闭后客户端表现.png}
+    \caption{服务端关闭后客户端显示连接断开}
+\end{figure}
+
+\subsubsection{部署验证}
+
+部署验证主要围绕真实公网运行流程展开。由于服务端运行在阿里云 ECS 服务器上，要让外部客户端能够访问该协作编辑服务，需要先在阿里云安全组中开放服务端使用的 \cmd{8765} 端口。只有安全组规则允许公网访问后，客户端才能通过 \cmd{glance02.xyz:8765} 连接到服务端。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic/cowork/阿里云开放端口.png}
+    \caption{阿里云开放8765端口}
+\end{figure}
+
+完成端口放行后，在 Linux 服务器上启动服务端，监听 \cmd{0.0.0.0:8765}，并指定协作编辑文件。由于服务器已经绑定域名 \cmd{glance02.xyz}，客户端可以直接通过该域名连接：
 
 \begin{minted}{bash}
 python3 client.py --host glance02.xyz --port 8765 --client-id u1
@@ -282,15 +334,7 @@ OP v10 client=sputnik insert pos=79 char='t' base=9
     \end{tabular}
 \end{table}
 
-\subsubsection{部署验证}
-
-服务器部署验证重点是确认域名连接和服务端监听行为。服务端运行在个人 Linux 服务器上，公网访问入口使用 \cmd{glance02.xyz}。客户端不需要修改协议或代码，只需要把命令行参数中的 \cmd{--host} 设置为该域名即可。该验证说明项目不仅可以在本机 \cmd{127.0.0.1} 上运行，也可以在真实网络环境中作为远程协作工具使用。
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{pic/cowork/阿里云开放端口.png}
-    \caption{阿里云开放8765端口}
-\end{figure}
+该验证说明项目不仅可以在本机 \cmd{127.0.0.1} 上运行，也可以在真实网络环境中作为远程协作工具使用。
 
 
 
