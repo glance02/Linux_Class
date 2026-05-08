@@ -1,4 +1,9 @@
-"""带有服务端 OT 和有限历史记录的权威文档模型。"""
+"""带有服务端 OT 和有限历史记录的权威文档模型。
+
+这个模块不关心 socket、终端界面或文件保存，只维护一份服务端权威文本。
+所有客户端提交的编辑操作都会先进入这里，经过校验、OT 位置变换和版本分配后，
+才会变成可以广播给所有客户端的权威操作。
+"""
 
 from __future__ import annotations
 
@@ -13,6 +18,12 @@ VALID_KINDS = {"insert", "delete", "noop"}
 
 @dataclass
 class Operation:
+    """单个字符级编辑操作。
+
+    kind 表示操作类型；pos 使用 Python 字符串索引；insert 需要 char，
+    delete 不需要 char；noop 用来表示“这个操作被历史操作抵消了”。
+    """
+
     kind: str
     pos: int = 0
     char: Optional[str] = None
@@ -20,6 +31,8 @@ class Operation:
 
     @classmethod
     def from_dict(cls, payload: Dict[str, Any]) -> "Operation":
+        # 网络协议传来的 JSON 字典不能直接信任，先在边界处统一校验。
+        # 校验通过后，后续文档逻辑就可以按 Operation 对象处理。
         if not isinstance(payload, dict):
             raise ValueError("operation must be a JSON object")
         kind = payload.get("kind")
@@ -40,9 +53,12 @@ class Operation:
         return cls(kind=kind, pos=pos, char=char, reason=reason)
 
     def clone(self) -> "Operation":
+        # OT 变换会调整位置，为了保留 original_op 用于日志和 ACK，
+        # 这里总是复制出一份新对象再修改。
         return Operation(self.kind, self.pos, self.char, self.reason)
 
     def to_dict(self) -> Dict[str, Any]:
+        # 协议消息和日志都使用普通 dict，方便 JSON 序列化。
         payload: Dict[str, Any] = {"kind": self.kind, "pos": self.pos}
         if self.char is not None:
             payload["char"] = self.char
@@ -51,11 +67,15 @@ class Operation:
         return payload
 
     def as_noop(self, reason: str) -> "Operation":
+        # 当操作无法再产生实际效果时，不直接丢弃，而是记录成 noop。
+        # 这样服务端版本号仍然递增，客户端也能收到明确 ACK。
         return Operation("noop", self.pos, None, reason)
 
 
 @dataclass
 class HistoryEntry:
+    """服务端已经接受并排序的一条权威历史操作。"""
+
     server_version: int
     client_id: str
     op_id: str
@@ -64,6 +84,7 @@ class HistoryEntry:
     op: Operation
 
     def to_dict(self) -> Dict[str, Any]:
+        # 主要用于调试或未来扩展日志；当前核心流程直接访问字段。
         return {
             "server_version": self.server_version,
             "client_id": self.client_id,
@@ -76,6 +97,12 @@ class HistoryEntry:
 
 @dataclass
 class ProcessResult:
+    """文档处理一次客户端操作后的结果包。
+
+    文档模型只负责计算结果，不直接发送 socket 或写文件。
+    调用方根据这里的 ACK、REMOTE_OP、日志和快照决定后续副作用。
+    """
+
     status: str
     messages: List[Dict[str, Any]] = field(default_factory=list)
     ack: Optional[Dict[str, Any]] = None
@@ -102,6 +129,7 @@ def apply_operation_to_text(text: str, op: Operation) -> str:
 def transform_against(op: Operation, previous: Operation) -> Operation:
     """根据一条已经发生的历史操作，变换当前操作的位置。"""
     result = op.clone()
+    # noop 不改变文本，也不会影响其他操作的位置。
     if result.kind == "noop" or previous.kind == "noop":
         return result
 
@@ -142,12 +170,18 @@ class CollaborativeDocument:
         if history_limit <= 0:
             raise ValueError("history_limit must be positive")
         self._text = initial_text
+        # version 是服务端已经接受的操作数量，也是最新 DOC_STATE 的版本号。
         self.version = 0
+        # history 只保留最近一段操作，用于把旧客户端操作变换到当前版本。
+        # deque(maxlen=...) 会自动丢弃最老的记录。
         self.history: Deque[HistoryEntry] = deque(maxlen=history_limit)
+        # history_start_version 表示仍可支持 OT 的最早 base_version。
         self.history_start_version = 0
+        # RLock 保护文本、版本号和历史记录，保证多个客户端线程不会交叉修改。
         self._lock = RLock()
 
     def snapshot(self) -> Dict[str, Any]:
+        # 返回完整文档状态，用于新客户端加入或客户端版本断档后的重同步。
         with self._lock:
             return {
                 "type": "DOC_STATE",
@@ -157,6 +191,7 @@ class CollaborativeDocument:
             }
 
     def content(self) -> str:
+        # 保存线程需要读取当前文本。这里同样走锁，避免读到更新到一半的状态。
         with self._lock:
             return self._text
 
@@ -167,6 +202,7 @@ class CollaborativeDocument:
         base_version: int,
         op_payload: Dict[str, Any],
     ) -> ProcessResult:
+        # 第一层校验在锁外完成，避免明显非法请求占用文档临界区。
         try:
             original_op = Operation.from_dict(op_payload)
         except ValueError as exc:
@@ -195,6 +231,9 @@ class CollaborativeDocument:
                 )
 
             if base_version < self.history_start_version or base_version > self.version:
+                # base_version 太旧：服务端已没有足够历史可做 OT。
+                # base_version 太新：客户端声称见过服务端还没有产生的版本。
+                # 两种情况都不能安全推断位置，只能要求客户端重同步完整文档。
                 return ProcessResult(
                     status="resync",
                     messages=[
@@ -248,6 +287,8 @@ class CollaborativeDocument:
             self.history.append(history_entry)
             self._refresh_history_start_unlocked()
 
+            # ACK 发给提交者：告诉它自己的 op_id 已经被服务端接受，
+            # 并给出最终权威位置。REMOTE_OP 发给其他客户端同步同一操作。
             ack = {
                 "type": "ACK",
                 "client_id": client_id,
@@ -267,6 +308,7 @@ class CollaborativeDocument:
                 "op": transformed.to_dict(),
             }
             log_event = {
+                # 日志记录原始操作、变换后操作和变换轨迹，便于报告中展示 OT 过程。
                 "event": "operation",
                 "server_version": server_version,
                 "client_id": client_id,
@@ -287,6 +329,7 @@ class CollaborativeDocument:
             )
 
     def _snapshot_unlocked(self) -> Dict[str, Any]:
+        # 调用者已经持有 _lock 时使用，避免重复加锁造成代码层次混乱。
         return {
             "type": "DOC_STATE",
             "version": self.version,
@@ -295,11 +338,15 @@ class CollaborativeDocument:
         }
 
     def _history_after_unlocked(self, base_version: int) -> Iterable[HistoryEntry]:
+        # 只返回客户端 base_version 之后发生的权威操作。
+        # 当前操作需要依次穿过这些历史，才能落在最新文本的正确位置。
         for entry in self.history:
             if entry.server_version > base_version:
                 yield entry
 
     def _normalize_for_apply_unlocked(self, op: Operation) -> Operation:
+        # 经过 OT 后的位置仍然可能越界，例如客户端删除一个已经不存在的位置。
+        # 在真正改文本前统一夹取或转换为 noop，保证 apply 阶段简单可靠。
         if op.kind == "noop":
             return op
         if op.kind == "insert":
