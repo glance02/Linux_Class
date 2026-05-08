@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  8 MAY 2026 20:43
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  8 MAY 2026 21:31
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1522,11 +1522,11 @@ Package fontspec Info:
 
  (./main.toc [1
 
-] [2])
+])
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
- [3] (./chapter/cowork.tex
+ [2] [3] (./chapter/cowork.tex
 
 Package fontspec Info: 
 (fontspec)             Could not resolve font "FangSong/BI" (it probably
@@ -1574,11 +1574,11 @@ File: pic/cowork/服务日志图片.png Graphic file (type bmp)
 \pydata@fh@0=\write7
 \openout7 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260508204314 FAD58DE7366495DB4650CF
+runsystem(latexminted config  --timestamp 20260508213129 FAD58DE7366495DB4650CF
 EFAC2FCD61)...executed.
 
  (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260508204314 FAD58DE7366495DB4
+runsystem(latexminted cleanconfig  --timestamp 20260508213129 FAD58DE7366495DB4
 650CFEFAC2FCD61)...executed.
 
  (./_minted/default.style.minted)
@@ -1616,25 +1616,51 @@ File: pic/cowork/服务端界面日志.png Graphic file (type bmp)
 File: pic/cowork/transform_trace日志.png Graphic file (type bmp)
 <pic/cowork/transform_trace日志.png>
  [18]
-[19] [20] (./_minted/1149208D4D4823B63536E25BCF83DE7D.highlight.minted
+[19] [20] (./_minted/C2602B0346B3560AF8CACE89FE573E2C.highlight.minted
 
 LaTeX Font Warning: Font shape `TU/FangSong(0)/m/it' undefined
-(Font)              using `TU/FangSong(0)/m/n' instead on input line 17.
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 2.
 
-[21]) (./_minted/144DDA6A63BCCE7E17BB3BD99B181860.highlight.minted [22]
-[23]) (./_minted/D47B0E6C3FFCDA95783CEAC24C48D5CD.highlight.minted)
-(./_minted/144DDA6A63BCCE7E17BB3BD99B181860.highlight.minted [24])
-(./_minted/144DDA6A63BCCE7E17BB3BD99B181860.highlight.minted [25] [26] [27])
-(./_minted/D47B0E6C3FFCDA95783CEAC24C48D5CD.highlight.minted [28] [29])
-(./_minted/8EC2C1FC7C198337894948203D706190.highlight.minted [30] [31])
-(./_minted/A845E0458821600BA67A218C65061F31.highlight.minted [32])
-(./_minted/0E3E938516EE1B7D0210359830A739A3.highlight.minted [33] [34] [35])
-(./_minted/46825320A2D491C1709E008C185D1C69.highlight.minted [36] [37])
-(./_minted/7A0D1B10CFD210603D12F82A68B7B077.highlight.minted [38] [39]))
-[40] (./chapter/task1.tex
+[21] [22])
+Overfull \hbox (10.35767pt too wide) in paragraph at lines 401--402
+\TU/SimSun(0)/m/n/12 表 示 字 符 级 []\TU/lmtt/m/n/12 insert[]\TU/SimSun(0)/m/n/12 、
+| []\TU/lmtt/m/n/12 delete[] \TU/SimSun(0)/m/n/12 和 []\TU/lmtt/m/n/12 noop[]\TU
+/SimSun(0)/m/n/12 ，|  并 在 从 网 络 消 息 解 析 时 进 行 类 型 检 查；| []\TU/lmtt/m/n/12 Histo
+ryEntry[]
+ []
+
+(./_minted/C829AD2997310333608C5191675B464C.highlight.minted [23] [24])
+[25] (./_minted/C829AD2997310333608C5191675B464C.highlight.minted [26])
+(./_minted/C829AD2997310333608C5191675B464C.highlight.minted [27] [28] [29])
+[30] (./_minted/C829AD2997310333608C5191675B464C.highlight.minted)
+Overfull \hbox (22.10666pt too wide) in paragraph at lines 421--422
+\TU/SimSun(0)/m/n/12 个 客 户 端 连 接 保 存 必 要 信 息。|  下 面 的 代 码 展 示 了 终 端 日 志 格 式 化 函
+ 数 和 []\TU/lmtt/m/n/12 ClientConnection[]\TU/SimSun(0)/m/n/12 。|
+ []
+
+[31] (./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [32])
+(./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [33] [34] [35])
+(./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [36] [37])
+(./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [38] [39])
+[40] (./_minted/20A939F4DA7D7958EE3A5CC3D654AFE4.highlight.minted [41] [42]
+[43])
+Overfull \hbox (3.72229pt too wide) in paragraph at lines 443--444
+\TU/SimSun(0)/m/n/12 示 列 之 间 转 换。|  由 于 中 文 等 宽 字 符 在 终 端 中 通 常 占 两 个 显 示 列，|  
+代 码 中 使 用 []\TU/lmtt/m/n/12 unicodedata[]
+ []
+
+(./_minted/30A8B556947BF762E55A4F8692524BCA.highlight.minted [44] [45])
+(./_minted/30A8B556947BF762E55A4F8692524BCA.highlight.minted [46] [47] [48]
+[49]) (./_minted/30A8B556947BF762E55A4F8692524BCA.highlight.minted [50])
+(./_minted/EE49F3BD3AA010AE977DF5B18813C1E3.highlight.minted [51] [52] [53])
+(./_minted/67D7A872BE7BBCDEC32049E75055A9B6.highlight.minted [54] [55])
+(./_minted/6EB5FD7036663CE51F8B849113066DC2.highlight.minted [56] [57] [58])
+(./_minted/E9FB8059C5AA7FF94F378FD5C0353CEC.highlight.minted [59] [60])
+(./_minted/546283D8343FC39695B2288BC0DD6B01.highlight.minted)) [61]
+(./chapter/task1.tex
 File: pic/task1/image.png Graphic file (type bmp)
 <pic/task1/image.png>
- [41]
+ [62]
 File: pic/task1/image copy.png Graphic file (type bmp)
 <pic/task1/image copy.png>
 File: pic/task1/image copy 2.png Graphic file (type bmp)
@@ -1643,49 +1669,49 @@ File: pic/task1/image copy 2.png Graphic file (type bmp)
 (./_minted/41039B30F63228BB07320D23D8E1A4B7.highlight.minted)
 File: pic/task1/image copy 3.png Graphic file (type bmp)
 <pic/task1/image copy 3.png>
- [42]
+ [63]
 File: pic/task1/image copy 4.png Graphic file (type bmp)
 <pic/task1/image copy 4.png>
 File: pic/task1/image copy 5.png Graphic file (type bmp)
 <pic/task1/image copy 5.png>
- [43]
+ [64]
 File: pic/task1/image copy 6.png Graphic file (type bmp)
 <pic/task1/image copy 6.png>
 
-[44]
+[65]
 File: pic/task1/image copy 7.png Graphic file (type bmp)
 <pic/task1/image copy 7.png>
 File: pic/task1/image copy 8.png Graphic file (type bmp)
 <pic/task1/image copy 8.png>
 File: pic/task1/image copy 9.png Graphic file (type bmp)
 <pic/task1/image copy 9.png>
- [45]
+ [66]
 File: pic/task1/image copy 10.png Graphic file (type bmp)
 <pic/task1/image copy 10.png>
- [46]
+ [67]
 File: pic/task1/image copy 11.png Graphic file (type bmp)
 <pic/task1/image copy 11.png>
 File: pic/task1/image copy 12.png Graphic file (type bmp)
 <pic/task1/image copy 12.png>
 File: pic/task1/image copy 13.png Graphic file (type bmp)
 <pic/task1/image copy 13.png>
- [47]
+ [68]
 File: pic/task1/image copy 14.png Graphic file (type bmp)
 <pic/task1/image copy 14.png>
 File: pic/task1/image copy 15.png Graphic file (type bmp)
 <pic/task1/image copy 15.png>
 File: pic/task1/image copy 16.png Graphic file (type bmp)
 <pic/task1/image copy 16.png>
- [48]
+ [69]
 File: pic/task1/image copy 17.png Graphic file (type bmp)
 <pic/task1/image copy 17.png>
-) [49] (./chapter/task2.tex
-(./_minted/417130E53260CCEB480BDB92B269F5CF.highlight.minted) [50]
+) [70] (./chapter/task2.tex
+(./_minted/417130E53260CCEB480BDB92B269F5CF.highlight.minted) [71]
 File: pic/task2/image.png Graphic file (type bmp)
 <pic/task2/image.png>
 File: pic/task2/image copy.png Graphic file (type bmp)
 <pic/task2/image copy.png>
- [51]
+ [72]
 File: pic/task2/image copy 3.png Graphic file (type bmp)
 <pic/task2/image copy 3.png>
 File: pic/task2/image copy 4.png Graphic file (type bmp)
@@ -1697,41 +1723,41 @@ File: pic/task2/image copy 6.png Graphic file (type bmp)
 File: pic/task2/image copy 2.png Graphic file (type bmp)
 <pic/task2/image copy 2.png>
 
-[52]
+[73]
 File: pic/task2/image copy 7.png Graphic file (type bmp)
 <pic/task2/image copy 7.png>
 File: pic/task2/image copy 8.png Graphic file (type bmp)
 <pic/task2/image copy 8.png>
- [53]
+ [74]
 File: pic/task2/image copy 9.png Graphic file (type bmp)
 <pic/task2/image copy 9.png>
 File: pic/task2/image copy 10.png Graphic file (type bmp)
 <pic/task2/image copy 10.png>
 File: pic/task2/image copy 11.png Graphic file (type bmp)
 <pic/task2/image copy 11.png>
- [54]
+ [75]
 File: pic/task2/image copy 12.png Graphic file (type bmp)
 <pic/task2/image copy 12.png>
 File: pic/task2/image copy 13.png Graphic file (type bmp)
 <pic/task2/image copy 13.png>
 File: pic/task2/image copy 14.png Graphic file (type bmp)
 <pic/task2/image copy 14.png>
- [55]
+ [76]
 File: pic/task2/image copy 15.png Graphic file (type bmp)
 <pic/task2/image copy 15.png>
 File: pic/task2/image copy 16.png Graphic file (type bmp)
 <pic/task2/image copy 16.png>
- [56]
+ [77]
 File: pic/task2/image copy 17.png Graphic file (type bmp)
 <pic/task2/image copy 17.png>
 File: pic/task2/image copy 18.png Graphic file (type bmp)
 <pic/task2/image copy 18.png>
 File: pic/task2/image copy 19.png Graphic file (type bmp)
 <pic/task2/image copy 19.png>
- [57]
-(./_minted/CB3896DC6A0CFD8D2F3B852CF2BC6D3D.highlight.minted [58] [59] [60]
-[61]) (./_minted/55045A647B750BA0D167C6E371862414.highlight.minted [62]))
-[63] (./main.aux)
+ [78]
+(./_minted/CB3896DC6A0CFD8D2F3B852CF2BC6D3D.highlight.minted [79] [80] [81]
+[82]) (./_minted/55045A647B750BA0D167C6E371862414.highlight.minted [83]))
+[84] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2022/08/05>
@@ -1741,15 +1767,15 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E234B9C8C2FBED8DD90CBF53771FB4F1;7404.
+(rerunfilecheck)             Checksum: E594737D6446DB7E76750218E83BE7EF;6736.
  ) 
 Here is how much of TeX's memory you used:
- 39528 strings out of 468219
- 929601 string characters out of 5431931
- 1472314 words of memory out of 5000000
- 67487 multiletter control sequences out of 15000+600000
+ 39587 strings out of 468219
+ 932935 string characters out of 5431931
+ 1470615 words of memory out of 5000000
+ 67530 multiletter control sequences out of 15000+600000
  635087 words of font info for 106 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,13n,115p,1186b,1067s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,13n,115p,1186b,1061s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (63 pages).
+Output written on main.pdf (84 pages).
