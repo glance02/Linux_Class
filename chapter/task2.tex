@@ -214,10 +214,16 @@ chmod +x linux_quiz.sh
 
 通过调试过程可以看到，Shell 脚本虽然语法相对简洁，但对符号和结构非常敏感，例如缺少 \cmd{fi} 就会导致语法检查失败。因此在编写脚本时，先用 \cmd{bash -n} 检查语法，再用 \cmd{bash -x} 跟踪执行过程，是比较实用的调试方法。后续如果继续完善这个答题系统，还可以增加随机出题、错题记录、分数排行榜和题库合法性检查等功能。
 
-\subsection{源代码展示}
+\subsection{源代码与题库展示}
 
-以下是本次 Shell 编程作业的完整源代码：
+以下是本次 Shell 编程作业的主要源代码和配套题库文件。其中，\cmd{linux\_quiz.sh} 负责菜单交互、答题流程、成绩保存和异常处理，\cmd{questions.txt} 则保存题目与标准答案。题库文件采用“题目|答案”的格式组织，每行对应一道题。题库文件可以根据需要进行扩展，添加更多题目和答案。
+
+\subsubsection{Shell 脚本}
 
 \inputminted{bash}{code/task2/linux_quiz.sh}
+
+\subsubsection{题库文件}
+
+\inputminted{text}{code/task2/questions.txt}
 
 

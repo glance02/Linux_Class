@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  6 MAY 2026 20:44
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  8 MAY 2026 20:43
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1574,11 +1574,11 @@ File: pic/cowork/服务日志图片.png Graphic file (type bmp)
 \pydata@fh@0=\write7
 \openout7 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260506204457 FAD58DE7366495DB4650CF
+runsystem(latexminted config  --timestamp 20260508204314 FAD58DE7366495DB4650CF
 EFAC2FCD61)...executed.
 
  (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260506204457 FAD58DE7366495DB4
+runsystem(latexminted cleanconfig  --timestamp 20260508204314 FAD58DE7366495DB4
 650CFEFAC2FCD61)...executed.
 
  (./_minted/default.style.minted)
@@ -1730,7 +1730,8 @@ File: pic/task2/image copy 19.png Graphic file (type bmp)
 <pic/task2/image copy 19.png>
  [57]
 (./_minted/CB3896DC6A0CFD8D2F3B852CF2BC6D3D.highlight.minted [58] [59] [60]
-[61])) [62] (./main.aux)
+[61]) (./_minted/55045A647B750BA0D167C6E371862414.highlight.minted [62]))
+[63] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2022/08/05>
@@ -1740,15 +1741,15 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 06A52D3170B56C563A96A6B9BAAD17D1;7163.
+(rerunfilecheck)             Checksum: E234B9C8C2FBED8DD90CBF53771FB4F1;7404.
  ) 
 Here is how much of TeX's memory you used:
- 39508 strings out of 468219
- 928461 string characters out of 5431931
- 1472053 words of memory out of 5000000
- 67470 multiletter control sequences out of 15000+600000
+ 39528 strings out of 468219
+ 929601 string characters out of 5431931
+ 1472314 words of memory out of 5000000
+ 67487 multiletter control sequences out of 15000+600000
  635087 words of font info for 106 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  102i,13n,115p,1186b,1067s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (62 pages).
+Output written on main.pdf (63 pages).
