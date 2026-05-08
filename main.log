@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  8 MAY 2026 21:31
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  9 MAY 2026 00:41
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1458,15 +1458,15 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(73.97733pt, 449.55322pt, 73.97733pt)
-* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
+* v-part:(T,H,B)=(79.6678pt, 685.71124pt, 79.6678pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=449.55322pt
-* \textheight=702.78308pt
-* \oddsidemargin=1.70734pt
-* \evensidemargin=1.70734pt
-* \topmargin=-41.1381pt
+* \textwidth=426.79135pt
+* \textheight=685.71124pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-32.60219pt
 * \headheight=15.0pt
 * \headsep=25.0pt
 * \topskip=12.0pt
@@ -1522,11 +1522,11 @@ Package fontspec Info:
 
  (./main.toc [1
 
-])
+] [2])
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
- [2] [3] (./chapter/cowork.tex
+ [3] (./chapter/cowork.tex
 
 Package fontspec Info: 
 (fontspec)             Could not resolve font "FangSong/BI" (it probably
@@ -1553,165 +1553,442 @@ Package fontspec Info:
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
 
+
+[1
+
+]
 File: pic/cowork/服务端运行界面.png Graphic file (type bmp)
 <pic/cowork/服务端运行界面.png>
-
-[4]
 File: pic/cowork/客户1连接服务端.png Graphic file (type bmp)
 <pic/cowork/客户1连接服务端.png>
 File: pic/cowork/客户2连接服务端.png Graphic file (type bmp)
 <pic/cowork/客户2连接服务端.png>
- [5] [6]
+ [2]
+Overfull \hbox (10.06711pt too wide) in paragraph at lines 32--33
+[]\TU/SimSun(0)/m/n/12 项 目 代 码 已 经 开 源 托 管 在 \TU/lmr/m/n/12 GitHub \TU/SimSun(0
+)/m/n/12 仓 库 [][]$[][][][][] [] [] [] [][][][][][] [] [][][] [] [][][][][][][][
+] [] [][][][][] []
+ []
+
+[3]
+Overfull \hbox (16.51103pt too wide) in paragraph at lines 60--61
+[]\TU/SimSun(0)/m/n/12 这 些 操 作 在 代 码 中 的 定 义 集 中 在 代 码 仓 库 根 目 录 下 的 []\TU/lmtt
+/m/n/12 document.py[]\TU/SimSun(0)/m/n/12 ：| []\TU/lmtt/m/n/12 VALID_KINDS[]
+ []
+
+[4]
+Overfull \hbox (16.79263pt too wide) in paragraph at lines 62--63
+[]\TU/SimSun(0)/m/n/12 例 如 一 条 服 务 端 输 出 []\TU/lmtt/m/n/12 OP v7 client=sputnik
+ insert pos=76 char='S' base=6[]
+ []
+
 File: pic/cowork/服务端u1英文演示.png Graphic file (type bmp)
 <pic/cowork/服务端u1英文演示.png>
- [7]
 File: pic/cowork/服务端u1中文演示.png Graphic file (type bmp)
 <pic/cowork/服务端u1中文演示.png>
- [8]
+[5]
 File: pic/cowork/服务日志图片.png Graphic file (type bmp)
 <pic/cowork/服务日志图片.png>
- [9] [10]
+ [6] [7]
+File: pic/cowork/TermSync总体架构图.png Graphic file (type bmp)
+<pic/cowork/TermSync总体架构图.png>
+
+Overfull \hbox (9.41193pt too wide) in paragraph at lines 149--149
+[][]\TU/lmtt/m/n/10.95 client_state.py[]| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--149
+[][]\TU/lmtt/m/n/10.95 pending_queue[]\TU/SimSun(0)/m/n/10.95 、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--150
+[]\TU/SimSun(0)/m/n/10.95 将 字 典 消 息 编 码 为
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--150
+\TU/lmr/m/n/10.95 JSON Lines\TU/SimSun(0)/m/n/10.95 ，|  并 从
+ []
+
+
+Underfull \hbox (badness 2564) in paragraph at lines 151--151
+[]\TU/SimSun(0)/m/n/10.95 保 存 权 威 文 本、|  执 行
+ []
+
+
+Overfull \hbox (1.04614pt too wide) in paragraph at lines 144--156
+ [][] 
+ []
+
+[8]
 \pydata@fh@0=\write7
 \openout7 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260508213129 FAD58DE7366495DB4650CF
+runsystem(latexminted config  --timestamp 20260509004106 FAD58DE7366495DB4650CF
 EFAC2FCD61)...executed.
 
  (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260508213129 FAD58DE7366495DB4
+runsystem(latexminted cleanconfig  --timestamp 20260509004106 FAD58DE7366495DB4
 650CFEFAC2FCD61)...executed.
 
- (./_minted/default.style.minted)
-(./_minted/486E5B541463B895A2D2E0A9091BD363.highlight.minted
+
+(./_minted/default.style.minted)
+(./_minted/486E5B541463B895A2D2E0A9091BD363.highlight.minted [9]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 3.
-) [11]
-(./_minted/D6D2F37302A80F49BBCFA095E2E4C441.highlight.minted [12])
+)
+File: pic/cowork/客户端到服务端的数据流图.png Graphic file (type bmp)
+<pic/cowork/客户端到服务端的数据流图.png>
+ [10]
+Underfull \hbox (badness 1400) in paragraph at lines 200--201
+[]\TU/SimSun(0)/m/n/10.95 客 户 端 加 入 协 作
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 201--202
+[]\TU/SimSun(0)/m/n/10.95 告 诉 客 户 端 最 终
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 202--203
+\TU/SimSun(0)/m/n/10.95 于 新 加 入 或 重 同
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 203--204
+[]\TU/SimSun(0)/m/n/10.95 提 交 字 符 级 插 入
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 204--205
+[]\TU/SimSun(0)/m/n/10.95 确 认 当 前 未 完 成
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 204--205
+\TU/SimSun(0)/m/n/10.95 端 发 送 队 列 继 续
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 205--205
+[]\TU/SimSun(0)/m/n/10.95 服 务 端 到 其 他 客
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 205--206
+[]\TU/SimSun(0)/m/n/10.95 把 已 经 确 认 的 远
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 205--206
+\TU/SimSun(0)/m/n/10.95 程 操 作 广 播 给 其
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 206--207
+[]\TU/SimSun(0)/m/n/10.95 请 求 手 动 保 存 当
+ []
+
+
+Overfull \hbox (17.94305pt too wide) in paragraph at lines 207--207
+[][]\TU/lmtt/m/n/10.95 RESYNC_REQUIRED[]| 
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 207--208
+[]\TU/SimSun(0)/m/n/10.95 客 户 端 版 本 过 旧
+ []
+
+[11]
+File: pic/cowork/OT位置变换示意图.png Graphic file (type bmp)
+<pic/cowork/OT位置变换示意图.png>
+ [12]
+Underfull \hbox (badness 1400) in paragraph at lines 251--252
+[]\TU/SimSun(0)/m/n/10.95 当 前 操 作 位 置 右
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 252--253
+[]\TU/SimSun(0)/m/n/10.95 当 前 操 作 位 置 左
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--254
+[]\TU/SimSun(0)/m/n/10.95 当 前 操 作 变 为
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 254--255
+[]\TU/SimSun(0)/m/n/10.95 根 据 历 史 插 入 次
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 255--256
+[]\TU/SimSun(0)/m/n/10.95 服 务 端 规 范 化 为
+ []
+
+[13]
+File: pic/cowork/自动保存与备份流程图.png Graphic file (type bmp)
+<pic/cowork/自动保存与备份流程图.png>
+ [14]
+Underfull \hbox (badness 2197) in paragraph at lines 293--293
+[]\TU/SimSun(0)/m/n/10.95 服 务 端 处 理 编 辑 后，|
+ []
+
+[15] (./_minted/D6D2F37302A80F49BBCFA095E2E4C441.highlight.minted)
+File: pic/cowork/测试验证覆盖图.png Graphic file (type bmp)
+<pic/cowork/测试验证覆盖图.png>
+ [16]
+Underfull \hbox (badness 10000) in paragraph at lines 344--344
+[][]\TU/lmtt/m/n/10.95 CollaborativeDocument[]
+ []
+
+
+Overfull \hbox (21.08037pt too wide) in paragraph at lines 345--345
+[][]\TU/lmtt/m/n/10.95 test_client_state.py[]| 
+ []
+
+[17]
 File: pic/cowork/test1.png Graphic file (type bmp)
 <pic/cowork/test1.png>
-
-(./_minted/E55DC27867CB360AD3DCB0A1304E8123.highlight.minted)
+ (./_minted/E55DC27867CB360AD3DCB0A1304E8123.highlight.minted)
 File: pic/cowork/本地运行服务端.png Graphic file (type bmp)
 <pic/cowork/本地运行服务端.png>
- [13]
+ [18]
 (./_minted/35A522602C4799D2197517FE582C744B.highlight.minted)
 File: pic/cowork/本地运行客户端界面.png Graphic file (type bmp)
 <pic/cowork/本地运行客户端界面.png>
- [14]
+ [19]
 File: pic/cowork/服务端关闭后客户端表现.png Graphic file (type bmp)
 <pic/cowork/服务端关闭后客户端表现.png>
- [15]
+
+Underfull \hbox (badness 10000) in paragraph at lines 412--412
+[]\TU/SimSun(0)/m/n/10.95 两 个 客 户 端 分 别 连 接
+ []
+
+[20]
 File: pic/cowork/阿里云开放端口.png Graphic file (type bmp)
 <pic/cowork/阿里云开放端口.png>
-
-[16] (./_minted/CB3E9D02BDA6CF156FE07D8509294B65.highlight.minted)
+ [21] (./_minted/CB3E9D02BDA6CF156FE07D8509294B65.highlight.minted)
 (./_minted/E3547A42E14B2819CE7151A77D587312.highlight.minted)
 File: pic/cowork/client-sync-sputnik.png Graphic file (type bmp)
 <pic/cowork/client-sync-sputnik.png>
 File: pic/cowork/client-sync-glance.png Graphic file (type bmp)
 <pic/cowork/client-sync-glance.png>
+ [22]
 File: pic/cowork/服务端界面日志.png Graphic file (type bmp)
 <pic/cowork/服务端界面日志.png>
- [17]
 File: pic/cowork/transform_trace日志.png Graphic file (type bmp)
 <pic/cowork/transform_trace日志.png>
- [18]
-[19] [20] (./_minted/C2602B0346B3560AF8CACE89FE573E2C.highlight.minted
+ [23]
+Underfull \hbox (badness 10000) in paragraph at lines 516--516
+[]\TU/lmr/m/n/10.95 Windows \TU/SimSun(0)/m/n/10.95 电 脑 中 使 用
+ []
+
+[24]
+Underfull \hbox (badness 1400) in paragraph at lines 539--539
+[]\TU/SimSun(0)/m/n/10.95 多 线 程 并 发 访 问
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 542--542
+[]\TU/SimSun(0)/m/n/10.95 慢 网 络 或 慢 客 户
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 542--543
+[]\TU/SimSun(0)/m/n/10.95 锁 内 只 处 理 状 态，|  锁 外 执 行
+ []
+
+[25] [26] [27] [28]
+Underfull \hbox (badness 10000) in paragraph at lines 618--618
+[][]\TU/lmtt/m/n/10.95 server.py[] \TU/SimSun(0)/m/n/10.95 监 听 端 口，|
+ []
+
+
+Overfull \hbox (1.22267pt too wide) in paragraph at lines 620--620
+[][]\TU/lmtt/m/n/10.95 CollaborativeDocument[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 621--621
+[]\TU/SimSun(0)/m/n/10.95 主 服 务 端 通 过
+ []
+
+
+Overfull \hbox (1.22267pt too wide) in paragraph at lines 621--621
+[]\TU/lmtt/m/n/10.95 multiprocessing.Queue[]
+ []
+
+[29] [30] [31]
+Underfull \hbox (badness 10000) in paragraph at lines 698--699
+[]\TU/SimSun(0)/m/n/10.95 追 加 一 行 \TU/lmr/m/n/10.95 JSON \TU/SimSun(0)/m/n/10.9
+5 到
+ []
+
+[32] [33]
+Underfull \hbox (badness 10000) in paragraph at lines 729--730
+[]\TU/SimSun(0)/m/n/10.95 服 务 端 输 出 和
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 729--730
+[]\TU/lmtt/m/n/10.95 transform_trace[] \TU/SimSun(0)/m/n/10.95 表
+ []
+
+[34] [35]
+Underfull \hbox (badness 10000) in paragraph at lines 803--803
+[]\TU/SimSun(0)/m/n/10.95 用 户 在 客 户 端 按 下
+ []
+
+[36]
+Underfull \hbox (badness 10000) in paragraph at lines 825--825
+[][]\TU/lmtt/m/n/10.95 base_version[] \TU/SimSun(0)/m/n/10.95 早 于
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 825--826
+[]\TU/SimSun(0)/m/n/10.95 服 务 端 返 回
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 825--826
+[]\TU/lmtt/m/n/10.95 RESYNC_REQUIRED[] \TU/SimSun(0)/m/n/10.95 和 完
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 827--828
+[]\TU/SimSun(0)/m/n/10.95 服 务 端 直 接 发 送 当 前
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 828--828
+[]\TU/SimSun(0)/m/n/10.95 重 同 步 后 旧 的
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 828--828
+[]\TU/lmtt/m/n/10.95 inflight_op[] \TU/SimSun(0)/m/n/10.95 不 再 可
+ []
+
+[37] [38] (./_minted/89A4B2C5A6C2FFB8674A7F6B136BB35F.highlight.minted)
+[39] (./_minted/C2602B0346B3560AF8CACE89FE573E2C.highlight.minted
 
 LaTeX Font Warning: Font shape `TU/FangSong(0)/m/it' undefined
 (Font)              using `TU/FangSong(0)/m/n' instead on input line 2.
 
-[21] [22])
-Overfull \hbox (10.35767pt too wide) in paragraph at lines 401--402
+[40])
+Overfull \hbox (19.55591pt too wide) in paragraph at lines 875--876
+[]\TU/SimSun(0)/b/n/12 操 作 模 型：|  \TU/SimSun(0)/m/n/12 编 辑 操 作、|  历 史 记 录 和 处 理
+ 结 果 集 中 定 义 在 []\TU/lmtt/m/n/12 document.py[] \TU/SimSun(0)/m/n/12 中。| []\TU/l
+mtt/m/n/12 Operation[]
+ []
+
+
+Overfull \hbox (33.11954pt too wide) in paragraph at lines 875--876
 \TU/SimSun(0)/m/n/12 表 示 字 符 级 []\TU/lmtt/m/n/12 insert[]\TU/SimSun(0)/m/n/12 、
 | []\TU/lmtt/m/n/12 delete[] \TU/SimSun(0)/m/n/12 和 []\TU/lmtt/m/n/12 noop[]\TU
 /SimSun(0)/m/n/12 ，|  并 在 从 网 络 消 息 解 析 时 进 行 类 型 检 查；| []\TU/lmtt/m/n/12 Histo
 ryEntry[]
  []
 
-(./_minted/C829AD2997310333608C5191675B464C.highlight.minted [23] [24])
-[25] (./_minted/C829AD2997310333608C5191675B464C.highlight.minted [26])
-(./_minted/C829AD2997310333608C5191675B464C.highlight.minted [27] [28] [29])
-[30] (./_minted/C829AD2997310333608C5191675B464C.highlight.minted)
-Overfull \hbox (22.10666pt too wide) in paragraph at lines 421--422
-\TU/SimSun(0)/m/n/12 个 客 户 端 连 接 保 存 必 要 信 息。|  下 面 的 代 码 展 示 了 终 端 日 志 格 式 化 函
- 数 和 []\TU/lmtt/m/n/12 ClientConnection[]\TU/SimSun(0)/m/n/12 。|
- []
-
-[31] (./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [32])
-(./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [33] [34] [35])
-(./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [36] [37])
-(./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [38] [39])
-[40] (./_minted/20A939F4DA7D7958EE3A5CC3D654AFE4.highlight.minted [41] [42]
-[43])
-Overfull \hbox (3.72229pt too wide) in paragraph at lines 443--444
-\TU/SimSun(0)/m/n/12 示 列 之 间 转 换。|  由 于 中 文 等 宽 字 符 在 终 端 中 通 常 占 两 个 显 示 列，|  
-代 码 中 使 用 []\TU/lmtt/m/n/12 unicodedata[]
- []
-
-(./_minted/30A8B556947BF762E55A4F8692524BCA.highlight.minted [44] [45])
-(./_minted/30A8B556947BF762E55A4F8692524BCA.highlight.minted [46] [47] [48]
-[49]) (./_minted/30A8B556947BF762E55A4F8692524BCA.highlight.minted [50])
-(./_minted/EE49F3BD3AA010AE977DF5B18813C1E3.highlight.minted [51] [52] [53])
-(./_minted/67D7A872BE7BBCDEC32049E75055A9B6.highlight.minted [54] [55])
-(./_minted/6EB5FD7036663CE51F8B849113066DC2.highlight.minted [56] [57] [58])
-(./_minted/E9FB8059C5AA7FF94F378FD5C0353CEC.highlight.minted [59] [60])
-(./_minted/546283D8343FC39695B2288BC0DD6B01.highlight.minted)) [61]
+[41] (./_minted/C829AD2997310333608C5191675B464C.highlight.minted [42] [43])
+(./_minted/C829AD2997310333608C5191675B464C.highlight.minted [44])
+(./_minted/C829AD2997310333608C5191675B464C.highlight.minted [45] [46] [47]
+[48]) (./_minted/C829AD2997310333608C5191675B464C.highlight.minted [49])
+(./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [50] [51])
+(./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [52] [53] [54])
+(./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [55] [56])
+(./_minted/8666AB382B755D39A94FEDB81B6B130E.highlight.minted [57] [58] [59])
+(./_minted/20A939F4DA7D7958EE3A5CC3D654AFE4.highlight.minted [60] [61] [62])
+(./_minted/30A8B556947BF762E55A4F8692524BCA.highlight.minted [63] [64] [65])
+(./_minted/30A8B556947BF762E55A4F8692524BCA.highlight.minted [66] [67] [68]
+[69]) (./_minted/30A8B556947BF762E55A4F8692524BCA.highlight.minted [70])
+(./_minted/EE49F3BD3AA010AE977DF5B18813C1E3.highlight.minted [71] [72] [73])
+(./_minted/67D7A872BE7BBCDEC32049E75055A9B6.highlight.minted [74] [75])
+(./_minted/6EB5FD7036663CE51F8B849113066DC2.highlight.minted [76] [77] [78])
+(./_minted/E9FB8059C5AA7FF94F378FD5C0353CEC.highlight.minted [79] [80])
+(./_minted/546283D8343FC39695B2288BC0DD6B01.highlight.minted [81])) [82]
 (./chapter/task1.tex
 File: pic/task1/image.png Graphic file (type bmp)
 <pic/task1/image.png>
- [62]
+ [83]
 File: pic/task1/image copy.png Graphic file (type bmp)
 <pic/task1/image copy.png>
 File: pic/task1/image copy 2.png Graphic file (type bmp)
 <pic/task1/image copy 2.png>
-
-(./_minted/41039B30F63228BB07320D23D8E1A4B7.highlight.minted)
+ [84]
+(./_minted/41039B30F63228BB07320D23D8E1A4B7.highlight.minted [85])
 File: pic/task1/image copy 3.png Graphic file (type bmp)
 <pic/task1/image copy 3.png>
- [63]
 File: pic/task1/image copy 4.png Graphic file (type bmp)
 <pic/task1/image copy 4.png>
 File: pic/task1/image copy 5.png Graphic file (type bmp)
 <pic/task1/image copy 5.png>
- [64]
+ [86]
+[87]
 File: pic/task1/image copy 6.png Graphic file (type bmp)
 <pic/task1/image copy 6.png>
-
-[65]
 File: pic/task1/image copy 7.png Graphic file (type bmp)
 <pic/task1/image copy 7.png>
 File: pic/task1/image copy 8.png Graphic file (type bmp)
 <pic/task1/image copy 8.png>
+ [88]
 File: pic/task1/image copy 9.png Graphic file (type bmp)
 <pic/task1/image copy 9.png>
- [66]
 File: pic/task1/image copy 10.png Graphic file (type bmp)
 <pic/task1/image copy 10.png>
- [67]
+ [89]
+Underfull \hbox (badness 6893) in paragraph at lines 213--214
+[]\TU/SimSun(0)/m/n/10.95 确 认 实 验 环 境 是 否 为 目 标
+ []
+
+[90]
 File: pic/task1/image copy 11.png Graphic file (type bmp)
 <pic/task1/image copy 11.png>
+ [91]
+Underfull \hbox (badness 1789) in paragraph at lines 274--275
+[][]\TU/lmtt/m/n/10.95 echo hello >> a.txt[] \TU/SimSun(0)/m/n/10.95 会 把 内
+ []
+
+[92]
 File: pic/task1/image copy 12.png Graphic file (type bmp)
 <pic/task1/image copy 12.png>
+ [93]
 File: pic/task1/image copy 13.png Graphic file (type bmp)
 <pic/task1/image copy 13.png>
- [68]
 File: pic/task1/image copy 14.png Graphic file (type bmp)
 <pic/task1/image copy 14.png>
 File: pic/task1/image copy 15.png Graphic file (type bmp)
 <pic/task1/image copy 15.png>
 File: pic/task1/image copy 16.png Graphic file (type bmp)
 <pic/task1/image copy 16.png>
- [69]
+ [94]
 File: pic/task1/image copy 17.png Graphic file (type bmp)
 <pic/task1/image copy 17.png>
-) [70] (./chapter/task2.tex
-(./_minted/417130E53260CCEB480BDB92B269F5CF.highlight.minted) [71]
+ [95]
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
+[][]\TU/lmtt/m/n/10.95 No such file or
+ []
+
+[96] (./_minted/F33B0A01D40F49B6393F93CA88D5C38E.highlight.minted) [97])
+[98] (./chapter/task2.tex
+(./_minted/417130E53260CCEB480BDB92B269F5CF.highlight.minted)
+Overfull \hbox (6.03912pt too wide) in paragraph at lines 31--32
+[]\TU/SimSun(0)/m/n/12 其 中，| []\TU/lmtt/m/n/12 chmod +x linux_quiz.sh[] \TU/Sim
+Sun(0)/m/n/12 用 于 给 脚 本 添 加 可 执 行 权 限，| []\TU/lmtt/m/n/12 ./linux_quiz.sh[]
+ []
+
+[99]
+File: pic/task2/Shell 答题系统流程图.png Graphic file (type bmp)
+<pic/task2/Shell 答题系统流程图.png>
+ [100] [101]
 File: pic/task2/image.png Graphic file (type bmp)
 <pic/task2/image.png>
 File: pic/task2/image copy.png Graphic file (type bmp)
 <pic/task2/image copy.png>
- [72]
 File: pic/task2/image copy 3.png Graphic file (type bmp)
 <pic/task2/image copy 3.png>
 File: pic/task2/image copy 4.png Graphic file (type bmp)
@@ -1720,44 +1997,68 @@ File: pic/task2/image copy 5.png Graphic file (type bmp)
 <pic/task2/image copy 5.png>
 File: pic/task2/image copy 6.png Graphic file (type bmp)
 <pic/task2/image copy 6.png>
+ [102]
 File: pic/task2/image copy 2.png Graphic file (type bmp)
 <pic/task2/image copy 2.png>
-
-[73]
 File: pic/task2/image copy 7.png Graphic file (type bmp)
 <pic/task2/image copy 7.png>
+ [103]
 File: pic/task2/image copy 8.png Graphic file (type bmp)
 <pic/task2/image copy 8.png>
- [74]
 File: pic/task2/image copy 9.png Graphic file (type bmp)
 <pic/task2/image copy 9.png>
 File: pic/task2/image copy 10.png Graphic file (type bmp)
 <pic/task2/image copy 10.png>
+ [104]
 File: pic/task2/image copy 11.png Graphic file (type bmp)
 <pic/task2/image copy 11.png>
- [75]
 File: pic/task2/image copy 12.png Graphic file (type bmp)
 <pic/task2/image copy 12.png>
 File: pic/task2/image copy 13.png Graphic file (type bmp)
 <pic/task2/image copy 13.png>
+ [105]
 File: pic/task2/image copy 14.png Graphic file (type bmp)
 <pic/task2/image copy 14.png>
- [76]
 File: pic/task2/image copy 15.png Graphic file (type bmp)
 <pic/task2/image copy 15.png>
+ [106]
+Underfull \hbox (badness 10000) in paragraph at lines 227--227
+[][]\TU/lmtt/m/n/10.95 bash -n
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
+[][]\TU/lmtt/m/n/10.95 bash -x
+ []
+
 File: pic/task2/image copy 16.png Graphic file (type bmp)
 <pic/task2/image copy 16.png>
- [77]
+[107]
 File: pic/task2/image copy 17.png Graphic file (type bmp)
 <pic/task2/image copy 17.png>
 File: pic/task2/image copy 18.png Graphic file (type bmp)
 <pic/task2/image copy 18.png>
 File: pic/task2/image copy 19.png Graphic file (type bmp)
 <pic/task2/image copy 19.png>
- [78]
-(./_minted/CB3896DC6A0CFD8D2F3B852CF2BC6D3D.highlight.minted [79] [80] [81]
-[82]) (./_minted/55045A647B750BA0D167C6E371862414.highlight.minted [83]))
-[84] (./main.aux)
+ [108] [109]
+Underfull \hbox (badness 2035) in paragraph at lines 324--324
+[][]\TU/lmtt/m/n/10.95 questions.txt[] \TU/SimSun(0)/m/n/10.95 中 的 题
+ []
+
+
+Underfull \hbox (badness 1082) in paragraph at lines 325--325
+[][]\TU/lmtt/m/n/10.95 score.txt[] \TU/SimSun(0)/m/n/10.95 中 的 历 史 记
+ []
+
+[110] [111]
+Overfull \hbox (6.25485pt too wide) in paragraph at lines 364--365
+[]\TU/SimSun(0)/m/n/12 以 下 是 本 次 \TU/lmr/m/n/12 Shell \TU/SimSun(0)/m/n/12 编 程 
+作 业 的 主 要 源 代 码 和 配 套 题 库 文 件。|  其 中，| []\TU/lmtt/m/n/12 linux_quiz.sh[]
+ []
+
+(./_minted/CB3896DC6A0CFD8D2F3B852CF2BC6D3D.highlight.minted [112] [113]
+[114] [115]) (./_minted/55045A647B750BA0D167C6E371862414.highlight.minted
+[116])) [117] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2022/08/05>
@@ -1767,15 +2068,15 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E594737D6446DB7E76750218E83BE7EF;6736.
+(rerunfilecheck)             Checksum: EDA19E242F3F7443113714DEB315AB0A;8973.
  ) 
 Here is how much of TeX's memory you used:
- 39587 strings out of 468219
- 932935 string characters out of 5431931
- 1470615 words of memory out of 5000000
- 67530 multiletter control sequences out of 15000+600000
- 635087 words of font info for 106 fonts, out of 8000000 for 9000
+ 39745 strings out of 468219
+ 940397 string characters out of 5431931
+ 1479004 words of memory out of 5000000
+ 67674 multiletter control sequences out of 15000+600000
+ 635095 words of font info for 107 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,13n,115p,1186b,1061s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,13n,115p,1186b,1063s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (84 pages).
+Output written on main.pdf (120 pages).

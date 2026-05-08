@@ -1,106 +1,163 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand*\HyPL@Entry[1]{}
-\HyPL@Entry{0<</S/D>>}
-\@writefile{toc}{\contentsline {section}{\numberline {}TermSync：终端协同代码编辑器}{4}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1}项目概述}{4}{subsection.1.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 服务端运行界面}}{5}{figure.caption.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 两个客户端连接服务端}}{5}{figure.caption.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2}项目背景}{6}{subsection.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3}功能描述}{7}{subsection.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1}多人连接与文档同步}{7}{subsubsection.1.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2}字符级编辑操作}{7}{subsubsection.1.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 服务端英文输入}}{8}{figure.caption.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 服务端中文输入}}{8}{figure.caption.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3}ACK 驱动的客户端发送队列}{8}{subsubsection.1.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4}服务端主导 OT 与全局版本}{8}{subsubsection.1.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5}保存、自动保存与编辑日志}{9}{subsubsection.1.3.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces 服务端编辑日志与自动保存记录}}{9}{figure.caption.5}\protected@file@percent }
+\HyPL@Entry{0<</P()>>}
+\HyPL@Entry{3<</S/D>>}
+\@writefile{toc}{\contentsline {section}{\numberline {}TermSync：终端协同代码编辑器}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1}项目概述}{1}{subsection.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 服务端运行界面}}{2}{figure.caption.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 两个客户端连接服务端}}{2}{figure.caption.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2}项目背景}{3}{subsection.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3}功能描述}{4}{subsection.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1}多人连接与文档同步}{4}{subsubsection.1.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2}字符级编辑操作}{4}{subsubsection.1.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 服务端英文输入}}{5}{figure.caption.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 服务端中文输入}}{5}{figure.caption.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3}ACK 驱动的客户端发送队列}{5}{subsubsection.1.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4}服务端主导 OT 与全局版本}{6}{subsubsection.1.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5}保存、自动保存与编辑日志}{6}{subsubsection.1.3.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces 服务端编辑日志与自动保存记录}}{6}{figure.caption.5}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:log and bak}{{5}{9}{服务端编辑日志与自动保存记录}{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6}历史裁剪与重同步}{10}{subsubsection.1.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4}设计思路}{10}{subsection.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1}总体架构}{10}{subsubsection.1.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2}网络协议设计}{10}{subsubsection.1.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3}文档锁与全局顺序}{11}{subsubsection.1.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4}OT 位置变换规则}{11}{subsubsection.1.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5}客户端状态机}{12}{subsubsection.1.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6}自动保存进程}{12}{subsubsection.1.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5}测试与验证}{12}{subsection.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1}单元测试}{12}{subsubsection.1.5.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces 测试结果}}{13}{figure.caption.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2}本地验证}{13}{subsubsection.1.5.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces 本地运行服务端界面}}{14}{figure.caption.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces tmux 中两个本地客户端同步显示}}{15}{figure.caption.8}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces 服务端关闭后客户端显示连接断开}}{16}{figure.caption.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3}部署验证}{16}{subsubsection.1.5.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces 阿里云开放8765端口}}{16}{figure.caption.10}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces 客户端 sputnik 输入内容后客户端 glance 自动同步显示}}{17}{figure.caption.11}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces 服务端终端输出 JOIN、OP、SAVE、LEAVE 等事件日志}}{18}{figure.caption.12}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces 编辑日志中的 transform\_trace 位置变换记录}}{18}{figure.caption.13}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \texttt  {\color  {ReportBlue}transform\_trace} 位置变换摘要}}{19}{table.caption.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6}问题与解决方案}{19}{subsection.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1}并发操作顺序不确定}{19}{subsubsection.1.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2}旧版本操作位置失效}{19}{subsubsection.1.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3}连续输入容易丢失或乱序}{19}{subsubsection.1.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4}慢客户端可能阻塞服务端}{20}{subsubsection.1.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5}历史无限增长}{20}{subsubsection.1.6.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6}文件保存可能覆盖旧内容}{20}{subsubsection.1.6.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7}中文字符显示宽度}{20}{subsubsection.1.6.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7}项目不足与改进方向}{20}{subsection.1.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8}代码展示}{21}{subsection.1.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.1}协议与基础数据结构}{21}{subsubsection.1.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2}服务端权威文档与 OT}{26}{subsubsection.1.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.3}服务端连接、广播与保存触发}{32}{subsubsection.1.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.4}客户端状态机与终端界面}{41}{subsubsection.1.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.5}自动保存、备份与日志}{51}{subsubsection.1.8.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.6}单元测试}{54}{subsubsection.1.8.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {}Linux 平台下的基本命令}{62}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1}文件和目录操作}{62}{subsection.2.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces 命令1.1-1.4}}{62}{figure.caption.15}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces 命令1.5-1.10}}{63}{figure.caption.16}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces 命令1.11-1.14}}{63}{figure.caption.17}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2}文件内容查看与处理命令}{63}{subsection.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces 命令2.1}}{64}{figure.caption.18}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces 命令2.2-2.5}}{64}{figure.caption.19}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces 命令2.6-2.9}}{65}{figure.caption.20}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3}系统信息查看命令}{65}{subsection.2.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces 命令3.1-3.4}}{65}{figure.caption.21}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces 命令3.5-3.6}}{66}{figure.caption.22}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces 命令3.7}}{66}{figure.caption.23}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces 命令3.8}}{67}{figure.caption.24}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces 命令3.9}}{67}{figure.caption.25}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4}权限相关命令}{68}{subsection.2.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces 命令4.1-4.5}}{68}{figure.caption.26}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5}管道符组合命令}{68}{subsection.2.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces 命令5.1}}{68}{figure.caption.27}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces 命令5.2}}{69}{figure.caption.28}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces 命令5.3}}{69}{figure.caption.29}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces 命令5.4-5.6}}{69}{figure.caption.30}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces 命令5.7}}{70}{figure.caption.31}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces 命令5.8-5.9}}{70}{figure.caption.32}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6}实验小结}{70}{subsection.2.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {}Linux 下的 Shell 编程案例}{71}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1}程序功能说明}{71}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2}Shell 脚本执行方法}{71}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3}程序实现思路}{72}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4}案例展示}{72}{subsection.3.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces 答题界面}}{73}{figure.caption.35}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces 答题结束界面}}{74}{figure.caption.36}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces 历史成绩}}{74}{figure.caption.37}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces 题库和历史成绩文本文件}}{75}{figure.caption.38}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces 清空历史成绩}}{75}{figure.caption.39}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {37}{\ignorespaces 退出系统}}{76}{figure.caption.40}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5}Shell 程序调试方法}{76}{subsection.3.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {38}{\ignorespaces 错误修正}}{77}{figure.caption.43}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {39}{\ignorespaces 执行跟踪调试}}{77}{figure.caption.44}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {40}{\ignorespaces 删除题库文件}}{78}{figure.caption.45}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {41}{\ignorespaces 运行程序}}{78}{figure.caption.46}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {42}{\ignorespaces 输入中文选项}}{78}{figure.caption.47}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {43}{\ignorespaces 输入非法选项}}{79}{figure.caption.48}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6}实验小结}{79}{subsection.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7}源代码与题库展示}{79}{subsection.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1}Shell 脚本}{79}{subsubsection.3.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2}题库文件}{84}{subsubsection.3.7.2}\protected@file@percent }
-\xdef \mintedoldcachechecksum{\detokenize{87F8CFB3257CDD35484BA95CADCE2BEA:29}}
-\gdef \@abspage@last{84}
+\newlabel{fig:log and bak}{{5}{6}{服务端编辑日志与自动保存记录}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6}历史裁剪与重同步}{7}{subsubsection.1.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4}设计思路}{7}{subsection.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1}总体架构}{7}{subsubsection.1.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces TermSync 总体架构示意图}}{8}{figure.caption.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces TermSync 核心模块职责划分}}{9}{table.caption.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2}网络协议设计}{9}{subsubsection.1.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces 客户端与服务端消息流示意图}}{10}{figure.caption.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 主要协议消息类型}}{11}{table.caption.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3}文档锁与全局顺序}{12}{subsubsection.1.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4}OT 位置变换规则}{12}{subsubsection.1.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces OT 位置变换过程示意图}}{13}{figure.caption.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 典型 OT 变换场景}}{13}{table.caption.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5}客户端状态机}{14}{subsubsection.1.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6}自动保存进程}{14}{subsubsection.1.4.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces 自动保存与备份流程示意图}}{15}{figure.caption.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 保存相关文件说明}}{15}{table.caption.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5}测试与验证}{16}{subsection.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1}单元测试}{16}{subsubsection.1.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces 测试验证覆盖关系示意图}}{17}{figure.caption.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 单元测试覆盖关系}}{17}{table.caption.15}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces 测试结果}}{18}{figure.caption.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2}本地验证}{18}{subsubsection.1.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces 本地运行服务端界面}}{18}{figure.caption.17}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces tmux 中两个本地客户端同步显示}}{19}{figure.caption.18}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces 服务端关闭后客户端显示连接断开}}{20}{figure.caption.19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 本地验证场景与观察结果}}{21}{table.caption.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3}部署验证}{21}{subsubsection.1.5.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces 阿里云开放8765端口}}{21}{figure.caption.21}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces 客户端 sputnik 输入内容后客户端 glance 自动同步显示}}{23}{figure.caption.22}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces 服务端终端输出 JOIN、OP、SAVE、LEAVE 等事件日志}}{23}{figure.caption.23}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces 编辑日志中的 transform\_trace 位置变换记录}}{24}{figure.caption.24}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces \texttt  {\color  {ReportBlue}transform\_trace} 位置变换摘要}}{24}{table.caption.25}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces 部署验证中的环境要点}}{25}{table.caption.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6}问题与解决方案}{25}{subsection.1.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces 问题来源与解决思路总览}}{26}{table.caption.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1}并发操作顺序不确定}{26}{subsubsection.1.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2}旧版本操作位置失效}{27}{subsubsection.1.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3}连续输入容易丢失或乱序}{27}{subsubsection.1.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4}慢客户端可能阻塞服务端}{27}{subsubsection.1.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5}历史无限增长}{28}{subsubsection.1.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6}文件保存可能覆盖旧内容}{28}{subsubsection.1.6.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7}中文字符显示宽度}{29}{subsubsection.1.6.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7}课程知识点对应关系}{29}{subsection.1.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces 课程知识点与项目实现对应关系}}{30}{table.caption.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.1}网络编程与长连接服务}{30}{subsubsection.1.7.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces 网络编程相关设计}}{31}{table.caption.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.2}线程同步与临界区控制}{31}{subsubsection.1.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces 临界区内外职责划分}}{32}{table.caption.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3}进程间通信与文件持久化}{32}{subsubsection.1.7.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces 持久化事件与处理动作}}{33}{table.caption.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.4}终端交互与用户体验}{33}{subsubsection.1.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.5}测试驱动的课程项目验证}{33}{subsubsection.1.7.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces 验证方式与适用范围}}{34}{table.caption.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8}关键运行流程分解}{34}{subsection.1.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.1}客户端加入流程}{34}{subsubsection.1.8.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces 客户端加入流程}}{35}{table.caption.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.2}编辑操作确认流程}{35}{subsubsection.1.8.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces 编辑操作确认流程}}{36}{table.caption.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.3}保存与关闭流程}{36}{subsubsection.1.8.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces 保存与关闭流程}}{37}{table.caption.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {8.4}重同步流程}{37}{subsubsection.1.8.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces 重同步触发与恢复}}{38}{table.caption.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9}项目不足与改进方向}{38}{subsection.1.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10}代码展示}{39}{subsection.1.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.1}项目结构}{39}{subsubsection.1.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.2}协议与基础数据结构}{40}{subsubsection.1.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.3}服务端权威文档与 OT}{44}{subsubsection.1.10.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.4}服务端连接、广播与保存触发}{50}{subsubsection.1.10.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.5}客户端状态机与终端界面}{60}{subsubsection.1.10.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.6}自动保存、备份与日志}{71}{subsubsection.1.10.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.7}单元测试}{74}{subsubsection.1.10.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {}Linux 平台下的基本命令}{83}{section.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces 基础命令分类与实验目标}}{83}{table.caption.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1}文件和目录操作}{83}{subsection.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces 命令1.1-1.4}}{84}{figure.caption.38}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces 命令1.5-1.10}}{84}{figure.caption.39}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces 命令1.11-1.14}}{85}{figure.caption.40}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces 文件目录命令使用要点}}{85}{table.caption.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2}文件内容查看与处理命令}{85}{subsection.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces 命令2.1}}{86}{figure.caption.42}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces 命令2.2-2.5}}{86}{figure.caption.43}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces 命令2.6-2.9}}{87}{figure.caption.44}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces 文本处理命令对比}}{87}{table.caption.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3}系统信息查看命令}{88}{subsection.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces 命令3.1-3.4}}{88}{figure.caption.46}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces 命令3.5-3.6}}{88}{figure.caption.47}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces 命令3.7}}{89}{figure.caption.48}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces 命令3.8}}{89}{figure.caption.49}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces 命令3.9}}{90}{figure.caption.50}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces 系统信息命令观察重点}}{91}{table.caption.51}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4}权限相关命令}{91}{subsection.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces 命令4.1-4.5}}{91}{figure.caption.52}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces 权限字符与数字表示}}{92}{table.caption.53}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5}重定向与错误输出}{92}{subsection.2.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces 常见重定向符号}}{93}{table.caption.54}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6}管道符组合命令}{93}{subsection.2.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces 命令5.1}}{94}{figure.caption.55}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces 命令5.2}}{94}{figure.caption.56}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces 命令5.3}}{94}{figure.caption.57}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces 命令5.4-5.6}}{94}{figure.caption.58}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces 命令5.7}}{95}{figure.caption.59}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces 命令5.8-5.9}}{95}{figure.caption.60}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces 管道组合命令的数据流}}{96}{table.caption.61}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7}常见命令错误与排查}{96}{subsection.2.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces 常见错误与排查方法}}{96}{table.caption.62}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8}综合命令练习复盘}{97}{subsection.2.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces 综合命令执行阶段分析}}{97}{table.caption.63}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9}实验小结}{98}{subsection.2.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {}Linux 下的 Shell 编程案例}{99}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1}程序功能说明}{99}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2}Shell 脚本执行方法}{99}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3}程序实现思路}{100}{subsection.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {37}{\ignorespaces Shell 答题系统流程示意图}}{100}{figure.caption.64}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {28}{\ignorespaces Shell 脚本函数职责}}{101}{table.caption.65}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {29}{\ignorespaces 程序文件格式说明}}{101}{table.caption.66}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4}案例展示}{102}{subsection.3.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {38}{\ignorespaces 答题界面}}{103}{figure.caption.69}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {39}{\ignorespaces 答题结束界面}}{103}{figure.caption.70}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {40}{\ignorespaces 历史成绩}}{104}{figure.caption.71}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {41}{\ignorespaces 题库和历史成绩文本文件}}{104}{figure.caption.72}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {42}{\ignorespaces 清空历史成绩}}{105}{figure.caption.73}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {43}{\ignorespaces 退出系统}}{105}{figure.caption.74}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5}Shell 程序调试方法}{105}{subsection.3.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {44}{\ignorespaces 错误修正}}{106}{figure.caption.77}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {45}{\ignorespaces 执行跟踪调试}}{107}{figure.caption.78}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {30}{\ignorespaces Shell 调试方法对比}}{107}{table.caption.79}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {46}{\ignorespaces 删除题库文件}}{108}{figure.caption.80}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {47}{\ignorespaces 运行程序}}{108}{figure.caption.81}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {48}{\ignorespaces 输入中文选项}}{108}{figure.caption.82}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {49}{\ignorespaces 输入非法选项}}{109}{figure.caption.83}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {31}{\ignorespaces 异常输入与处理效果}}{109}{table.caption.84}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6}脚本可维护性分析}{110}{subsection.3.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {32}{\ignorespaces 后续功能扩展思路}}{110}{table.caption.85}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7}菜单循环与数据流分析}{110}{subsection.3.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {33}{\ignorespaces 菜单选项与数据流}}{111}{table.caption.86}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {34}{\ignorespaces 答题过程中的变量变化}}{111}{table.caption.87}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8}实验小结}{112}{subsection.3.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9}源代码与题库展示}{112}{subsection.3.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.1}Shell 脚本}{112}{subsubsection.3.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {9.2}题库文件}{116}{subsubsection.3.9.2}\protected@file@percent }
+\xdef \mintedoldcachechecksum{\detokenize{9C8623AEB2836679FA258E6DC0120575:31}}
+\gdef \@abspage@last{120}

@@ -38,6 +38,49 @@ chmod +x linux_quiz.sh
 
 成绩文件使用普通文本保存，每条记录包含答题时间、得分、已答题数和错误题数。查看历史成绩时，脚本使用 \cmd{awk} 从成绩文件中统计最高分；清空历史成绩前会要求用户输入确认，避免误删。这样既保持了脚本实现的简单性，也展示了 Shell 脚本对文本文件和命令行工具的组合能力。
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{pic/task2/Shell 答题系统流程图.png}
+    \caption{Shell 答题系统流程示意图}
+\end{figure}
+
+从流程图可以看出，答题系统不是一次性执行完就退出的线性脚本，而是围绕主菜单形成循环。用户每次输入菜单编号后，脚本通过 \cmd{case} 分支调用对应函数；功能执行结束后再回到菜单，直到用户选择退出。这样的结构比较接近命令行小工具的常见写法，也便于后续继续扩展新功能。
+
+\begin{table}[H]
+    \centering
+    \caption{Shell 脚本函数职责}
+    \small
+    \begin{tabular}{p{0.20\textwidth} p{0.34\textwidth} p{0.30\textwidth}}
+        \toprule
+        函数 & 主要职责 & 涉及的 Shell 知识点 \\
+        \midrule
+        \cmd{init\_env} & 检查题库文件和成绩文件，准备运行环境 & 文件判断、条件分支、重定向 \\
+        \cmd{show\_menu} & 输出主菜单，提示用户选择功能 & \cmd{echo}、终端交互 \\
+        \cmd{start\_quiz} & 读取题库、获取用户答案、判断正误、统计分数 & \cmd{while read}、字符串比较、计数变量 \\
+        \cmd{save\_score} & 将本次成绩追加到成绩文件 & 输出重定向、日期命令、文本追加 \\
+        \cmd{show\_history} & 显示历史成绩并统计最高分 & \cmd{cat}、\cmd{awk}、条件判断 \\
+        \cmd{clear\_history} & 二次确认后清空成绩文件 & 用户输入、保护性判断、文件覆盖 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{程序文件格式说明}
+    \small
+    \begin{tabular}{p{0.18\textwidth} p{0.32\textwidth} p{0.34\textwidth}}
+        \toprule
+        文件 & 格式 & 作用 \\
+        \midrule
+        \cmd{linux\_quiz.sh} & Bash 脚本文件，包含函数和主循环 & 实现菜单、答题、判分、保存和异常处理 \\
+        \cmd{questions.txt} & 每行一题，格式为“题目\cmd{|}答案” & 作为外部题库，便于不改脚本就扩展题目 \\
+        \cmd{score.txt} & 每行一条成绩记录，包含时间、得分、题数和错误数 & 保存历史成绩，支持后续查看和统计最高分 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+把题库和成绩从脚本中拆出来，是这个案例中比较重要的设计选择。如果题目直接写在脚本里，每次新增题目都要修改程序逻辑；现在题库作为普通文本文件存在，只要保持分隔符格式一致，就可以继续追加题目。成绩文件同理，它不是复杂数据库，而是适合 Shell 处理的纯文本记录，因此可以直接用 \cmd{cat} 查看，也可以用 \cmd{awk} 做统计。
+
 \subsection{案例展示}
 
 与上一次基础命令作业一致，本次 Shell 脚本也在 Ubuntu 服务器上运行和测试，后续调试同样在这台服务器上完成。
@@ -173,6 +216,23 @@ chmod +x linux_quiz.sh
 
 另外，我还构造了一些异常输入场景进行测试，例如删除 \cmd{questions.txt}、输入非法选项等，用来验证程序的健壮性和错误处理能力。
 
+\begin{table}[H]
+    \centering
+    \caption{Shell 调试方法对比}
+    \small
+    \begin{tabular}{p{0.22\textwidth} p{0.30\textwidth} p{0.32\textwidth}}
+        \toprule
+        方法 & 适用阶段 & 作用 \\
+        \midrule
+        \cmd{bash -n linux\_quiz.sh} & 修改脚本结构后 & 只检查语法，不真正执行脚本，适合快速发现缺少 \cmd{fi}、\cmd{done} 等问题 \\
+        \cmd{bash -x linux\_quiz.sh} & 逻辑结果不符合预期时 & 显示每条命令执行过程，便于观察变量值和分支走向 \\
+        分段运行函数逻辑 & 定位具体功能时 & 把读取题库、判分、保存成绩等逻辑拆开观察 \\
+        构造异常输入 & 功能基本完成后 & 验证文件缺失、非法菜单输入、空答案等情况是否会导致脚本崩溃 \\
+        查看输出文件 & 保存功能调试时 & 检查 \cmd{score.txt} 是否按预期追加记录 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 删除 \cmd{questions.txt} 后运行程序：
 
 \begin{figure}[H]
@@ -207,6 +267,91 @@ chmod +x linux_quiz.sh
     \caption{输入非法选项}
 \end{figure}
 
+这些异常场景说明，脚本不仅要考虑“用户按预期输入”的情况，还要考虑文件缺失、输入为空、选项非法等常见问题。对于 Shell 程序而言，很多错误都不会自动变成清晰的异常对象，而是表现为命令返回非零状态、变量为空或文件读取失败。因此在关键位置增加文件存在性检查和输入判断，可以显著提高脚本的可用性。
+
+\begin{table}[H]
+    \centering
+    \caption{异常输入与处理效果}
+    \small
+    \begin{tabular}{p{0.24\textwidth} p{0.30\textwidth} p{0.30\textwidth}}
+        \toprule
+        异常场景 & 程序处理方式 & 验证意义 \\
+        \midrule
+        题库文件缺失 & 输出提示并避免继续读取不存在的文件 & 验证文件检查逻辑有效 \\
+        主菜单输入非法编号 & 提示用户重新输入，不退出程序 & 验证 \cmd{case} 默认分支有效 \\
+        答题输入中文选项 & 按普通字符串处理并判断为错误答案 & 验证输入读取和字符串比较稳定 \\
+        清空成绩前取消确认 & 不删除历史成绩 & 验证危险操作前的二次确认 \\
+        成绩文件为空 & 仍能进入历史成绩功能并给出合理提示 & 验证查看历史时的边界情况 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{脚本可维护性分析}
+
+从可维护性角度看，这个答题系统虽然规模不大，但已经具备了几个比较好的脚本结构。首先，功能被拆分成多个函数，主循环只负责菜单分发，使脚本入口保持清晰。其次，题库和成绩使用外部文本文件保存，数据和程序逻辑没有混在一起。再次，清空历史成绩这种危险操作加入确认步骤，降低了误操作风险。
+
+如果后续继续扩展，可以优先保持现有的函数化结构。例如增加随机抽题时，可以新增一个题目选择函数；增加错题本时，可以新增一个错题保存文件；增加排行榜时，可以在现有成绩文件基础上使用 \cmd{sort}、\cmd{awk} 等命令统计。这样扩展不会破坏已有菜单，也不需要重写全部答题流程。
+
+\begin{table}[H]
+    \centering
+    \caption{后续功能扩展思路}
+    \small
+    \begin{tabular}{p{0.22\textwidth} p{0.34\textwidth} p{0.30\textwidth}}
+        \toprule
+        扩展方向 & 实现思路 & 需要注意的问题 \\
+        \midrule
+        随机抽题 & 读取题库后使用随机排序或抽样 & 避免重复抽到同一道题，保持题目数量可控 \\
+        错题记录 & 答错时把题目和用户答案追加到错题文件 & 注意错题文件格式，便于后续查看 \\
+        排行榜 & 对历史成绩按分数排序并显示前几名 & 成绩记录格式要稳定，方便 \cmd{awk} 和 \cmd{sort} 处理 \\
+        题库校验 & 启动时检查每行是否包含分隔符 & 避免格式错误导致读取题目和答案错位 \\
+        多轮统计 & 记录总答题次数和平均分 & 需要从历史成绩中提取数值字段进行计算 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{菜单循环与数据流分析}
+
+这个 Shell 程序的主干是菜单循环。菜单循环的好处是用户可以反复执行不同功能，而不需要每次都重新启动脚本。用户选择开始答题后，程序进入答题流程；选择查看历史成绩后，程序读取成绩文件；选择清空历史成绩后，程序先确认再清空；选择退出后，循环结束。
+
+\begin{table}[H]
+    \centering
+    \caption{菜单选项与数据流}
+    \small
+    \begin{tabular}{p{0.18\textwidth} p{0.28\textwidth} p{0.36\textwidth}}
+        \toprule
+        菜单选项 & 读取的数据 & 写入或输出的结果 \\
+        \midrule
+        开始答题 & \cmd{questions.txt} 中的题目和答案 & 在终端显示题目，结束后把成绩写入 \cmd{score.txt} \\
+        查看历史成绩 & \cmd{score.txt} 中的历史记录 & 在终端输出历史记录，并统计最高分 \\
+        清空历史成绩 & 用户确认输入 & 覆盖或清空 \cmd{score.txt}，删除历史记录内容 \\
+        退出系统 & 用户菜单选择 & 结束主循环，脚本正常退出 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+从数据流角度看，题库文件是输入数据，成绩文件是输出数据，终端既是输入界面也是输出界面。用户通过 \cmd{read} 输入菜单编号和答案，脚本通过条件判断和循环控制决定下一步操作。这个结构虽然简单，但已经包含了交互式命令行程序的基本要素。
+
+答题流程内部还有一层循环：外层菜单循环控制功能选择，内层题目循环逐行读取题库。内层循环每读到一行，就把分隔符左边作为题目，右边作为标准答案。用户输入答案后，脚本更新得分、已答题数量和错误次数。如果错误次数达到上限，内层循环提前结束，然后把本轮结果保存到成绩文件。
+
+\begin{table}[H]
+    \centering
+    \caption{答题过程中的变量变化}
+    \small
+    \begin{tabular}{p{0.20\textwidth} p{0.30\textwidth} p{0.34\textwidth}}
+        \toprule
+        变量 & 变化时机 & 作用 \\
+        \midrule
+        \cmd{score} & 答对题目后增加 & 记录当前轮得分 \\
+        \cmd{answered} & 每完成一道题后增加 & 记录已经回答的题目数量 \\
+        \cmd{wrong} & 答错题目后增加 & 控制错误次数上限 \\
+        \cmd{question} & 每读取一行题库后更新 & 保存当前题目文本 \\
+        \cmd{correct\_answer} & 每读取一行题库后更新 & 保存当前题目的标准答案 \\
+        \cmd{user\_answer} & 用户输入后更新 & 保存用户本次提交的答案 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+通过这个案例可以看到，Shell 脚本并不只适合写一两条自动化命令，也可以组织成有状态的交互程序。只要把数据文件、变量、循环和函数设计清楚，Shell 就能够完成比较完整的命令行应用。它的优势是直接利用 Linux 自带命令和文本文件，缺点是复杂数据结构和大型界面不如通用编程语言方便。
 
 \subsection{实验小结}
 

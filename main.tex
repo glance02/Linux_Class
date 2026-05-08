@@ -2,10 +2,10 @@
 
 % Page layout
 \usepackage[
-  left=2.6cm,
-  right=2.6cm,
-  top=2.5cm,
-  bottom=2.5cm,
+  left=3cm,
+  right=3cm,
+  top=2.8cm,
+  bottom=2.8cm,
   headheight=15pt
 ]{geometry}
 \usepackage{setspace}
@@ -45,7 +45,7 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\newcommand{\reporttitle}{Linux 课程报告}
+\newcommand{\reporttitle}{Linux 操作系统课程报告及作业}
 \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
 \fancyhead[L]{\small \reporttitle}
 \fancyhead[R]{\small \leftmark}
@@ -141,8 +141,10 @@
 
 \begin{document}
 
+\pagenumbering{gobble}
 \tableofcontents
-\newpage
+\clearpage
+\pagenumbering{arabic}
 
 \input{chapter/cowork.tex}
 \newpage

@@ -1,54 +1,71 @@
-\contentsline {section}{\numberline {}TermSync：终端协同代码编辑器}{4}{section.1}%
-\contentsline {subsection}{\numberline {1}项目概述}{4}{subsection.1.1}%
-\contentsline {subsection}{\numberline {2}项目背景}{6}{subsection.1.2}%
-\contentsline {subsection}{\numberline {3}功能描述}{7}{subsection.1.3}%
-\contentsline {subsubsection}{\numberline {3.1}多人连接与文档同步}{7}{subsubsection.1.3.1}%
-\contentsline {subsubsection}{\numberline {3.2}字符级编辑操作}{7}{subsubsection.1.3.2}%
-\contentsline {subsubsection}{\numberline {3.3}ACK 驱动的客户端发送队列}{8}{subsubsection.1.3.3}%
-\contentsline {subsubsection}{\numberline {3.4}服务端主导 OT 与全局版本}{8}{subsubsection.1.3.4}%
-\contentsline {subsubsection}{\numberline {3.5}保存、自动保存与编辑日志}{9}{subsubsection.1.3.5}%
-\contentsline {subsubsection}{\numberline {3.6}历史裁剪与重同步}{10}{subsubsection.1.3.6}%
-\contentsline {subsection}{\numberline {4}设计思路}{10}{subsection.1.4}%
-\contentsline {subsubsection}{\numberline {4.1}总体架构}{10}{subsubsection.1.4.1}%
-\contentsline {subsubsection}{\numberline {4.2}网络协议设计}{10}{subsubsection.1.4.2}%
-\contentsline {subsubsection}{\numberline {4.3}文档锁与全局顺序}{11}{subsubsection.1.4.3}%
-\contentsline {subsubsection}{\numberline {4.4}OT 位置变换规则}{11}{subsubsection.1.4.4}%
-\contentsline {subsubsection}{\numberline {4.5}客户端状态机}{12}{subsubsection.1.4.5}%
-\contentsline {subsubsection}{\numberline {4.6}自动保存进程}{12}{subsubsection.1.4.6}%
-\contentsline {subsection}{\numberline {5}测试与验证}{12}{subsection.1.5}%
-\contentsline {subsubsection}{\numberline {5.1}单元测试}{12}{subsubsection.1.5.1}%
-\contentsline {subsubsection}{\numberline {5.2}本地验证}{13}{subsubsection.1.5.2}%
-\contentsline {subsubsection}{\numberline {5.3}部署验证}{16}{subsubsection.1.5.3}%
-\contentsline {subsection}{\numberline {6}问题与解决方案}{19}{subsection.1.6}%
-\contentsline {subsubsection}{\numberline {6.1}并发操作顺序不确定}{19}{subsubsection.1.6.1}%
-\contentsline {subsubsection}{\numberline {6.2}旧版本操作位置失效}{19}{subsubsection.1.6.2}%
-\contentsline {subsubsection}{\numberline {6.3}连续输入容易丢失或乱序}{19}{subsubsection.1.6.3}%
-\contentsline {subsubsection}{\numberline {6.4}慢客户端可能阻塞服务端}{20}{subsubsection.1.6.4}%
-\contentsline {subsubsection}{\numberline {6.5}历史无限增长}{20}{subsubsection.1.6.5}%
-\contentsline {subsubsection}{\numberline {6.6}文件保存可能覆盖旧内容}{20}{subsubsection.1.6.6}%
-\contentsline {subsubsection}{\numberline {6.7}中文字符显示宽度}{20}{subsubsection.1.6.7}%
-\contentsline {subsection}{\numberline {7}项目不足与改进方向}{20}{subsection.1.7}%
-\contentsline {subsection}{\numberline {8}代码展示}{21}{subsection.1.8}%
-\contentsline {subsubsection}{\numberline {8.1}协议与基础数据结构}{21}{subsubsection.1.8.1}%
-\contentsline {subsubsection}{\numberline {8.2}服务端权威文档与 OT}{26}{subsubsection.1.8.2}%
-\contentsline {subsubsection}{\numberline {8.3}服务端连接、广播与保存触发}{32}{subsubsection.1.8.3}%
-\contentsline {subsubsection}{\numberline {8.4}客户端状态机与终端界面}{41}{subsubsection.1.8.4}%
-\contentsline {subsubsection}{\numberline {8.5}自动保存、备份与日志}{51}{subsubsection.1.8.5}%
-\contentsline {subsubsection}{\numberline {8.6}单元测试}{54}{subsubsection.1.8.6}%
-\contentsline {section}{\numberline {}Linux 平台下的基本命令}{62}{section.2}%
-\contentsline {subsection}{\numberline {1}文件和目录操作}{62}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2}文件内容查看与处理命令}{63}{subsection.2.2}%
-\contentsline {subsection}{\numberline {3}系统信息查看命令}{65}{subsection.2.3}%
-\contentsline {subsection}{\numberline {4}权限相关命令}{68}{subsection.2.4}%
-\contentsline {subsection}{\numberline {5}管道符组合命令}{68}{subsection.2.5}%
-\contentsline {subsection}{\numberline {6}实验小结}{70}{subsection.2.6}%
-\contentsline {section}{\numberline {}Linux 下的 Shell 编程案例}{71}{section.3}%
-\contentsline {subsection}{\numberline {1}程序功能说明}{71}{subsection.3.1}%
-\contentsline {subsection}{\numberline {2}Shell 脚本执行方法}{71}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3}程序实现思路}{72}{subsection.3.3}%
-\contentsline {subsection}{\numberline {4}案例展示}{72}{subsection.3.4}%
-\contentsline {subsection}{\numberline {5}Shell 程序调试方法}{76}{subsection.3.5}%
-\contentsline {subsection}{\numberline {6}实验小结}{79}{subsection.3.6}%
-\contentsline {subsection}{\numberline {7}源代码与题库展示}{79}{subsection.3.7}%
-\contentsline {subsubsection}{\numberline {7.1}Shell 脚本}{79}{subsubsection.3.7.1}%
-\contentsline {subsubsection}{\numberline {7.2}题库文件}{84}{subsubsection.3.7.2}%
+\contentsline {section}{\numberline {}TermSync：终端协同代码编辑器}{1}{section.1}%
+\contentsline {subsection}{\numberline {1}项目概述}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {2}项目背景}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {3}功能描述}{4}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {3.1}多人连接与文档同步}{4}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {3.2}字符级编辑操作}{4}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {3.3}ACK 驱动的客户端发送队列}{5}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {3.4}服务端主导 OT 与全局版本}{6}{subsubsection.1.3.4}%
+\contentsline {subsubsection}{\numberline {3.5}保存、自动保存与编辑日志}{6}{subsubsection.1.3.5}%
+\contentsline {subsubsection}{\numberline {3.6}历史裁剪与重同步}{7}{subsubsection.1.3.6}%
+\contentsline {subsection}{\numberline {4}设计思路}{7}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {4.1}总体架构}{7}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {4.2}网络协议设计}{9}{subsubsection.1.4.2}%
+\contentsline {subsubsection}{\numberline {4.3}文档锁与全局顺序}{12}{subsubsection.1.4.3}%
+\contentsline {subsubsection}{\numberline {4.4}OT 位置变换规则}{12}{subsubsection.1.4.4}%
+\contentsline {subsubsection}{\numberline {4.5}客户端状态机}{14}{subsubsection.1.4.5}%
+\contentsline {subsubsection}{\numberline {4.6}自动保存进程}{14}{subsubsection.1.4.6}%
+\contentsline {subsection}{\numberline {5}测试与验证}{16}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {5.1}单元测试}{16}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {5.2}本地验证}{18}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {5.3}部署验证}{21}{subsubsection.1.5.3}%
+\contentsline {subsection}{\numberline {6}问题与解决方案}{25}{subsection.1.6}%
+\contentsline {subsubsection}{\numberline {6.1}并发操作顺序不确定}{26}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\numberline {6.2}旧版本操作位置失效}{27}{subsubsection.1.6.2}%
+\contentsline {subsubsection}{\numberline {6.3}连续输入容易丢失或乱序}{27}{subsubsection.1.6.3}%
+\contentsline {subsubsection}{\numberline {6.4}慢客户端可能阻塞服务端}{27}{subsubsection.1.6.4}%
+\contentsline {subsubsection}{\numberline {6.5}历史无限增长}{28}{subsubsection.1.6.5}%
+\contentsline {subsubsection}{\numberline {6.6}文件保存可能覆盖旧内容}{28}{subsubsection.1.6.6}%
+\contentsline {subsubsection}{\numberline {6.7}中文字符显示宽度}{29}{subsubsection.1.6.7}%
+\contentsline {subsection}{\numberline {7}课程知识点对应关系}{29}{subsection.1.7}%
+\contentsline {subsubsection}{\numberline {7.1}网络编程与长连接服务}{30}{subsubsection.1.7.1}%
+\contentsline {subsubsection}{\numberline {7.2}线程同步与临界区控制}{31}{subsubsection.1.7.2}%
+\contentsline {subsubsection}{\numberline {7.3}进程间通信与文件持久化}{32}{subsubsection.1.7.3}%
+\contentsline {subsubsection}{\numberline {7.4}终端交互与用户体验}{33}{subsubsection.1.7.4}%
+\contentsline {subsubsection}{\numberline {7.5}测试驱动的课程项目验证}{33}{subsubsection.1.7.5}%
+\contentsline {subsection}{\numberline {8}关键运行流程分解}{34}{subsection.1.8}%
+\contentsline {subsubsection}{\numberline {8.1}客户端加入流程}{34}{subsubsection.1.8.1}%
+\contentsline {subsubsection}{\numberline {8.2}编辑操作确认流程}{35}{subsubsection.1.8.2}%
+\contentsline {subsubsection}{\numberline {8.3}保存与关闭流程}{36}{subsubsection.1.8.3}%
+\contentsline {subsubsection}{\numberline {8.4}重同步流程}{37}{subsubsection.1.8.4}%
+\contentsline {subsection}{\numberline {9}项目不足与改进方向}{38}{subsection.1.9}%
+\contentsline {subsection}{\numberline {10}代码展示}{39}{subsection.1.10}%
+\contentsline {subsubsection}{\numberline {10.1}项目结构}{39}{subsubsection.1.10.1}%
+\contentsline {subsubsection}{\numberline {10.2}协议与基础数据结构}{40}{subsubsection.1.10.2}%
+\contentsline {subsubsection}{\numberline {10.3}服务端权威文档与 OT}{44}{subsubsection.1.10.3}%
+\contentsline {subsubsection}{\numberline {10.4}服务端连接、广播与保存触发}{50}{subsubsection.1.10.4}%
+\contentsline {subsubsection}{\numberline {10.5}客户端状态机与终端界面}{60}{subsubsection.1.10.5}%
+\contentsline {subsubsection}{\numberline {10.6}自动保存、备份与日志}{71}{subsubsection.1.10.6}%
+\contentsline {subsubsection}{\numberline {10.7}单元测试}{74}{subsubsection.1.10.7}%
+\contentsline {section}{\numberline {}Linux 平台下的基本命令}{83}{section.2}%
+\contentsline {subsection}{\numberline {1}文件和目录操作}{83}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2}文件内容查看与处理命令}{85}{subsection.2.2}%
+\contentsline {subsection}{\numberline {3}系统信息查看命令}{88}{subsection.2.3}%
+\contentsline {subsection}{\numberline {4}权限相关命令}{91}{subsection.2.4}%
+\contentsline {subsection}{\numberline {5}重定向与错误输出}{92}{subsection.2.5}%
+\contentsline {subsection}{\numberline {6}管道符组合命令}{93}{subsection.2.6}%
+\contentsline {subsection}{\numberline {7}常见命令错误与排查}{96}{subsection.2.7}%
+\contentsline {subsection}{\numberline {8}综合命令练习复盘}{97}{subsection.2.8}%
+\contentsline {subsection}{\numberline {9}实验小结}{98}{subsection.2.9}%
+\contentsline {section}{\numberline {}Linux 下的 Shell 编程案例}{99}{section.3}%
+\contentsline {subsection}{\numberline {1}程序功能说明}{99}{subsection.3.1}%
+\contentsline {subsection}{\numberline {2}Shell 脚本执行方法}{99}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3}程序实现思路}{100}{subsection.3.3}%
+\contentsline {subsection}{\numberline {4}案例展示}{102}{subsection.3.4}%
+\contentsline {subsection}{\numberline {5}Shell 程序调试方法}{105}{subsection.3.5}%
+\contentsline {subsection}{\numberline {6}脚本可维护性分析}{110}{subsection.3.6}%
+\contentsline {subsection}{\numberline {7}菜单循环与数据流分析}{110}{subsection.3.7}%
+\contentsline {subsection}{\numberline {8}实验小结}{112}{subsection.3.8}%
+\contentsline {subsection}{\numberline {9}源代码与题库展示}{112}{subsection.3.9}%
+\contentsline {subsubsection}{\numberline {9.1}Shell 脚本}{112}{subsubsection.3.9.1}%
+\contentsline {subsubsection}{\numberline {9.2}题库文件}{116}{subsubsection.3.9.2}%
