@@ -216,23 +216,6 @@ chmod +x linux_quiz.sh
 
 另外，我还构造了一些异常输入场景进行测试，例如删除 \cmd{questions.txt}、输入非法选项等，用来验证程序的健壮性和错误处理能力。
 
-\begin{table}[H]
-    \centering
-    \caption{Shell 调试方法对比}
-    \small
-    \begin{tabular}{p{0.22\textwidth} p{0.30\textwidth} p{0.32\textwidth}}
-        \toprule
-        方法 & 适用阶段 & 作用 \\
-        \midrule
-        \cmd{bash -n linux\_quiz.sh} & 修改脚本结构后 & 只检查语法，不真正执行脚本，适合快速发现缺少 \cmd{fi}、\cmd{done} 等问题 \\
-        \cmd{bash -x linux\_quiz.sh} & 逻辑结果不符合预期时 & 显示每条命令执行过程，便于观察变量值和分支走向 \\
-        分段运行函数逻辑 & 定位具体功能时 & 把读取题库、判分、保存成绩等逻辑拆开观察 \\
-        构造异常输入 & 功能基本完成后 & 验证文件缺失、非法菜单输入、空答案等情况是否会导致脚本崩溃 \\
-        查看输出文件 & 保存功能调试时 & 检查 \cmd{score.txt} 是否按预期追加记录 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
 删除 \cmd{questions.txt} 后运行程序：
 
 \begin{figure}[H]
