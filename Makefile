@@ -7,12 +7,28 @@ LDLIBS_CLIENT = -lncursesw
 BUILD_DIR = build
 COMMON_OBJS = $(BUILD_DIR)/util.o $(BUILD_DIR)/protocol.o $(BUILD_DIR)/document.o $(BUILD_DIR)/client_state.o $(BUILD_DIR)/autosave.o $(BUILD_DIR)/events.o
 
-.PHONY: all test clean
+.PHONY: all server client test test-bin clean check-ncurses
 
-all: $(BUILD_DIR)/termsync_server $(BUILD_DIR)/termsync_client $(BUILD_DIR)/test_termsync
+all: server client test-bin
+
+server: $(BUILD_DIR)/termsync_server
+
+client: check-ncurses $(BUILD_DIR)/termsync_client
+
+test-bin: $(BUILD_DIR)/test_termsync
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
+
+check-ncurses: | $(BUILD_DIR)
+	@printf '%s\n' '#include <curses.h>' 'int main(void) { return 0; }' | $(CC) $(CFLAGS) -x c - -o $(BUILD_DIR)/.ncurses_check $(LDLIBS_CLIENT) >/dev/null 2>&1 || { \
+		echo "error: missing ncursesw development headers/libraries."; \
+		echo "  Ubuntu/Debian/WSL: apt update && apt install -y libncurses-dev"; \
+		echo "  CentOS/RHEL/Alibaba Cloud Linux: yum install -y ncurses-devel"; \
+		echo "  If this machine only runs the service: make server"; \
+		exit 1; \
+	}
+	@rm -f $(BUILD_DIR)/.ncurses_check
 
 $(BUILD_DIR)/%.o: %.c termsync.h | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
