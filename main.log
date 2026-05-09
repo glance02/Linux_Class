@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  9 MAY 2026 16:48
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  9 MAY 2026 18:02
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1591,11 +1591,11 @@ File: pic/cowork/TermSync总体架构图.png Graphic file (type bmp)
 \pydata@fh@0=\write7
 \openout7 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260509164852 FAD58DE7366495DB4650CF
+runsystem(latexminted config  --timestamp 20260509180236 FAD58DE7366495DB4650CF
 EFAC2FCD61)...executed.
 
  (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260509164852 FAD58DE7366495DB4
+runsystem(latexminted cleanconfig  --timestamp 20260509180236 FAD58DE7366495DB4
 650CFEFAC2FCD61)...executed.
 
 
@@ -1649,13 +1649,12 @@ File: pic/cowork/test1.png Graphic file (type bmp)
 File: pic/cowork/本地运行服务端.png Graphic file (type bmp)
 <pic/cowork/本地运行服务端.png>
 
-(./_minted/766652617C38392A473978FECC318F33.highlight.minted)
+[18] (./_minted/766652617C38392A473978FECC318F33.highlight.minted)
 File: pic/cowork/本地运行客户端界面.png Graphic file (type bmp)
 <pic/cowork/本地运行客户端界面.png>
- [18]
+ [19]
 File: pic/cowork/服务端关闭后客户端表现.png Graphic file (type bmp)
 <pic/cowork/服务端关闭后客户端表现.png>
- [19]
 File: pic/cowork/阿里云开放端口.png Graphic file (type bmp)
 <pic/cowork/阿里云开放端口.png>
 
@@ -1670,111 +1669,111 @@ File: pic/cowork/服务端界面日志.png Graphic file (type bmp)
 File: pic/cowork/transform_trace日志.png Graphic file (type bmp)
 <pic/cowork/transform_trace日志.png>
  [22]
-[23] [24] [25] [26] [27]
-Underfull \hbox (badness 10000) in paragraph at lines 505--505
+[23] [24] [25] [26] [27] [28] [29]
+Underfull \hbox (badness 10000) in paragraph at lines 523--523
 [][]\TU/lmtt/m/n/10.95 server.c[] \TU/SimSun(0)/m/n/10.95 监 听 端 口，|
  []
 
 
-Overfull \hbox (1.22267pt too wide) in paragraph at lines 507--507
+Overfull \hbox (1.22267pt too wide) in paragraph at lines 525--525
 [][]\TU/lmtt/m/n/10.95 CollaborativeDocument[]
  []
 
 
-Underfull \hbox (badness 1721) in paragraph at lines 511--511
+Underfull \hbox (badness 1721) in paragraph at lines 529--529
 [][]\TU/lmtt/m/n/10.95 C \TU/FangSong(0)/m/n/10.95 测 试 \TU/lmtt/m/n/10.95 runne
 r[] \TU/SimSun(0)/m/n/10.95 覆 盖 文
  []
 
-[28] [29]
-Underfull \hbox (badness 10000) in paragraph at lines 585--586
+[30] [31]
+Underfull \hbox (badness 10000) in paragraph at lines 603--604
 []\TU/SimSun(0)/m/n/10.95 追 加 一 行 \TU/lmr/m/n/10.95 JSON \TU/SimSun(0)/m/n/10.9
 5 到
  []
 
-[30] [31]
-Underfull \hbox (badness 10000) in paragraph at lines 616--617
+[32] [33]
+Underfull \hbox (badness 10000) in paragraph at lines 634--635
 []\TU/SimSun(0)/m/n/10.95 服 务 端 输 出 和
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 616--617
+Underfull \hbox (badness 10000) in paragraph at lines 634--635
 []\TU/lmtt/m/n/10.95 transform_trace[] \TU/SimSun(0)/m/n/10.95 表
  []
 
-[32] [33]
-Underfull \hbox (badness 10000) in paragraph at lines 691--691
+[34] [35]
+Underfull \hbox (badness 10000) in paragraph at lines 709--709
 []\TU/SimSun(0)/m/n/10.95 用 户 在 客 户 端 按 下
  []
 
-[34]
-Underfull \hbox (badness 10000) in paragraph at lines 713--713
+[36]
+Underfull \hbox (badness 10000) in paragraph at lines 731--731
 [][]\TU/lmtt/m/n/10.95 base_version[] \TU/SimSun(0)/m/n/10.95 早 于
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 713--714
+Underfull \hbox (badness 10000) in paragraph at lines 731--732
 []\TU/SimSun(0)/m/n/10.95 服 务 端 返 回
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 713--714
+Underfull \hbox (badness 10000) in paragraph at lines 731--732
 []\TU/lmtt/m/n/10.95 RESYNC_REQUIRED[] \TU/SimSun(0)/m/n/10.95 和 完
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 715--716
+Underfull \hbox (badness 10000) in paragraph at lines 733--734
 []\TU/SimSun(0)/m/n/10.95 服 务 端 直 接 发 送 当 前
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 716--716
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
 []\TU/SimSun(0)/m/n/10.95 重 同 步 后 旧 的
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 716--716
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
 []\TU/lmtt/m/n/10.95 inflight_op[] \TU/SimSun(0)/m/n/10.95 不 再 可
  []
 
-[35] [36] [37] (./_minted/B4375A34D51F30E924EEC877FD875D0D.highlight.minted)
-Overfull \hbox (7.01602pt too wide) in paragraph at lines 761--762
+[37] [38] [39] (./_minted/2D0A960B2D2DD40270449FC3F77A17B4.highlight.minted)
+Overfull \hbox (7.01602pt too wide) in paragraph at lines 779--780
 []\TU/SimSun(0)/b/n/12 构 建 规 则：| []\TU/lmtt/m/n/12 Makefile[] \TU/SimSun(0)/m/n
 /12 定 义 了 三 个 主 要 产 物：| []\TU/lmtt/m/n/12 termsync_server[]\TU/SimSun(0)/m/n/12
  、| []\TU/lmtt/m/n/12 termsync_client[]
  []
 
-[38] (./_minted/967847EB999D9A4B9854DC23CC1B0C83.highlight.minted [39])
-(./_minted/C6A0C5F9C1F98504BA1923448C38FC10.highlight.minted [40] [41] [42])
-(./_minted/BD8598270519BF0D9E6D2985CCD2003E.highlight.minted [43] [44] [45]
-[46]) (./_minted/BD8598270519BF0D9E6D2985CCD2003E.highlight.minted [47]
-[48] [49] [50]) (./_minted/6AB2415384E1F0405FD1CEAD1ED96A70.highlight.minted
-[51] [52] [53] [54])
-(./_minted/826904E70D5C04D971B70CC6F97CC288.highlight.minted [55] [56] [57])
-(./_minted/826904E70D5C04D971B70CC6F97CC288.highlight.minted [58] [59] [60]
-[61]) (./_minted/2E96E75E66C2EF7B456266414D25176F.highlight.minted [62]
-[63] [64]) (./_minted/E789FEC2B2B0EE71FF578C2C4ED671CF.highlight.minted
-[65] [66] [67] [68])
-(./_minted/E789FEC2B2B0EE71FF578C2C4ED671CF.highlight.minted [69] [70] [71]
-[72] [73]) (./_minted/F433EEE8AA0471F10353860B34E253F6.highlight.minted
-[74] [75] [76] [77]) [78]
-(./_minted/D48A7DC37921C310FE86363330DD84FF.highlight.minted [79] [80] [81]
-[82]) (./_minted/D48A7DC37921C310FE86363330DD84FF.highlight.minted [83]
-[84] [85] [86]) (./_minted/A46B56A6C3DCAE4DC9BB2837AF779303.highlight.minted
-[87] [88] [89] [90])
-(./_minted/A46B56A6C3DCAE4DC9BB2837AF779303.highlight.minted [91] [92] [93]
-[94]) (./_minted/380737E319C2FB04CE89A3968CD29481.highlight.minted [95]
-[96] [97] [98] [99])
-(./_minted/380737E319C2FB04CE89A3968CD29481.highlight.minted [100] [101]))
-[102] (./chapter/task1.tex
+[40] (./_minted/3A877C3312F4257EBA84A2B68B36A347.highlight.minted [41])
+(./_minted/7581B89E230F9B9696FF42C198203998.highlight.minted [42] [43] [44])
+(./_minted/EE39F2C5974DC3529BA511C9C60FC39B.highlight.minted [45] [46] [47]
+[48]) (./_minted/EE39F2C5974DC3529BA511C9C60FC39B.highlight.minted [49]
+[50] [51] [52]) (./_minted/E3DD3279BD954FC5DB8EDCFED124864F.highlight.minted
+[53] [54] [55] [56])
+(./_minted/1E9692BB54C015338A794E423941830E.highlight.minted [57] [58] [59])
+(./_minted/1E9692BB54C015338A794E423941830E.highlight.minted [60] [61] [62]
+[63]) (./_minted/0D42EDB6A637271312435172EA4E3F9A.highlight.minted [64]
+[65] [66]) (./_minted/D2D600BB59149070609B022802F35EA1.highlight.minted
+[67] [68] [69] [70])
+(./_minted/D2D600BB59149070609B022802F35EA1.highlight.minted [71] [72] [73]
+[74] [75]) (./_minted/8CD3F1C787F4AC358A02B09F45EF51DD.highlight.minted
+[76] [77] [78] [79]) [80]
+(./_minted/3350FC35C1E95FC30D377C0D9C419DB2.highlight.minted [81] [82] [83]
+[84]) (./_minted/3350FC35C1E95FC30D377C0D9C419DB2.highlight.minted [85]
+[86] [87] [88]) (./_minted/F77D8B7521AA6DABEA15152D96433007.highlight.minted
+[89] [90] [91] [92])
+(./_minted/F77D8B7521AA6DABEA15152D96433007.highlight.minted [93] [94] [95]
+[96]) (./_minted/A66FBA5E037B5ADE16F763417968C228.highlight.minted [97]
+[98] [99] [100] [101])
+(./_minted/A66FBA5E037B5ADE16F763417968C228.highlight.minted [102] [103]))
+[104] (./chapter/task1.tex
 File: pic/task1/image.png Graphic file (type bmp)
 <pic/task1/image.png>
- [103]
+ [105]
 File: pic/task1/image copy.png Graphic file (type bmp)
 <pic/task1/image copy.png>
 File: pic/task1/image copy 2.png Graphic file (type bmp)
 <pic/task1/image copy 2.png>
- [104] [105]
+ [106] [107]
 (./_minted/41039B30F63228BB07320D23D8E1A4B7.highlight.minted)
 File: pic/task1/image copy 3.png Graphic file (type bmp)
 <pic/task1/image copy 3.png>
@@ -1782,33 +1781,33 @@ File: pic/task1/image copy 4.png Graphic file (type bmp)
 <pic/task1/image copy 4.png>
 File: pic/task1/image copy 5.png Graphic file (type bmp)
 <pic/task1/image copy 5.png>
- [106] [107]
-[108]
+ [108] [109]
+[110]
 File: pic/task1/image copy 6.png Graphic file (type bmp)
 <pic/task1/image copy 6.png>
 File: pic/task1/image copy 7.png Graphic file (type bmp)
 <pic/task1/image copy 7.png>
 File: pic/task1/image copy 8.png Graphic file (type bmp)
 <pic/task1/image copy 8.png>
- [109]
+ [111]
 File: pic/task1/image copy 9.png Graphic file (type bmp)
 <pic/task1/image copy 9.png>
 File: pic/task1/image copy 10.png Graphic file (type bmp)
 <pic/task1/image copy 10.png>
- [110]
+ [112]
 Underfull \hbox (badness 6893) in paragraph at lines 215--216
 []\TU/SimSun(0)/m/n/10.95 确 认 实 验 环 境 是 否 为 目 标
  []
 
-[111] [112]
+[113] [114]
 File: pic/task1/image copy 11.png Graphic file (type bmp)
 <pic/task1/image copy 11.png>
- [113] [114]
+ [115] [116]
 Underfull \hbox (badness 1789) in paragraph at lines 278--279
 [][]\TU/lmtt/m/n/10.95 echo hello >> a.txt[] \TU/SimSun(0)/m/n/10.95 会 把 内
  []
 
-[115]
+[117]
 File: pic/task1/image copy 12.png Graphic file (type bmp)
 <pic/task1/image copy 12.png>
 File: pic/task1/image copy 13.png Graphic file (type bmp)
@@ -1817,28 +1816,28 @@ File: pic/task1/image copy 14.png Graphic file (type bmp)
 <pic/task1/image copy 14.png>
 File: pic/task1/image copy 15.png Graphic file (type bmp)
 <pic/task1/image copy 15.png>
- [116]
+ [118]
 File: pic/task1/image copy 16.png Graphic file (type bmp)
 <pic/task1/image copy 16.png>
 File: pic/task1/image copy 17.png Graphic file (type bmp)
 <pic/task1/image copy 17.png>
- [117] [118]
+ [119] [120]
 Underfull \hbox (badness 10000) in paragraph at lines 380--380
 [][]\TU/lmtt/m/n/10.95 No such file or
  []
 
-[119] (./_minted/F33B0A01D40F49B6393F93CA88D5C38E.highlight.minted) [120])
-[121] (./chapter/task2.tex
+[121] (./_minted/F33B0A01D40F49B6393F93CA88D5C38E.highlight.minted) [122])
+[123] (./chapter/task2.tex
 (./_minted/417130E53260CCEB480BDB92B269F5CF.highlight.minted)
 Overfull \hbox (6.03912pt too wide) in paragraph at lines 31--32
 []\TU/SimSun(0)/m/n/12 其 中，| []\TU/lmtt/m/n/12 chmod +x linux_quiz.sh[] \TU/Sim
 Sun(0)/m/n/12 用 于 给 脚 本 添 加 可 执 行 权 限，| []\TU/lmtt/m/n/12 ./linux_quiz.sh[]
  []
 
-[122]
+[124]
 File: pic/task2/Shell 答题系统流程图.png Graphic file (type bmp)
 <pic/task2/Shell 答题系统流程图.png>
- [123] [124]
+ [125] [126]
 File: pic/task2/image.png Graphic file (type bmp)
 <pic/task2/image.png>
 File: pic/task2/image copy.png Graphic file (type bmp)
@@ -1851,41 +1850,41 @@ File: pic/task2/image copy 5.png Graphic file (type bmp)
 <pic/task2/image copy 5.png>
 File: pic/task2/image copy 6.png Graphic file (type bmp)
 <pic/task2/image copy 6.png>
- [125]
+ [127]
 File: pic/task2/image copy 2.png Graphic file (type bmp)
 <pic/task2/image copy 2.png>
 File: pic/task2/image copy 7.png Graphic file (type bmp)
 <pic/task2/image copy 7.png>
- [126]
+ [128]
 File: pic/task2/image copy 8.png Graphic file (type bmp)
 <pic/task2/image copy 8.png>
 File: pic/task2/image copy 9.png Graphic file (type bmp)
 <pic/task2/image copy 9.png>
 File: pic/task2/image copy 10.png Graphic file (type bmp)
 <pic/task2/image copy 10.png>
- [127]
+ [129]
 File: pic/task2/image copy 11.png Graphic file (type bmp)
 <pic/task2/image copy 11.png>
 File: pic/task2/image copy 12.png Graphic file (type bmp)
 <pic/task2/image copy 12.png>
 File: pic/task2/image copy 13.png Graphic file (type bmp)
 <pic/task2/image copy 13.png>
- [128]
+ [130]
 File: pic/task2/image copy 14.png Graphic file (type bmp)
 <pic/task2/image copy 14.png>
 File: pic/task2/image copy 15.png Graphic file (type bmp)
 <pic/task2/image copy 15.png>
- [129]
+ [131]
 File: pic/task2/image copy 16.png Graphic file (type bmp)
 <pic/task2/image copy 16.png>
 File: pic/task2/image copy 17.png Graphic file (type bmp)
 <pic/task2/image copy 17.png>
 File: pic/task2/image copy 18.png Graphic file (type bmp)
 <pic/task2/image copy 18.png>
- [130]
+ [132]
 File: pic/task2/image copy 19.png Graphic file (type bmp)
 <pic/task2/image copy 19.png>
- [131] [132]
+ [133] [134]
 Underfull \hbox (badness 2035) in paragraph at lines 307--307
 [][]\TU/lmtt/m/n/10.95 questions.txt[] \TU/SimSun(0)/m/n/10.95 中 的 题
  []
@@ -1895,7 +1894,7 @@ Underfull \hbox (badness 1082) in paragraph at lines 308--308
 [][]\TU/lmtt/m/n/10.95 score.txt[] \TU/SimSun(0)/m/n/10.95 中 的 历 史 记
  []
 
-[133] [134]
+[135] [136]
 Overfull \hbox (6.25485pt too wide) in paragraph at lines 347--348
 []\TU/SimSun(0)/m/n/12 以 下 是 本 次 \TU/lmr/m/n/12 Shell \TU/SimSun(0)/m/n/12 编 程 
 作 业 的 主 要 源 代 码 和 配 套 题 库 文 件。|  其 中，| []\TU/lmtt/m/n/12 linux_quiz.sh[]
@@ -1906,8 +1905,8 @@ Overfull \hbox (6.25485pt too wide) in paragraph at lines 347--348
 LaTeX Font Warning: Font shape `TU/FangSong(0)/m/it' undefined
 (Font)              using `TU/FangSong(0)/m/n' instead on input line 8.
 
-[135] [136] [137] [138])
-(./_minted/55045A647B750BA0D167C6E371862414.highlight.minted [139])) [140]
+[137] [138] [139] [140])
+(./_minted/55045A647B750BA0D167C6E371862414.highlight.minted [141])) [142]
 (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
@@ -1918,15 +1917,15 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D6CDECD240D30A9211956DEA421317B8;9140.
+(rerunfilecheck)             Checksum: C69D7F08B42574C5D4618CB7B4BBDFA6;9513.
  ) 
 Here is how much of TeX's memory you used:
- 39650 strings out of 468219
- 934260 string characters out of 5431931
- 1525178 words of memory out of 5000000
- 67579 multiletter control sequences out of 15000+600000
+ 39659 strings out of 468219
+ 934823 string characters out of 5431931
+ 1525563 words of memory out of 5000000
+ 67588 multiletter control sequences out of 15000+600000
  635103 words of font info for 108 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  102i,13n,115p,1186b,1067s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (143 pages).
+Output written on main.pdf (145 pages).
