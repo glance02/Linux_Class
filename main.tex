@@ -2,8 +2,8 @@
 
 % Page layout
 \usepackage[
-  left=3cm,
-  right=3cm,
+  left=2.6cm,
+  right=2.6cm,
   top=2.8cm,
   bottom=2.8cm,
   headheight=15pt
@@ -107,6 +107,46 @@
   bgcolor=ReportGray,
   tabsize=4
 }
+\setminted[c]{
+  extrakeywordstype={
+    TsOpKind,
+    TsOperation,
+    TsMessage,
+    TsTransport,
+    TsHistoryEntry,
+    TsDocument,
+    TsProcessStatus,
+    TsProcessResult,
+    TsSendFn,
+    TsPendingOperation,
+    TsClientState,
+    TsAutosaveProcess,
+    TsStringBuilder,
+    TsClientConnection,
+    TsServer,
+    IncomingNode,
+    IncomingQueue,
+    TerminalClient,
+    SentMessages,
+    TestFn
+  },
+  extrakeywordsconstant={
+    TS_MAX_LINE_BYTES,
+    TS_MAX_TYPE,
+    TS_MAX_CLIENT_ID,
+    TS_MAX_OP_ID,
+    TS_MAX_STATUS,
+    TS_MAX_REASON,
+    TS_MAX_UTF8_CHAR,
+    TS_OP_INVALID,
+    TS_OP_INSERT,
+    TS_OP_DELETE,
+    TS_OP_NOOP,
+    TS_PROCESS_OK,
+    TS_PROCESS_ERROR,
+    TS_PROCESS_RESYNC
+  }
+}
 
 % Note boxes
 \usepackage[most]{tcolorbox}
@@ -155,7 +195,5 @@
 
 \input{chapter/task2.tex}
 \newpage
-
-% \input{chapter/summary.tex}
 
 \end{document}

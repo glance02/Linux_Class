@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  9 MAY 2026 18:02
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  9 MAY 2026 22:35
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1371,26 +1371,26 @@ Library (tcolorbox): 'tcbposter.code.tex' version '6.8.0'
 )) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 182.
+LaTeX Font Info:    ... okay on input line 182.
 
 Package fontspec Info: 
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
@@ -1398,57 +1398,57 @@ Package fontspec Info:
 
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 142.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 142.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 142.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 142.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 142.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 142.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 142.
-LaTeX Font Info:    Redeclaring math accent \check on input line 142.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 142.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 142.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 142.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 142.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 142.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 182.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 182.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 182.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 182.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 182.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 182.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 182.
+LaTeX Font Info:    Redeclaring math accent \check on input line 182.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 182.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 182.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 182.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 182.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 142.
+(Font)              `operators' in the math version `normal' on input line 182.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 142.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 182.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 142.
+(Font)              `operators' in the math version `bold' on input line 182.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 142.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 182.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 142.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 182.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 142.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 182.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 142.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 182.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 142.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 182.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 142.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 182.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 142.
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 182.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 142.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 182.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 142.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 182.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 142.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 182.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1458,14 +1458,14 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
+* h-part:(L,W,R)=(73.97733pt, 449.55322pt, 73.97733pt)
 * v-part:(T,H,B)=(79.6678pt, 685.71124pt, 79.6678pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=426.79135pt
+* \textwidth=449.55322pt
 * \textheight=685.71124pt
-* \oddsidemargin=13.08827pt
-* \evensidemargin=13.08827pt
+* \oddsidemargin=1.70734pt
+* \evensidemargin=1.70734pt
 * \topmargin=-32.60219pt
 * \headheight=15.0pt
 * \headsep=25.0pt
@@ -1488,7 +1488,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 142.
+Package hyperref Info: Link coloring ON on input line 182.
 (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
@@ -1563,22 +1563,10 @@ File: pic/cowork/客户1连接服务端.png Graphic file (type bmp)
 <pic/cowork/客户1连接服务端.png>
 File: pic/cowork/客户2连接服务端.png Graphic file (type bmp)
 <pic/cowork/客户2连接服务端.png>
- [2]
-Overfull \hbox (10.06711pt too wide) in paragraph at lines 32--33
-[]\TU/SimSun(0)/m/n/12 项 目 代 码 已 经 开 源 托 管 在 \TU/lmr/m/n/12 GitHub \TU/SimSun(0
-)/m/n/12 仓 库 [][]$[][][][][] [] [] [] [][][][][][] [] [][][] [] [][][][][][][][
-] [] [][][][][] []
- []
-
-[3] [4]
-Overfull \hbox (16.79263pt too wide) in paragraph at lines 64--65
-[]\TU/SimSun(0)/m/n/12 例 如 一 条 服 务 端 输 出 []\TU/lmtt/m/n/12 OP v7 client=sputnik
- insert pos=76 char='S' base=6[]
- []
-
-[5]
+ [2] [3] [4]
 File: pic/cowork/服务端u1英文演示.png Graphic file (type bmp)
 <pic/cowork/服务端u1英文演示.png>
+ [5]
 File: pic/cowork/服务端u1中文演示.png Graphic file (type bmp)
 <pic/cowork/服务端u1中文演示.png>
  [6]
@@ -1591,19 +1579,20 @@ File: pic/cowork/TermSync总体架构图.png Graphic file (type bmp)
 \pydata@fh@0=\write7
 \openout7 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260509180236 FAD58DE7366495DB4650CF
+runsystem(latexminted config  --timestamp 20260509223540 FAD58DE7366495DB4650CF
 EFAC2FCD61)...executed.
 
- (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260509180236 FAD58DE7366495DB4
+
+(./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
+runsystem(latexminted cleanconfig  --timestamp 20260509223540 FAD58DE7366495DB4
 650CFEFAC2FCD61)...executed.
 
 
 (./_minted/default.style.minted)
-(./_minted/486E5B541463B895A2D2E0A9091BD363.highlight.minted
+(./_minted/486E5B541463B895A2D2E0A9091BD363.highlight.minted [10]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 3.
- [10])
+)
 File: pic/cowork/客户端到服务端的数据流图.png Graphic file (type bmp)
 <pic/cowork/客户端到服务端的数据流图.png>
  [11]
@@ -1611,54 +1600,51 @@ File: pic/cowork/客户端到服务端的数据流图.png Graphic file (type bmp
 File: pic/cowork/OT位置变换示意图.png Graphic file (type bmp)
 <pic/cowork/OT位置变换示意图.png>
 
-Underfull \hbox (badness 1400) in paragraph at lines 218--219
-[]\TU/SimSun(0)/m/n/10.95 当 前 操 作 位 置 右
- []
-
-
-Underfull \hbox (badness 1400) in paragraph at lines 219--220
-[]\TU/SimSun(0)/m/n/10.95 当 前 操 作 位 置 左
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 220--221
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
 []\TU/SimSun(0)/m/n/10.95 当 前 操 作 变 为
  []
 
 
-Underfull \hbox (badness 1400) in paragraph at lines 221--222
-[]\TU/SimSun(0)/m/n/10.95 根 据 历 史 插 入 次
+Underfull \hbox (badness 6125) in paragraph at lines 230--230
+[]\TU/SimSun(0)/m/n/10.95 删 除 一 个 不 存 在 的 位
  []
 
 
-Underfull \hbox (badness 1400) in paragraph at lines 222--223
+Underfull \hbox (badness 10000) in paragraph at lines 230--231
 []\TU/SimSun(0)/m/n/10.95 服 务 端 规 范 化 为
  []
 
 [13]
 File: pic/cowork/自动保存与备份流程图.png Graphic file (type bmp)
 <pic/cowork/自动保存与备份流程图.png>
- [14] [15] (./_minted/236A966F2304D7A052A532A8675B2FF8.highlight.minted)
+ [14] [15]
 File: pic/cowork/测试验证覆盖图.png Graphic file (type bmp)
 <pic/cowork/测试验证覆盖图.png>
-
-[16]
+ (./_minted/236A966F2304D7A052A532A8675B2FF8.highlight.minted)
 File: pic/cowork/test1.png Graphic file (type bmp)
 <pic/cowork/test1.png>
- [17] (./_minted/98367D3BFCAEADC6E436D082ECD6BEF9.highlight.minted)
+
+[16]
+Overfull \hbox (44.91203pt too wide) in paragraph at lines 299--300
+[][]\TU/FangSong(0)/m/n/12 历 史 过 期 重 同 步[]\TU/SimSun(0)/m/n/12 ：|  历 史 记 录 被 裁 
+剪 后，|  过 旧 []\TU/lmtt/m/n/12 base_version[] \TU/SimSun(0)/m/n/12 的 操 作 会 触 发 []
+\TU/lmtt/m/n/12 RESYNC_REQUIRED[]\TU/SimSun(0)/m/n/12 。| 
+ []
+
+[17] (./_minted/98367D3BFCAEADC6E436D082ECD6BEF9.highlight.minted)
 File: pic/cowork/本地运行服务端.png Graphic file (type bmp)
 <pic/cowork/本地运行服务端.png>
-
-[18] (./_minted/766652617C38392A473978FECC318F33.highlight.minted)
+ [18]
+(./_minted/766652617C38392A473978FECC318F33.highlight.minted)
 File: pic/cowork/本地运行客户端界面.png Graphic file (type bmp)
 <pic/cowork/本地运行客户端界面.png>
- [19]
 File: pic/cowork/服务端关闭后客户端表现.png Graphic file (type bmp)
 <pic/cowork/服务端关闭后客户端表现.png>
+ [19]
 File: pic/cowork/阿里云开放端口.png Graphic file (type bmp)
 <pic/cowork/阿里云开放端口.png>
-
-[20] (./_minted/35DCA918725C5EB9198DB5450ED48059.highlight.minted)
+ [20]
+(./_minted/35DCA918725C5EB9198DB5450ED48059.highlight.minted)
 (./_minted/E3547A42E14B2819CE7151A77D587312.highlight.minted) [21]
 File: pic/cowork/client-sync-sputnik.png Graphic file (type bmp)
 <pic/cowork/client-sync-sputnik.png>
@@ -1669,145 +1655,154 @@ File: pic/cowork/服务端界面日志.png Graphic file (type bmp)
 File: pic/cowork/transform_trace日志.png Graphic file (type bmp)
 <pic/cowork/transform_trace日志.png>
  [22]
-[23] [24] [25] [26] [27] [28] [29]
+[23] [24]
+Overfull \hbox (19.43454pt too wide) in paragraph at lines 468--469
+[]\TU/SimSun(0)/m/n/12 问 题：|  客 户 端 采 用 服 务 端 权 威 模 型，|  本 地 输 入 会 先 进 入 []\TU/
+lmtt/m/n/12 pending_queue[] \TU/SimSun(0)/m/n/12 或 []\TU/lmtt/m/n/12 inflight_o
+p[]\TU/SimSun(0)/m/n/12 ，|
+ []
+
+[25] [26] [27] [28]
 Underfull \hbox (badness 10000) in paragraph at lines 523--523
 [][]\TU/lmtt/m/n/10.95 server.c[] \TU/SimSun(0)/m/n/10.95 监 听 端 口，|
  []
 
 
-Overfull \hbox (1.22267pt too wide) in paragraph at lines 525--525
+Underfull \hbox (badness 1087) in paragraph at lines 523--524
+[]\TU/SimSun(0)/m/n/10.95 让 多 个 终 端 客 户 端 能 够 加 入 同 一
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 525--525
 [][]\TU/lmtt/m/n/10.95 CollaborativeDocument[]
  []
 
 
-Underfull \hbox (badness 1721) in paragraph at lines 529--529
-[][]\TU/lmtt/m/n/10.95 C \TU/FangSong(0)/m/n/10.95 测 试 \TU/lmtt/m/n/10.95 runne
-r[] \TU/SimSun(0)/m/n/10.95 覆 盖 文
+Underfull \hbox (badness 1087) in paragraph at lines 526--527
+[]\TU/SimSun(0)/m/n/10.95 把 磁 盘 写 入 从 网 络 处 理 流 程 中 拆
  []
 
-[30] [31]
-Underfull \hbox (badness 10000) in paragraph at lines 603--604
-[]\TU/SimSun(0)/m/n/10.95 追 加 一 行 \TU/lmr/m/n/10.95 JSON \TU/SimSun(0)/m/n/10.9
-5 到
+
+Underfull \hbox (badness 1087) in paragraph at lines 529--530
+[]\TU/SimSun(0)/m/n/10.95 用 可 重 复 测 试 验 证 同 步 算 法 和 边
  []
 
-[32] [33]
-Underfull \hbox (badness 10000) in paragraph at lines 634--635
+[29] [30]
+Underfull \hbox (badness 3536) in paragraph at lines 584--585
+[]\TU/SimSun(0)/m/n/10.95 将 最 新 快 照 写 入 []\TU/lmtt/m/n/10.95 .autosave[]
+ []
+
+[31]
+Underfull \hbox (badness 10000) in paragraph at lines 617--618
 []\TU/SimSun(0)/m/n/10.95 服 务 端 输 出 和
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 634--635
-[]\TU/lmtt/m/n/10.95 transform_trace[] \TU/SimSun(0)/m/n/10.95 表
- []
-
-[34] [35]
-Underfull \hbox (badness 10000) in paragraph at lines 709--709
-[]\TU/SimSun(0)/m/n/10.95 用 户 在 客 户 端 按 下
- []
-
-[36]
-Underfull \hbox (badness 10000) in paragraph at lines 731--731
-[][]\TU/lmtt/m/n/10.95 base_version[] \TU/SimSun(0)/m/n/10.95 早 于
+Underfull \hbox (badness 10000) in paragraph at lines 635--635
+[][]\TU/lmtt/m/n/10.95 client.c[]\TU/SimSun(0)/m/n/10.95 、| []\TU/lmtt/m/n/10.9
+5 server.c[]\TU/SimSun(0)/m/n/10.95 、|
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 731--732
-[]\TU/SimSun(0)/m/n/10.95 服 务 端 返 回
+Underfull \hbox (badness 10000) in paragraph at lines 636--636
+[][]\TU/lmtt/m/n/10.95 client_state.c[]\TU/SimSun(0)/m/n/10.95 、|
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 731--732
-[]\TU/lmtt/m/n/10.95 RESYNC_REQUIRED[] \TU/SimSun(0)/m/n/10.95 和 完
+Underfull \hbox (badness 10000) in paragraph at lines 638--638
+[][]\TU/lmtt/m/n/10.95 document.c[]\TU/SimSun(0)/m/n/10.95 、|
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 733--734
-[]\TU/SimSun(0)/m/n/10.95 服 务 端 直 接 发 送 当 前
+Underfull \hbox (badness 10000) in paragraph at lines 638--638
+[]\TU/lmtt/m/n/10.95 client_state.c[]\TU/SimSun(0)/m/n/10.95 、|
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 734--734
-[]\TU/SimSun(0)/m/n/10.95 重 同 步 后 旧 的
+Underfull \hbox (badness 1087) in paragraph at lines 638--639
+[]\TU/SimSun(0)/m/n/10.95 版 本 缺 口 或 历 史 过 期 时 回 到 服 务
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 734--734
-[]\TU/lmtt/m/n/10.95 inflight_op[] \TU/SimSun(0)/m/n/10.95 不 再 可
+[32] [33] [34]
+Overfull \hbox (11.30524pt too wide) in paragraph at lines 653--654
+[]\TU/SimSun(0)/m/n/12 本 文 所 对 应 的 项 目 代 码 托 管 于 \TU/lmr/m/n/12 GitHub \TU/SimS
+un(0)/m/n/12 仓 库 [][]$[][][][][] [] [] [] [][][][][][] [] [][][] [] [][][][][][
+][][] [] [][][][][] []
  []
 
-[37] [38] [39] (./_minted/2D0A960B2D2DD40270449FC3F77A17B4.highlight.minted)
-Overfull \hbox (7.01602pt too wide) in paragraph at lines 779--780
-[]\TU/SimSun(0)/b/n/12 构 建 规 则：| []\TU/lmtt/m/n/12 Makefile[] \TU/SimSun(0)/m/n
-/12 定 义 了 三 个 主 要 产 物：| []\TU/lmtt/m/n/12 termsync_server[]\TU/SimSun(0)/m/n/12
- 、| []\TU/lmtt/m/n/12 termsync_client[]
+(./_minted/2D0A960B2D2DD40270449FC3F77A17B4.highlight.minted)
+Overfull \hbox (31.8958pt too wide) in paragraph at lines 677--678
+[]\TU/SimSun(0)/m/n/12 其 中，| []\TU/lmtt/m/n/12 server.c[]\TU/SimSun(0)/m/n/12 、
+| []\TU/lmtt/m/n/12 document.c[]\TU/SimSun(0)/m/n/12 、| []\TU/lmtt/m/n/12 autos
+ave.c[] \TU/SimSun(0)/m/n/12 构 成 服 务 端 核 心；| []\TU/lmtt/m/n/12 client.c[] \TU/S
+imSun(0)/m/n/12 和 []\TU/lmtt/m/n/12 client_state.c[]
  []
 
-[40] (./_minted/3A877C3312F4257EBA84A2B68B36A347.highlight.minted [41])
-(./_minted/7581B89E230F9B9696FF42C198203998.highlight.minted [42] [43] [44])
-(./_minted/EE39F2C5974DC3529BA511C9C60FC39B.highlight.minted [45] [46] [47]
-[48]) (./_minted/EE39F2C5974DC3529BA511C9C60FC39B.highlight.minted [49]
-[50] [51] [52]) (./_minted/E3DD3279BD954FC5DB8EDCFED124864F.highlight.minted
-[53] [54] [55] [56])
-(./_minted/1E9692BB54C015338A794E423941830E.highlight.minted [57] [58] [59])
-(./_minted/1E9692BB54C015338A794E423941830E.highlight.minted [60] [61] [62]
-[63]) (./_minted/0D42EDB6A637271312435172EA4E3F9A.highlight.minted [64]
-[65] [66]) (./_minted/D2D600BB59149070609B022802F35EA1.highlight.minted
-[67] [68] [69] [70])
-(./_minted/D2D600BB59149070609B022802F35EA1.highlight.minted [71] [72] [73]
-[74] [75]) (./_minted/8CD3F1C787F4AC358A02B09F45EF51DD.highlight.minted
-[76] [77] [78] [79]) [80]
-(./_minted/3350FC35C1E95FC30D377C0D9C419DB2.highlight.minted [81] [82] [83]
-[84]) (./_minted/3350FC35C1E95FC30D377C0D9C419DB2.highlight.minted [85]
-[86] [87] [88]) (./_minted/F77D8B7521AA6DABEA15152D96433007.highlight.minted
-[89] [90] [91] [92])
-(./_minted/F77D8B7521AA6DABEA15152D96433007.highlight.minted [93] [94] [95]
-[96]) (./_minted/A66FBA5E037B5ADE16F763417968C228.highlight.minted [97]
-[98] [99] [100] [101])
-(./_minted/A66FBA5E037B5ADE16F763417968C228.highlight.minted [102] [103]))
-[104] (./chapter/task1.tex
+[35] (./_minted/50F8D8C5995C7966CF8A18B6EBD2583D.highlight.minted
+
+LaTeX Font Warning: Font shape `TU/FangSong(0)/m/it' undefined
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 5.
+
+[36]) (./_minted/7C5E4224F7E182B8E17E3AC0694AE2A9.highlight.minted [37]
+[38] [39] [40] [41]) [42]
+(./_minted/A30EE218E84598A1CAD8B79F6233D30E.highlight.minted [43] [44] [45]
+[46] [47] [48] [49] [50] [51] [52] [53] [54] [55])
+(./_minted/635FFE6F467ED5855071438673500DDA.highlight.minted [56] [57] [58]
+[59] [60] [61]) (./_minted/9F678C4F98EBD6B0CE28B4AF1B09F996.highlight.minted
+[62] [63] [64] [65] [66] [67] [68])
+(./_minted/C8364EC9EB57E77166365AECD0B0BC9B.highlight.minted [69] [70] [71])
+(./_minted/9E4A06ECA7DEB05B4D43CE981C758D12.highlight.minted [72] [73] [74]
+[75] [76] [77] [78] [79] [80] [81] [82])
+(./_minted/F43E69F65447ECEFFA6EA0960E9737E6.highlight.minted [83] [84] [85]
+[86] [87]) [88] (./_minted/38DBADF2C4173B49F4D586446816D38D.highlight.minted
+[89] [90] [91] [92] [93] [94] [95] [96] [97] [98] [99])
+(./_minted/DDD8A9FDA7F551FFA6FA7E1A53308B8E.highlight.minted [100] [101]
+[102] [103] [104] [105] [106] [107])
+(./_minted/D0707482C01D502099815BC6BE58701F.highlight.minted [108] [109]
+[110] [111] [112] [113] [114] [115] [116])) [117] (./chapter/task1.tex
 File: pic/task1/image.png Graphic file (type bmp)
 <pic/task1/image.png>
- [105]
+ [118]
 File: pic/task1/image copy.png Graphic file (type bmp)
 <pic/task1/image copy.png>
 File: pic/task1/image copy 2.png Graphic file (type bmp)
 <pic/task1/image copy 2.png>
- [106] [107]
-(./_minted/41039B30F63228BB07320D23D8E1A4B7.highlight.minted)
+
+[119] (./_minted/41039B30F63228BB07320D23D8E1A4B7.highlight.minted)
 File: pic/task1/image copy 3.png Graphic file (type bmp)
 <pic/task1/image copy 3.png>
 File: pic/task1/image copy 4.png Graphic file (type bmp)
 <pic/task1/image copy 4.png>
+ [120]
 File: pic/task1/image copy 5.png Graphic file (type bmp)
 <pic/task1/image copy 5.png>
- [108] [109]
-[110]
+
+[121]
 File: pic/task1/image copy 6.png Graphic file (type bmp)
 <pic/task1/image copy 6.png>
 File: pic/task1/image copy 7.png Graphic file (type bmp)
 <pic/task1/image copy 7.png>
 File: pic/task1/image copy 8.png Graphic file (type bmp)
 <pic/task1/image copy 8.png>
- [111]
+ [122]
 File: pic/task1/image copy 9.png Graphic file (type bmp)
 <pic/task1/image copy 9.png>
 File: pic/task1/image copy 10.png Graphic file (type bmp)
 <pic/task1/image copy 10.png>
- [112]
-Underfull \hbox (badness 6893) in paragraph at lines 215--216
-[]\TU/SimSun(0)/m/n/10.95 确 认 实 验 环 境 是 否 为 目 标
- []
-
-[113] [114]
+ [123] [124]
 File: pic/task1/image copy 11.png Graphic file (type bmp)
 <pic/task1/image copy 11.png>
- [115] [116]
-Underfull \hbox (badness 1789) in paragraph at lines 278--279
-[][]\TU/lmtt/m/n/10.95 echo hello >> a.txt[] \TU/SimSun(0)/m/n/10.95 会 把 内
+ [125] [126]
+Underfull \hbox (badness 1087) in paragraph at lines 207--208
+[]\TU/SimSun(0)/m/n/10.95 某 些 命 令 可 以 从 指 定 文 件 中 读 取
  []
 
-[117]
+
+Underfull \hbox (badness 1087) in paragraph at lines 209--210
+[]\TU/SimSun(0)/m/n/10.95 常 用 于 同 时 保 存 正 常 输 出 和 错 误
+ []
+
+[127]
 File: pic/task1/image copy 12.png Graphic file (type bmp)
 <pic/task1/image copy 12.png>
 File: pic/task1/image copy 13.png Graphic file (type bmp)
@@ -1816,28 +1811,27 @@ File: pic/task1/image copy 14.png Graphic file (type bmp)
 <pic/task1/image copy 14.png>
 File: pic/task1/image copy 15.png Graphic file (type bmp)
 <pic/task1/image copy 15.png>
- [118]
+ [128]
 File: pic/task1/image copy 16.png Graphic file (type bmp)
 <pic/task1/image copy 16.png>
 File: pic/task1/image copy 17.png Graphic file (type bmp)
 <pic/task1/image copy 17.png>
- [119] [120]
-Underfull \hbox (badness 10000) in paragraph at lines 380--380
+ [129] [130]
+Underfull \hbox (badness 10000) in paragraph at lines 291--291
 [][]\TU/lmtt/m/n/10.95 No such file or
  []
 
-[121] (./_minted/F33B0A01D40F49B6393F93CA88D5C38E.highlight.minted) [122])
-[123] (./chapter/task2.tex
-(./_minted/417130E53260CCEB480BDB92B269F5CF.highlight.minted)
-Overfull \hbox (6.03912pt too wide) in paragraph at lines 31--32
-[]\TU/SimSun(0)/m/n/12 其 中，| []\TU/lmtt/m/n/12 chmod +x linux_quiz.sh[] \TU/Sim
-Sun(0)/m/n/12 用 于 给 脚 本 添 加 可 执 行 权 限，| []\TU/lmtt/m/n/12 ./linux_quiz.sh[]
+[131] (./_minted/F33B0A01D40F49B6393F93CA88D5C38E.highlight.minted)
+Underfull \hbox (badness 2564) in paragraph at lines 322--323
+[]\TU/SimSun(0)/m/n/10.95 把 文 本 文 件 内 容 作 为 后 续 命 令
  []
 
-[124]
+[132]) [133] (./chapter/task2.tex
+(./_minted/417130E53260CCEB480BDB92B269F5CF.highlight.minted) [134]
 File: pic/task2/Shell 答题系统流程图.png Graphic file (type bmp)
 <pic/task2/Shell 答题系统流程图.png>
- [125] [126]
+ [135]
+[136]
 File: pic/task2/image.png Graphic file (type bmp)
 <pic/task2/image.png>
 File: pic/task2/image copy.png Graphic file (type bmp)
@@ -1850,64 +1844,44 @@ File: pic/task2/image copy 5.png Graphic file (type bmp)
 <pic/task2/image copy 5.png>
 File: pic/task2/image copy 6.png Graphic file (type bmp)
 <pic/task2/image copy 6.png>
- [127]
+ [137]
 File: pic/task2/image copy 2.png Graphic file (type bmp)
 <pic/task2/image copy 2.png>
 File: pic/task2/image copy 7.png Graphic file (type bmp)
 <pic/task2/image copy 7.png>
- [128]
+ [138]
 File: pic/task2/image copy 8.png Graphic file (type bmp)
 <pic/task2/image copy 8.png>
 File: pic/task2/image copy 9.png Graphic file (type bmp)
 <pic/task2/image copy 9.png>
 File: pic/task2/image copy 10.png Graphic file (type bmp)
 <pic/task2/image copy 10.png>
- [129]
+ [139]
 File: pic/task2/image copy 11.png Graphic file (type bmp)
 <pic/task2/image copy 11.png>
 File: pic/task2/image copy 12.png Graphic file (type bmp)
 <pic/task2/image copy 12.png>
+ [140]
 File: pic/task2/image copy 13.png Graphic file (type bmp)
 <pic/task2/image copy 13.png>
- [130]
 File: pic/task2/image copy 14.png Graphic file (type bmp)
 <pic/task2/image copy 14.png>
 File: pic/task2/image copy 15.png Graphic file (type bmp)
 <pic/task2/image copy 15.png>
- [131]
+ [141]
 File: pic/task2/image copy 16.png Graphic file (type bmp)
 <pic/task2/image copy 16.png>
 File: pic/task2/image copy 17.png Graphic file (type bmp)
 <pic/task2/image copy 17.png>
 File: pic/task2/image copy 18.png Graphic file (type bmp)
 <pic/task2/image copy 18.png>
- [132]
+ [142]
 File: pic/task2/image copy 19.png Graphic file (type bmp)
 <pic/task2/image copy 19.png>
- [133] [134]
-Underfull \hbox (badness 2035) in paragraph at lines 307--307
-[][]\TU/lmtt/m/n/10.95 questions.txt[] \TU/SimSun(0)/m/n/10.95 中 的 题
- []
-
-
-Underfull \hbox (badness 1082) in paragraph at lines 308--308
-[][]\TU/lmtt/m/n/10.95 score.txt[] \TU/SimSun(0)/m/n/10.95 中 的 历 史 记
- []
-
-[135] [136]
-Overfull \hbox (6.25485pt too wide) in paragraph at lines 347--348
-[]\TU/SimSun(0)/m/n/12 以 下 是 本 次 \TU/lmr/m/n/12 Shell \TU/SimSun(0)/m/n/12 编 程 
-作 业 的 主 要 源 代 码 和 配 套 题 库 文 件。|  其 中，| []\TU/lmtt/m/n/12 linux_quiz.sh[]
- []
-
-(./_minted/CB3896DC6A0CFD8D2F3B852CF2BC6D3D.highlight.minted
-
-LaTeX Font Warning: Font shape `TU/FangSong(0)/m/it' undefined
-(Font)              using `TU/FangSong(0)/m/n' instead on input line 8.
-
-[137] [138] [139] [140])
-(./_minted/55045A647B750BA0D167C6E371862414.highlight.minted [141])) [142]
-(./main.aux)
+ [143] [144] [145]
+(./_minted/CB3896DC6A0CFD8D2F3B852CF2BC6D3D.highlight.minted [146] [147]
+[148] [149]) (./_minted/55045A647B750BA0D167C6E371862414.highlight.minted
+[150])) [151] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2022/08/05>
@@ -1917,15 +1891,15 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: C69D7F08B42574C5D4618CB7B4BBDFA6;9513.
+(rerunfilecheck)             Checksum: 342B6D39DCBF35E6D4FF96A4E594EDE4;9018.
  ) 
 Here is how much of TeX's memory you used:
- 39659 strings out of 468219
- 934823 string characters out of 5431931
- 1525563 words of memory out of 5000000
- 67588 multiletter control sequences out of 15000+600000
+ 39704 strings out of 468219
+ 937951 string characters out of 5431931
+ 1516630 words of memory out of 5000000
+ 67645 multiletter control sequences out of 15000+600000
  635103 words of font info for 108 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,13n,115p,1186b,1067s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,13n,115p,1186b,1065s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (145 pages).
+Output written on main.pdf (154 pages).

@@ -22,53 +22,49 @@
 \contentsline {subsection}{\numberline {6}问题与解决方案}{25}{subsection.1.6}%
 \contentsline {subsubsection}{\numberline {6.1}并发操作顺序不确定}{25}{subsubsection.1.6.1}%
 \contentsline {subsubsection}{\numberline {6.2}旧版本操作位置失效}{25}{subsubsection.1.6.2}%
-\contentsline {subsubsection}{\numberline {6.3}连续输入容易丢失或乱序}{26}{subsubsection.1.6.3}%
+\contentsline {subsubsection}{\numberline {6.3}连续输入容易丢失或乱序}{25}{subsubsection.1.6.3}%
 \contentsline {subsubsection}{\numberline {6.4}中文连续输入时光标被 ACK 拉回}{26}{subsubsection.1.6.4}%
-\contentsline {subsubsection}{\numberline {6.5}慢客户端可能阻塞服务端}{27}{subsubsection.1.6.5}%
-\contentsline {subsubsection}{\numberline {6.6}历史无限增长}{27}{subsubsection.1.6.6}%
+\contentsline {subsubsection}{\numberline {6.5}慢客户端可能阻塞服务端}{26}{subsubsection.1.6.5}%
+\contentsline {subsubsection}{\numberline {6.6}历史无限增长}{26}{subsubsection.1.6.6}%
 \contentsline {subsubsection}{\numberline {6.7}文件保存可能覆盖旧内容}{27}{subsubsection.1.6.7}%
-\contentsline {subsubsection}{\numberline {6.8}服务端 Ctrl-C 退出不可靠}{28}{subsubsection.1.6.8}%
-\contentsline {subsubsection}{\numberline {6.9}中文字符显示宽度}{28}{subsubsection.1.6.9}%
-\contentsline {subsection}{\numberline {7}课程知识点对应关系}{30}{subsection.1.7}%
-\contentsline {subsubsection}{\numberline {7.1}网络编程与长连接服务}{30}{subsubsection.1.7.1}%
-\contentsline {subsubsection}{\numberline {7.2}线程同步与临界区控制}{31}{subsubsection.1.7.2}%
-\contentsline {subsubsection}{\numberline {7.3}进程间通信与文件持久化}{32}{subsubsection.1.7.3}%
-\contentsline {subsubsection}{\numberline {7.4}终端交互与用户体验}{33}{subsubsection.1.7.4}%
-\contentsline {subsubsection}{\numberline {7.5}测试驱动的课程项目验证}{33}{subsubsection.1.7.5}%
-\contentsline {subsection}{\numberline {8}关键运行流程分解}{35}{subsection.1.8}%
-\contentsline {subsubsection}{\numberline {8.1}客户端加入流程}{35}{subsubsection.1.8.1}%
-\contentsline {subsubsection}{\numberline {8.2}编辑操作确认流程}{35}{subsubsection.1.8.2}%
-\contentsline {subsubsection}{\numberline {8.3}保存与关闭流程}{36}{subsubsection.1.8.3}%
-\contentsline {subsubsection}{\numberline {8.4}重同步流程}{37}{subsubsection.1.8.4}%
-\contentsline {subsection}{\numberline {9}项目不足与改进方向}{39}{subsection.1.9}%
-\contentsline {subsection}{\numberline {10}代码展示}{40}{subsection.1.10}%
-\contentsline {subsubsection}{\numberline {10.1}项目结构}{40}{subsubsection.1.10.1}%
-\contentsline {subsubsection}{\numberline {10.2}构建规则与公共类型}{41}{subsubsection.1.10.2}%
-\contentsline {subsubsection}{\numberline {10.3}协议与 UTF-8 文本工具}{45}{subsubsection.1.10.3}%
-\contentsline {subsubsection}{\numberline {10.4}服务端权威文档与 OT}{57}{subsubsection.1.10.4}%
-\contentsline {subsubsection}{\numberline {10.5}服务端连接、广播与事件输出}{64}{subsubsection.1.10.5}%
-\contentsline {subsubsection}{\numberline {10.6}客户端状态机与终端界面}{76}{subsubsection.1.10.6}%
-\contentsline {subsubsection}{\numberline {10.7}自动保存、备份与日志}{89}{subsubsection.1.10.7}%
-\contentsline {subsubsection}{\numberline {10.8}单元测试}{97}{subsubsection.1.10.8}%
-\contentsline {section}{\numberline {}Linux 平台下的基本命令}{105}{section.2}%
-\contentsline {subsection}{\numberline {1}文件和目录操作}{105}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2}文件内容查看与处理命令}{108}{subsection.2.2}%
-\contentsline {subsection}{\numberline {3}系统信息查看命令}{111}{subsection.2.3}%
-\contentsline {subsection}{\numberline {4}权限相关命令}{115}{subsection.2.4}%
-\contentsline {subsection}{\numberline {5}重定向与错误输出}{117}{subsection.2.5}%
-\contentsline {subsection}{\numberline {6}管道符组合命令}{118}{subsection.2.6}%
-\contentsline {subsection}{\numberline {7}常见命令错误与排查}{121}{subsection.2.7}%
-\contentsline {subsection}{\numberline {8}综合命令练习复盘}{122}{subsection.2.8}%
-\contentsline {subsection}{\numberline {9}实验小结}{123}{subsection.2.9}%
-\contentsline {section}{\numberline {}Linux 下的 Shell 编程案例}{124}{section.3}%
-\contentsline {subsection}{\numberline {1}程序功能说明}{124}{subsection.3.1}%
-\contentsline {subsection}{\numberline {2}Shell 脚本执行方法}{124}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3}程序实现思路}{125}{subsection.3.3}%
-\contentsline {subsection}{\numberline {4}案例展示}{127}{subsection.3.4}%
-\contentsline {subsection}{\numberline {5}Shell 程序调试方法}{130}{subsection.3.5}%
-\contentsline {subsection}{\numberline {6}脚本可维护性分析}{134}{subsection.3.6}%
-\contentsline {subsection}{\numberline {7}菜单循环与数据流分析}{135}{subsection.3.7}%
-\contentsline {subsection}{\numberline {8}实验小结}{136}{subsection.3.8}%
-\contentsline {subsection}{\numberline {9}源代码与题库展示}{137}{subsection.3.9}%
-\contentsline {subsubsection}{\numberline {9.1}Shell 脚本}{137}{subsubsection.3.9.1}%
-\contentsline {subsubsection}{\numberline {9.2}题库文件}{141}{subsubsection.3.9.2}%
+\contentsline {subsubsection}{\numberline {6.8}服务端 Ctrl-C 退出不可靠}{27}{subsubsection.1.6.8}%
+\contentsline {subsubsection}{\numberline {6.9}中文字符显示宽度}{27}{subsubsection.1.6.9}%
+\contentsline {subsection}{\numberline {7}课程知识点对应关系}{29}{subsection.1.7}%
+\contentsline {subsubsection}{\numberline {7.1}网络编程与长连接服务}{29}{subsubsection.1.7.1}%
+\contentsline {subsubsection}{\numberline {7.2}线程同步与临界区控制}{30}{subsubsection.1.7.2}%
+\contentsline {subsubsection}{\numberline {7.3}进程间通信与文件持久化}{31}{subsubsection.1.7.3}%
+\contentsline {subsubsection}{\numberline {7.4}终端交互与用户体验}{31}{subsubsection.1.7.4}%
+\contentsline {subsubsection}{\numberline {7.5}测试驱动的课程项目验证}{32}{subsubsection.1.7.5}%
+\contentsline {subsubsection}{\numberline {7.6}关键运行流程概览}{33}{subsubsection.1.7.6}%
+\contentsline {subsection}{\numberline {8}项目不足与改进方向}{34}{subsection.1.8}%
+\contentsline {subsection}{\numberline {9}代码展示}{35}{subsection.1.9}%
+\contentsline {subsubsection}{\numberline {9.1}项目结构}{35}{subsubsection.1.9.1}%
+\contentsline {subsubsection}{\numberline {9.2}构建规则与公共类型}{36}{subsubsection.1.9.2}%
+\contentsline {subsubsection}{\numberline {9.3}协议与 UTF-8 文本工具}{43}{subsubsection.1.9.3}%
+\contentsline {subsubsection}{\numberline {9.4}服务端权威文档与 OT}{62}{subsubsection.1.9.4}%
+\contentsline {subsubsection}{\numberline {9.5}服务端连接、广播与事件输出}{69}{subsubsection.1.9.5}%
+\contentsline {subsubsection}{\numberline {9.6}客户端状态机与终端界面}{83}{subsubsection.1.9.6}%
+\contentsline {subsubsection}{\numberline {9.7}自动保存、备份与日志}{100}{subsubsection.1.9.7}%
+\contentsline {subsubsection}{\numberline {9.8}单元测试}{108}{subsubsection.1.9.8}%
+\contentsline {section}{\numberline {}Linux 平台下的基本命令}{118}{section.2}%
+\contentsline {subsection}{\numberline {1}文件和目录操作}{118}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2}文件内容查看与处理命令}{120}{subsection.2.2}%
+\contentsline {subsection}{\numberline {3}系统信息查看命令}{122}{subsection.2.3}%
+\contentsline {subsection}{\numberline {4}权限相关命令}{125}{subsection.2.4}%
+\contentsline {subsection}{\numberline {5}重定向与错误输出}{127}{subsection.2.5}%
+\contentsline {subsection}{\numberline {6}管道符组合命令}{128}{subsection.2.6}%
+\contentsline {subsection}{\numberline {7}常见命令错误与排查}{131}{subsection.2.7}%
+\contentsline {subsection}{\numberline {8}综合命令练习复盘}{132}{subsection.2.8}%
+\contentsline {subsection}{\numberline {9}实验小结}{133}{subsection.2.9}%
+\contentsline {section}{\numberline {}Linux 下的 Shell 编程案例}{134}{section.3}%
+\contentsline {subsection}{\numberline {1}程序功能说明}{134}{subsection.3.1}%
+\contentsline {subsection}{\numberline {2}Shell 脚本执行方法}{134}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3}程序实现思路}{135}{subsection.3.3}%
+\contentsline {subsection}{\numberline {4}案例展示}{137}{subsection.3.4}%
+\contentsline {subsection}{\numberline {5}Shell 程序调试方法}{140}{subsection.3.5}%
+\contentsline {subsection}{\numberline {6}脚本可维护性分析}{144}{subsection.3.6}%
+\contentsline {subsection}{\numberline {7}菜单循环与数据流分析}{144}{subsection.3.7}%
+\contentsline {subsection}{\numberline {8}实验小结}{145}{subsection.3.8}%
+\contentsline {subsection}{\numberline {9}源代码与题库展示}{146}{subsection.3.9}%
+\contentsline {subsubsection}{\numberline {9.1}Shell 脚本}{146}{subsubsection.3.9.1}%
+\contentsline {subsubsection}{\numberline {9.2}题库文件}{150}{subsubsection.3.9.2}%
