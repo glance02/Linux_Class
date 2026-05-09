@@ -758,9 +758,9 @@ code/cowork/
 
 \subsubsection{构建规则与公共类型}
 
-\textbf{构建规则：}\cmd{Makefile} 定义了三个主要产物：\cmd{termsync\_server}、\cmd{termsync\_client} 和 \cmd{test\_termsync}。公共模块会被同时链接到服务端、客户端和测试程序，客户端额外链接 \cmd{ncursesw}。
+\textbf{构建规则：}\cmd{Makefile} 定义了三个主要产物：\cmd{termsync\_server}、\cmd{termsync\_client} 和 \cmd{test\_termsync}。默认执行 \cmd{make} 会构建三者；如果云服务器只负责运行服务端，可以先执行 \cmd{make server}，避免因为未安装终端客户端所需的 \cmd{ncursesw} 开发包而阻塞部署。公共模块会被同时链接到服务端、客户端和测试程序，客户端额外链接 \cmd{ncursesw}。
 
-\inputminted[firstline=1,lastline=42,firstnumber=1]{make}{code/cowork/Makefile}
+\inputminted[firstline=1,lastline=60,firstnumber=1]{make}{code/cowork/Makefile}
 
 \textbf{公共类型：}\cmd{termsync.h} 定义协议消息、编辑操作、传输层、文档状态、处理结果、客户端状态和保存进程等结构。C 语言没有动态字典和数据类，因此消息字段、字符串长度、内存所有权和释放规则都需要在公共头文件中明确约定。
 

@@ -8,10 +8,29 @@
 
 - `gcc`
 - POSIX socket / `pthread` / `fork` / pipe
-- `ncursesw`
+- `ncursesw` 开发头文件和库
 
 ```bash
 make
+```
+
+如果是在云服务器上只运行服务端，可以先只构建服务端，避免因为未安装终端客户端依赖而阻塞部署：
+
+```bash
+make server
+```
+
+完整构建客户端前需要安装 `ncursesw` 开发包：
+
+```bash
+# Ubuntu / Debian / WSL
+apt update && apt install -y build-essential libncurses-dev
+
+# CentOS / RHEL / Alibaba Cloud Linux
+yum install -y gcc make ncurses-devel
+
+# 使用 dnf 的发行版
+dnf install -y gcc make ncurses-devel
 ```
 
 构建产物：
