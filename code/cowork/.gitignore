@@ -1,7 +1,7 @@
-__pycache__/
-*.py[cod]
+build/
+*.o
 *.tmp
 *.autosave
 *.bak
 *.edit.log
-shared.py
+shared.c
