@@ -12,10 +12,7 @@
 #include <time.h>
 #include <unistd.h>
 
-<<<<<<< HEAD
-=======
 /* 递归创建目标文件的父目录。传入的是文件路径，不是目录路径。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int mkdir_parent_recursive(const char *path)
 {
     char copy[PATH_MAX];
@@ -43,19 +40,13 @@ static int mkdir_parent_recursive(const char *path)
     return 0;
 }
 
-<<<<<<< HEAD
-=======
 /* 为路径添加固定后缀，例如 .tmp/.bak/.autosave。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void suffix_path(const char *path, const char *suffix, char *out, size_t out_size)
 {
     snprintf(out, out_size, "%s%s", path, suffix);
 }
 
-<<<<<<< HEAD
-=======
 /* 二进制方式复制文件，用于正式保存前生成 .bak 备份。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int copy_file(const char *src, const char *dst)
 {
     FILE *in = fopen(src, "rb");
@@ -81,12 +72,9 @@ static int copy_file(const char *src, const char *dst)
     return 0;
 }
 
-<<<<<<< HEAD
-=======
 /* 原子写入文本：先写同目录 .tmp，再 rename 到目标路径。
  * 这样即使进程中途崩溃，也尽量不会留下半截正式文件。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_atomic_write_text(const char *path, const char *content)
 {
     char tmp_path[PATH_MAX];
@@ -110,10 +98,7 @@ int ts_atomic_write_text(const char *path, const char *content)
     return rename(tmp_path, path);
 }
 
-<<<<<<< HEAD
-=======
 /* 手动保存使用“备份旧文件 + 原子写新文件”的策略，方便误操作后恢复。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_write_with_backup(const char *path, const char *content)
 {
     char backup_path[PATH_MAX];
@@ -129,10 +114,7 @@ int ts_write_with_backup(const char *path, const char *content)
     return ts_atomic_write_text(path, content);
 }
 
-<<<<<<< HEAD
-=======
 /* 追加一行 JSON 日志。日志本身不参与协议，只用于追踪服务端事件。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_append_json_log(const char *path, const char *entry_json)
 {
     if (mkdir_parent_recursive(path) != 0) {
@@ -146,10 +128,7 @@ int ts_append_json_log(const char *path, const char *entry_json)
     return fclose(fp);
 }
 
-<<<<<<< HEAD
-=======
 /* 使用单调时钟计算定时保存间隔，不受系统时间调整影响。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static long monotonic_ms(void)
 {
     struct timespec now;
@@ -157,10 +136,7 @@ static long monotonic_ms(void)
     return now.tv_sec * 1000L + now.tv_nsec / 1000000L;
 }
 
-<<<<<<< HEAD
-=======
 /* 从 pipe 读取一行事件头。返回 1 表示成功，0 表示 EOF，-1 表示错误或行过长。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int read_line_fd(int fd, char *line, size_t line_size)
 {
     size_t len = 0;
@@ -186,10 +162,7 @@ static int read_line_fd(int fd, char *line, size_t line_size)
     return -1;
 }
 
-<<<<<<< HEAD
-=======
 /* 按事件头声明的长度读取 payload，保证内容里即使有换行也不会破坏协议。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static char *read_exact_alloc(int fd, size_t len)
 {
     char *data = malloc(len + 1);
@@ -216,12 +189,9 @@ static char *read_exact_alloc(int fd, size_t len)
     return data;
 }
 
-<<<<<<< HEAD
-=======
 /* 往自动保存子进程发送带正文的事件。
  * 格式为：EVENT version payload_len\npayload
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int send_payload_event(int fd, const char *name, const char *content, int version)
 {
     const char *payload = content ? content : "";
@@ -236,28 +206,19 @@ static int send_payload_event(int fd, const char *name, const char *content, int
     return ts_write_all_fd(fd, payload, strlen(payload));
 }
 
-<<<<<<< HEAD
-=======
 /* 记录最新快照，只用于周期性写入 .autosave，不覆盖正式文件。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_autosave_send_snapshot(int fd, const char *content, int version)
 {
     return send_payload_event(fd, "SNAPSHOT", content, version);
 }
 
-<<<<<<< HEAD
-=======
 /* 请求立即保存正式文件，并在保存前生成 .bak。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_autosave_send_save_now(int fd, const char *content, int version)
 {
     return send_payload_event(fd, "SAVE_NOW", content, version);
 }
 
-<<<<<<< HEAD
-=======
 /* 发送一条 JSON 日志事件给子进程，由子进程负责追加到日志文件。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_autosave_send_log(int fd, const char *entry_json)
 {
     const char *payload = entry_json ? entry_json : "{}";
@@ -272,21 +233,15 @@ int ts_autosave_send_log(int fd, const char *entry_json)
     return ts_write_all_fd(fd, payload, strlen(payload));
 }
 
-<<<<<<< HEAD
-=======
 /* 通知子进程退出；退出前子进程会把最后快照写入 autosave 文件。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_autosave_send_stop(int fd)
 {
     return ts_write_all_fd(fd, "STOP\n", 5);
 }
 
-<<<<<<< HEAD
-=======
 /* 自动保存子进程主循环。
  * 父进程只负责发送事件，实际磁盘写入都在这里完成，避免服务端处理编辑时被 IO 阻塞。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void autosave_loop(int fd, const char *document_path, const char *log_path, long interval_ms)
 {
     char autosave_path[PATH_MAX];
@@ -312,10 +267,7 @@ static void autosave_loop(int fd, const char *document_path, const char *log_pat
                 break;
             }
             if (strcmp(header, "STOP") == 0) {
-<<<<<<< HEAD
-=======
                 /* 停止前尽量落一次最新 autosave，降低正常退出时的数据丢失风险。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
                 if (latest_content != NULL) {
                     ts_atomic_write_text(autosave_path, latest_content);
                 }
@@ -332,19 +284,13 @@ static void autosave_loop(int fd, const char *document_path, const char *log_pat
                 break;
             }
             if (strcmp(event, "SNAPSHOT") == 0) {
-<<<<<<< HEAD
-=======
                 /* SNAPSHOT 只更新内存中的最新版本，真正落盘由定时器控制。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
                 free(latest_content);
                 latest_content = payload;
                 latest_version = version;
                 payload = NULL;
             } else if (strcmp(event, "SAVE_NOW") == 0) {
-<<<<<<< HEAD
-=======
                 /* 手动保存会写正式文件，同时记录 manual_save 日志。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
                 free(latest_content);
                 latest_content = ts_strdup(payload);
                 latest_version = version;
@@ -359,10 +305,7 @@ static void autosave_loop(int fd, const char *document_path, const char *log_pat
         }
 
         if (monotonic_ms() >= next_save) {
-<<<<<<< HEAD
-=======
             /* 周期性自动保存写入旁路文件，不覆盖用户指定的正式文档。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
             if (latest_content != NULL) {
                 ts_atomic_write_text(autosave_path, latest_content);
                 char entry[PATH_MAX + 160];
@@ -375,10 +318,7 @@ static void autosave_loop(int fd, const char *document_path, const char *log_pat
     free(latest_content);
 }
 
-<<<<<<< HEAD
-=======
 /* 启动自动保存子进程。父进程保留写端，子进程只保留读端。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_start_autosave_process(
     TsAutosaveProcess *process,
     const char *document_path,
@@ -408,10 +348,7 @@ int ts_start_autosave_process(
     return 0;
 }
 
-<<<<<<< HEAD
-=======
 /* 停止自动保存进程，并 waitpid 回收子进程，避免留下僵尸进程。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_stop_autosave_process(TsAutosaveProcess *process)
 {
     if (process == NULL || process->write_fd < 0) {

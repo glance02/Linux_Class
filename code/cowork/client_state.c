@@ -4,15 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-<<<<<<< HEAD
-static void state_pump(TsClientState *state);
-
-=======
 /* 尝试把队列中的下一条操作发出去；只有没有 inflight 时才会真正发送。 */
 static void state_pump(TsClientState *state);
 
 /* 初始化客户端状态。默认内容为空，连接状态先标记为 disconnected。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_client_state_init(
     TsClientState *state,
     const char *client_id,
@@ -31,10 +26,7 @@ void ts_client_state_init(
     state->send_userdata = send_userdata;
 }
 
-<<<<<<< HEAD
-=======
 /* 释放客户端本地文档和待发送队列。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_client_state_destroy(TsClientState *state)
 {
     if (state == NULL) {
@@ -45,10 +37,7 @@ void ts_client_state_destroy(TsClientState *state)
     memset(state, 0, sizeof(*state));
 }
 
-<<<<<<< HEAD
-=======
 /* 待发送队列按需扩容。队列只保存操作描述，不保存文档副本，因此可以比较轻量。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int ensure_queue_capacity(TsClientState *state)
 {
     if (state->queue_len < state->queue_cap) {
@@ -64,12 +53,9 @@ static int ensure_queue_capacity(TsClientState *state)
     return 0;
 }
 
-<<<<<<< HEAD
-=======
 /* 用服务端快照重置本地文档。
  * 重同步会丢弃正在等待 ACK 的操作；未发送队列保留，并在新版本基础上继续发送。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_client_state_set_document(TsClientState *state, const char *content, int version, int history_start_version)
 {
     free(state->content);
@@ -81,12 +67,9 @@ void ts_client_state_set_document(TsClientState *state, const char *content, int
     state_pump(state);
 }
 
-<<<<<<< HEAD
-=======
 /* 把用户输入变成待发送操作。
  * op_id 由 client_id 和递增序号组成，便于服务端 ACK 与本地 inflight 对齐。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_client_state_queue_operation(TsClientState *state, const TsOperation *op, char *op_id_out, size_t out_size)
 {
     if (ensure_queue_capacity(state) != 0) {
@@ -106,10 +89,7 @@ int ts_client_state_queue_operation(TsClientState *state, const TsOperation *op,
     return 0;
 }
 
-<<<<<<< HEAD
-=======
 /* 从 FIFO 队列取出最早的操作。客户端按 ACK 节奏串行发送，避免连续按键乱序。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static bool pop_queue(TsClientState *state, TsPendingOperation *out)
 {
     if (state->queue_len == 0) {
@@ -121,10 +101,7 @@ static bool pop_queue(TsClientState *state, TsPendingOperation *out)
     return true;
 }
 
-<<<<<<< HEAD
-=======
 /* 应用服务端权威操作到本地文档。客户端不自行做 OT，只接受服务端最终结果。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void apply_authoritative_op(TsClientState *state, const TsMessage *message)
 {
     if (!message->has_op) {
@@ -140,10 +117,7 @@ static void apply_authoritative_op(TsClientState *state, const TsMessage *messag
     }
 }
 
-<<<<<<< HEAD
-=======
 /* 处理 ACK：只有当前 inflight 的 op_id 匹配时才算有效，旧 ACK 会被忽略。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void handle_ack(TsClientState *state, const TsMessage *message)
 {
     if (!state->has_inflight || strcmp(state->inflight.op_id, message->op_id) != 0) {
@@ -156,12 +130,9 @@ static void handle_ack(TsClientState *state, const TsMessage *message)
     state_pump(state);
 }
 
-<<<<<<< HEAD
-=======
 /* 处理其他客户端的远程操作。
  * 如果版本不是紧邻本地版本，说明中间漏了消息，立即请求完整文档快照。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void handle_remote(TsClientState *state, const TsMessage *message)
 {
     int incoming_version = message->version;
@@ -180,10 +151,7 @@ static void handle_remote(TsClientState *state, const TsMessage *message)
     snprintf(state->status, sizeof(state->status), "remote op at version %d", state->version);
 }
 
-<<<<<<< HEAD
-=======
 /* 客户端状态机入口：根据服务端消息类型更新本地状态或触发补救动作。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_client_state_handle_message(TsClientState *state, const TsMessage *message)
 {
     if (strcmp(message->type, "DOC_STATE") == 0) {
@@ -216,12 +184,9 @@ void ts_client_state_handle_message(TsClientState *state, const TsMessage *messa
     }
 }
 
-<<<<<<< HEAD
-=======
 /* 发送泵：保持“最多一个 inflight”的强约束。
  * base_version 在这一刻绑定到当前本地版本，服务端据此做 OT 转换。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void state_pump(TsClientState *state)
 {
     if (state->has_inflight || state->queue_len == 0 || state->send_fn == NULL) {

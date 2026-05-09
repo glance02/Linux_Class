@@ -6,27 +6,18 @@
 #include <sys/types.h>
 #include <pthread.h>
 
-<<<<<<< HEAD
-#define TS_MAX_LINE_BYTES (1024 * 1024)
-=======
 /* 单条 JSON Lines 协议消息的最大长度，避免恶意或异常客户端撑爆接收缓冲区。 */
 #define TS_MAX_LINE_BYTES (1024 * 1024)
 /* 以下长度限制用于固定大小字段，便于跨线程传递消息时少做动态分配。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 #define TS_MAX_TYPE 32
 #define TS_MAX_CLIENT_ID 64
 #define TS_MAX_OP_ID 64
 #define TS_MAX_STATUS 160
 #define TS_MAX_REASON 160
-<<<<<<< HEAD
-#define TS_MAX_UTF8_CHAR 8
-
-=======
 /* UTF-8 单字符最多 4 字节，这里留 8 字节空间包含 '\0' 和一定冗余。 */
 #define TS_MAX_UTF8_CHAR 8
 
 /* 文档操作类型：插入、删除和 NOOP。NOOP 用于 OT 冲突后“无事可做”的结果。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef enum {
     TS_OP_INVALID = 0,
     TS_OP_INSERT,
@@ -34,12 +25,9 @@ typedef enum {
     TS_OP_NOOP
 } TsOpKind;
 
-<<<<<<< HEAD
-=======
 /* 单个编辑操作。
  * pos 使用“UTF-8 字符位置”而不是字节位置，避免中文等多字节字符被截断。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct {
     TsOpKind kind;
     size_t pos;
@@ -47,12 +35,9 @@ typedef struct {
     char reason[TS_MAX_REASON];
 } TsOperation;
 
-<<<<<<< HEAD
-=======
 /* 网络协议中的通用消息结构。
  * 不同 type 会使用其中不同字段：例如 OP/ACK/REMOTE_OP 带 op，DOC_STATE 带 content。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct {
     char type[TS_MAX_TYPE];
     char client_id[TS_MAX_CLIENT_ID];
@@ -70,12 +55,9 @@ typedef struct {
     char *content;
 } TsMessage;
 
-<<<<<<< HEAD
-=======
 /* socket 传输层封装。
  * buffer 保存未读完的一行 JSON；send_lock 保证多个线程不会把消息写交错。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct {
     int fd;
     char *buffer;
@@ -83,12 +65,9 @@ typedef struct {
     pthread_mutex_t send_lock;
 } TsTransport;
 
-<<<<<<< HEAD
-=======
 /* 服务端历史记录条目。
  * original_op 是客户端基于旧版本提交的原始操作，op 是经 OT 转换后真正应用的操作。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct {
     int server_version;
     char client_id[TS_MAX_CLIENT_ID];
@@ -98,12 +77,9 @@ typedef struct {
     TsOperation op;
 } TsHistoryEntry;
 
-<<<<<<< HEAD
-=======
 /* 服务端权威文档。
  * text/version 是唯一可信状态；history 用于把旧 base_version 的客户端操作转换到最新版本。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct {
     char *text;
     int version;
@@ -114,22 +90,16 @@ typedef struct {
     pthread_mutex_t lock;
 } TsDocument;
 
-<<<<<<< HEAD
-=======
 /* 文档处理结果：正常应用、协议错误，或历史过期/版本异常导致客户端必须重同步。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef enum {
     TS_PROCESS_OK,
     TS_PROCESS_ERROR,
     TS_PROCESS_RESYNC
 } TsProcessStatus;
 
-<<<<<<< HEAD
-=======
 /* 服务端处理一次 OP 后产出的所有副作用。
  * ack 发回提交者，remote 广播给其他客户端，snapshot/log_json 交给保存进程。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct {
     TsProcessStatus status;
     TsMessage messages[2];
@@ -145,24 +115,18 @@ typedef struct {
 
 typedef int (*TsSendFn)(const TsMessage *message, void *userdata);
 
-<<<<<<< HEAD
-=======
 /* 客户端等待发送或正在等待 ACK 的操作。
  * base_version 在真正发送时才确定，这样连续按键会按服务端 ACK 节奏串行提交。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct {
     char op_id[TS_MAX_OP_ID];
     TsOperation op;
     int base_version;
 } TsPendingOperation;
 
-<<<<<<< HEAD
-=======
 /* 客户端本地状态。
  * 客户端不做乐观合并，只维护输入队列和一个 inflight 操作，避免本地状态与服务端乱序。
  */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct {
     char client_id[TS_MAX_CLIENT_ID];
     char *content;
@@ -179,29 +143,20 @@ typedef struct {
     void *send_userdata;
 } TsClientState;
 
-<<<<<<< HEAD
-=======
 /* 独立自动保存进程的信息。父进程只通过 write_fd 往子进程发送事件。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct {
     pid_t pid;
     int write_fd;
 } TsAutosaveProcess;
 
-<<<<<<< HEAD
-=======
 /* 操作和通用工具函数。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_operation_init(TsOperation *op, TsOpKind kind, size_t pos, const char *ch);
 const char *ts_operation_kind_name(TsOpKind kind);
 TsOpKind ts_operation_kind_from_name(const char *name);
 TsOperation ts_operation_clone(const TsOperation *op);
 TsOperation ts_operation_noop(const TsOperation *op, const char *reason);
 
-<<<<<<< HEAD
-=======
 /* UTF-8 和文件/FD 辅助函数，所有位置相关 API 都按字符数而非字节数工作。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 char *ts_strdup(const char *value);
 char *ts_read_file_text(const char *path);
 int ts_write_all_fd(int fd, const void *data, size_t len);
@@ -211,10 +166,7 @@ size_t ts_utf8_char_bytes(const char *text);
 char *ts_apply_operation_to_text(const char *text, const TsOperation *op);
 void ts_msleep(long milliseconds);
 
-<<<<<<< HEAD
-=======
 /* JSON Lines 协议编解码和带锁 socket 收发。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_message_init(TsMessage *message);
 void ts_message_free(TsMessage *message);
 char *ts_encode_message(const TsMessage *message);
@@ -224,10 +176,7 @@ void ts_transport_destroy(TsTransport *transport);
 int ts_transport_send(TsTransport *transport, const TsMessage *message);
 int ts_transport_recv(TsTransport *transport, TsMessage *message, char *error, size_t error_size);
 
-<<<<<<< HEAD
-=======
 /* 服务端权威文档和 OT 处理。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_document_init(TsDocument *doc, const char *initial_text, size_t history_limit);
 void ts_document_destroy(TsDocument *doc);
 char *ts_document_content(TsDocument *doc);
@@ -243,10 +192,7 @@ TsProcessResult ts_document_process_operation(
     const TsOperation *op
 );
 
-<<<<<<< HEAD
-=======
 /* 客户端发送队列和服务端消息处理。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_client_state_init(
     TsClientState *state,
     const char *client_id,
@@ -258,10 +204,7 @@ void ts_client_state_set_document(TsClientState *state, const char *content, int
 int ts_client_state_queue_operation(TsClientState *state, const TsOperation *op, char *op_id_out, size_t out_size);
 void ts_client_state_handle_message(TsClientState *state, const TsMessage *message);
 
-<<<<<<< HEAD
-=======
 /* 持久化与自动保存。写正式文件前会先备份，自动保存运行在 fork 出来的子进程中。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_atomic_write_text(const char *path, const char *content);
 int ts_write_with_backup(const char *path, const char *content);
 int ts_append_json_log(const char *path, const char *entry_json);
@@ -277,10 +220,7 @@ int ts_autosave_send_log(int fd, const char *entry_json);
 int ts_autosave_send_stop(int fd);
 void ts_stop_autosave_process(TsAutosaveProcess *process);
 
-<<<<<<< HEAD
-=======
 /* 面向终端输出的事件格式化函数，把 JSON 日志转成更适合人读的一行文本。 */
->>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_format_operation_event(const char *entry_json, char *out, size_t out_size);
 void ts_format_save_event(const char *reason, const char *client_id, int version, const char *path, char *out, size_t out_size);
 void ts_format_server_event(const char *entry_json, char *out, size_t out_size);
