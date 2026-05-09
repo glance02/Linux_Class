@@ -10,6 +10,10 @@
 #include <time.h>
 #include <unistd.h>
 
+<<<<<<< HEAD
+=======
+/* 初始化一个编辑操作；ch 只有插入操作会用到，但统一清零能避免旧数据泄漏。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_operation_init(TsOperation *op, TsOpKind kind, size_t pos, const char *ch)
 {
     memset(op, 0, sizeof(*op));
@@ -20,6 +24,10 @@ void ts_operation_init(TsOperation *op, TsOpKind kind, size_t pos, const char *c
     }
 }
 
+<<<<<<< HEAD
+=======
+/* 协议中使用小写字符串表示操作类型，便于 JSON 日志和调试输出阅读。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 const char *ts_operation_kind_name(TsOpKind kind)
 {
     switch (kind) {
@@ -34,6 +42,10 @@ const char *ts_operation_kind_name(TsOpKind kind)
     }
 }
 
+<<<<<<< HEAD
+=======
+/* 把协议字符串还原成枚举值；未知字符串统一视为无效操作。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 TsOpKind ts_operation_kind_from_name(const char *name)
 {
     if (name == NULL) {
@@ -51,6 +63,10 @@ TsOpKind ts_operation_kind_from_name(const char *name)
     return TS_OP_INVALID;
 }
 
+<<<<<<< HEAD
+=======
+/* TsOperation 不持有动态内存，可以直接按值复制。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 TsOperation ts_operation_clone(const TsOperation *op)
 {
     TsOperation clone;
@@ -58,6 +74,10 @@ TsOperation ts_operation_clone(const TsOperation *op)
     return clone;
 }
 
+<<<<<<< HEAD
+=======
+/* 生成一个不会修改文档的操作，通常用于 OT 后发现目标字符已经被其他人删除。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 TsOperation ts_operation_noop(const TsOperation *op, const char *reason)
 {
     TsOperation result;
@@ -68,6 +88,10 @@ TsOperation ts_operation_noop(const TsOperation *op, const char *reason)
     return result;
 }
 
+<<<<<<< HEAD
+=======
+/* POSIX strdup 不是 C 标准函数，这里提供一个项目内可控的版本。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 char *ts_strdup(const char *value)
 {
     size_t len = value ? strlen(value) : 0;
@@ -82,6 +106,10 @@ char *ts_strdup(const char *value)
     return copy;
 }
 
+<<<<<<< HEAD
+=======
+/* 读取整个文件作为初始文档内容。文件不存在时返回空字符串，方便首次创建共享文件。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 char *ts_read_file_text(const char *path)
 {
     FILE *fp = fopen(path, "rb");
@@ -109,6 +137,10 @@ char *ts_read_file_text(const char *path)
     return buffer;
 }
 
+<<<<<<< HEAD
+=======
+/* write(2) 可能被信号打断或只写入部分字节，所以这里循环直到全部写完。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_write_all_fd(int fd, const void *data, size_t len)
 {
     const char *cursor = data;
@@ -129,11 +161,19 @@ int ts_write_all_fd(int fd, const void *data, size_t len)
     return 0;
 }
 
+<<<<<<< HEAD
+=======
+/* UTF-8 后续字节形如 10xxxxxx；统计字符时只数每个字符的首字节。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static bool is_utf8_continuation(unsigned char value)
 {
     return (value & 0xC0u) == 0x80u;
 }
 
+<<<<<<< HEAD
+=======
+/* 返回 UTF-8 字符数量。这里假设输入已经是有效 UTF-8，符合客户端/协议的使用场景。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 size_t ts_utf8_char_count(const char *text)
 {
     size_t count = 0;
@@ -148,6 +188,10 @@ size_t ts_utf8_char_count(const char *text)
     return count;
 }
 
+<<<<<<< HEAD
+=======
+/* 根据首字节判断当前 UTF-8 字符占几个字节，遇到异常首字节时退化成 1 字节。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 size_t ts_utf8_char_bytes(const char *text)
 {
     if (text == NULL || *text == '\0') {
@@ -169,6 +213,10 @@ size_t ts_utf8_char_bytes(const char *text)
     return 1;
 }
 
+<<<<<<< HEAD
+=======
+/* 把“第几个字符”的位置转换为字节偏移，插入/删除时都通过它避免切断多字节字符。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 size_t ts_utf8_byte_offset(const char *text, size_t char_pos)
 {
     size_t chars = 0;
@@ -190,6 +238,10 @@ size_t ts_utf8_byte_offset(const char *text, size_t char_pos)
     return i;
 }
 
+<<<<<<< HEAD
+=======
+/* 在一份文本副本上应用操作，并返回新分配的字符串；调用方负责 free。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 char *ts_apply_operation_to_text(const char *text, const TsOperation *op)
 {
     const char *source = text ? text : "";
@@ -200,6 +252,10 @@ char *ts_apply_operation_to_text(const char *text, const TsOperation *op)
     }
 
     if (op->kind == TS_OP_INSERT) {
+<<<<<<< HEAD
+=======
+        /* 插入位置超过文档末尾时夹到末尾，避免构造非法字节偏移。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
         size_t pos = op->pos > source_chars ? source_chars : op->pos;
         size_t byte_pos = ts_utf8_byte_offset(source, pos);
         size_t ch_bytes = strlen(op->ch);
@@ -214,6 +270,10 @@ char *ts_apply_operation_to_text(const char *text, const TsOperation *op)
     }
 
     if (op->kind == TS_OP_DELETE) {
+<<<<<<< HEAD
+=======
+        /* 删除越界不报错，保持原文不变；服务端会把这种情况规范化成 NOOP。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
         if (op->pos >= source_chars) {
             return ts_strdup(source);
         }
@@ -231,6 +291,10 @@ char *ts_apply_operation_to_text(const char *text, const TsOperation *op)
     return ts_strdup(source);
 }
 
+<<<<<<< HEAD
+=======
+/* 毫秒级睡眠；被信号打断时继续睡剩余时间，测试自动保存时会用到。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_msleep(long milliseconds)
 {
     if (milliseconds <= 0) {

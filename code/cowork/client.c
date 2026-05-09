@@ -19,17 +19,31 @@
 #define CTRL_Q 17
 #define CTRL_S 19
 
+<<<<<<< HEAD
+=======
+/* 后台网络线程收到的消息节点。消息内容按值搬进队列，主线程稍后处理。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct IncomingNode {
     TsMessage message;
     struct IncomingNode *next;
 } IncomingNode;
 
+<<<<<<< HEAD
+=======
+/* 简单线程安全队列：reader 线程 push，UI 主线程 pop。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct {
     pthread_mutex_t lock;
     IncomingNode *head;
     IncomingNode *tail;
 } IncomingQueue;
 
+<<<<<<< HEAD
+=======
+/* 终端客户端总状态。
+ * state 负责协议和编辑队列；cursor_pos/scroll_line 负责本地 UI 视图。
+ */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct {
     char host[128];
     int port;
@@ -43,12 +57,20 @@ typedef struct {
     int scroll_line;
 } TerminalClient;
 
+<<<<<<< HEAD
+=======
+/* 初始化入站消息队列。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void queue_init(IncomingQueue *queue)
 {
     memset(queue, 0, sizeof(*queue));
     pthread_mutex_init(&queue->lock, NULL);
 }
 
+<<<<<<< HEAD
+=======
+/* reader 线程把服务端消息推入队列，避免直接在后台线程里操作 ncurses。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void queue_push(IncomingQueue *queue, const TsMessage *message)
 {
     IncomingNode *node = calloc(1, sizeof(*node));
@@ -66,6 +88,10 @@ static void queue_push(IncomingQueue *queue, const TsMessage *message)
     pthread_mutex_unlock(&queue->lock);
 }
 
+<<<<<<< HEAD
+=======
+/* UI 主线程取出一条消息处理。取出的 TsMessage 由调用方负责 ts_message_free。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static bool queue_pop(IncomingQueue *queue, TsMessage *message)
 {
     pthread_mutex_lock(&queue->lock);
@@ -84,12 +110,20 @@ static bool queue_pop(IncomingQueue *queue, TsMessage *message)
     return true;
 }
 
+<<<<<<< HEAD
+=======
+/* TsClientState 的发送回调，最终走同一个 transport 发送 JSON Lines。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int send_from_state(const TsMessage *message, void *userdata)
 {
     TerminalClient *client = userdata;
     return ts_transport_send(&client->transport, message);
 }
 
+<<<<<<< HEAD
+=======
+/* 使用 getaddrinfo 支持域名、IPv4/IPv6，连接成功后返回 socket fd。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int connect_tcp(const char *host, int port)
 {
     char port_text[32];
@@ -118,6 +152,12 @@ static int connect_tcp(const char *host, int port)
     return fd;
 }
 
+<<<<<<< HEAD
+=======
+/* 后台读线程：持续接收服务端消息并交给主线程。
+ * 一旦连接断开，会把错误包装成 ERROR 消息进入同一个处理通道。
+ */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void *reader_main(void *arg)
 {
     TerminalClient *client = arg;
@@ -137,6 +177,7 @@ static void *reader_main(void *arg)
     return NULL;
 }
 
+<<<<<<< HEAD
 static size_t clamp_cursor(TerminalClient *client)
 {
     size_t len = ts_utf8_char_count(client->state.content);
@@ -146,6 +187,9 @@ static size_t clamp_cursor(TerminalClient *client)
     return len;
 }
 
+=======
+/* 根据 UTF-8 字符位置计算所在行号，用于滚动和光标定位。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int line_for_pos(const char *content, size_t pos)
 {
     size_t byte_limit = ts_utf8_byte_offset(content, pos);
@@ -158,20 +202,86 @@ static int line_for_pos(const char *content, size_t pos)
     return line;
 }
 
+<<<<<<< HEAD
+=======
+/* 在给定 [start, end) 范围内安全读取一个 UTF-8 字符长度，避免跨过行尾/缓冲区尾。 */
+static size_t bounded_utf8_char_bytes(const char *start, const char *end)
+{
+    size_t bytes = ts_utf8_char_bytes(start);
+    size_t remaining = (size_t)(end - start);
+    if (bytes == 0 || bytes > remaining) {
+        return 1;
+    }
+    return bytes;
+}
+
+/* 把一个 UTF-8 字符转换成 wchar_t 后计算终端显示宽度；中文通常宽度为 2。 */
+static int utf8_display_width(const char *start, size_t bytes)
+{
+    wchar_t wc;
+    mbstate_t state;
+    memset(&state, 0, sizeof(state));
+    size_t converted = mbrtowc(&wc, start, bytes, &state);
+    if (converted == (size_t)-1 || converted == (size_t)-2) {
+        return 1;
+    }
+    if (converted == 0) {
+        return 0;
+    }
+    int width = wcwidth(wc);
+    return width < 0 ? 1 : width;
+}
+
+/* 根据 UTF-8 字符位置计算屏幕列号，不能简单用字节数，否则中文会错位。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int col_for_pos(const char *content, size_t pos)
 {
     size_t byte_limit = ts_utf8_byte_offset(content, pos);
     int col = 0;
+<<<<<<< HEAD
     for (size_t i = 0; i < byte_limit && content[i] != '\0'; ++i) {
         if (content[i] == '\n') {
             col = 0;
         } else if (((unsigned char)content[i] & 0xC0u) != 0x80u) {
             col++;
+=======
+    for (size_t i = 0; i < byte_limit && content[i] != '\0';) {
+        if (content[i] == '\n') {
+            col = 0;
+            i++;
+        } else {
+            const char *start = content + i;
+            const char *end = content + byte_limit;
+            size_t bytes = bounded_utf8_char_bytes(start, end);
+            col += utf8_display_width(start, bytes);
+            i += bytes;
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
         }
     }
     return col;
 }
 
+<<<<<<< HEAD
+=======
+/* 渲染单行的可见片段。超过窗口宽度时停止，避免 ncurses 写出屏幕边界。 */
+static void render_line_segment(int row, int col, const char *start, const char *end, int max_cols)
+{
+    int used = 0;
+    const char *p = start;
+    while (p < end && used < max_cols) {
+        size_t bytes = bounded_utf8_char_bytes(p, end);
+        int width = utf8_display_width(p, bytes);
+        if (used + width > max_cols) {
+            break;
+        }
+        mvaddnstr(row, col + used, p, (int)bytes);
+        used += width;
+        p += bytes;
+    }
+}
+
+/* 渲染文档正文和行号，同时根据光标所在行调整滚动位置。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void render_lines(WINDOW *stdscr, TerminalClient *client)
 {
     int height;
@@ -196,7 +306,11 @@ static void render_lines(WINDOW *stdscr, TerminalClient *client)
                 snprintf(prefix, sizeof(prefix), "%4d ", line + 1);
                 mvaddnstr(row, 0, prefix, width - 1);
                 int body_width = width - (int)strlen(prefix) - 1;
+<<<<<<< HEAD
                 mvaddnstr(row, (int)strlen(prefix), start, body_width < 0 ? 0 : (p - start < body_width ? (int)(p - start) : body_width));
+=======
+                render_line_segment(row, (int)strlen(prefix), start, p, body_width < 0 ? 0 : body_width);
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
                 row++;
             }
             if (*p == '\0') {
@@ -208,6 +322,10 @@ static void render_lines(WINDOW *stdscr, TerminalClient *client)
     }
 }
 
+<<<<<<< HEAD
+=======
+/* 完整重绘终端界面：顶部状态栏、正文、底部快捷键和光标位置。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void render(TerminalClient *client)
 {
     erase();
@@ -240,20 +358,67 @@ static void render(TerminalClient *client)
     refresh();
 }
 
+<<<<<<< HEAD
+=======
+/* 估算一个尚未确认的本地操作对文档字符长度的影响。 */
+static long pending_operation_delta(const TsOperation *op)
+{
+    if (op->kind == TS_OP_INSERT) {
+        return 1;
+    }
+    if (op->kind == TS_OP_DELETE) {
+        return -1;
+    }
+    return 0;
+}
+
+/* 根据权威内容 + inflight + 队列估算最终长度，让光标能跟随连续输入移动。 */
+static size_t projected_content_length(TerminalClient *client)
+{
+    long len = (long)ts_utf8_char_count(client->state.content);
+    if (client->state.has_inflight) {
+        len += pending_operation_delta(&client->state.inflight.op);
+    }
+    for (size_t i = 0; i < client->state.queue_len; ++i) {
+        len += pending_operation_delta(&client->state.queue[i].op);
+    }
+    return len < 0 ? 0 : (size_t)len;
+}
+
+/* 服务端快照或远程操作可能缩短文档，因此每次处理消息后都要夹紧光标。 */
+static void clamp_cursor_to_projected_content(TerminalClient *client)
+{
+    size_t len = projected_content_length(client);
+    if (client->cursor_pos > len) {
+        client->cursor_pos = len;
+    }
+}
+
+/* 把后台线程积累的服务端消息全部处理掉，再进入下一轮渲染/按键读取。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void drain_messages(TerminalClient *client)
 {
     TsMessage message;
     while (queue_pop(&client->incoming, &message)) {
+<<<<<<< HEAD
         char *old = ts_strdup(client->state.content);
         ts_client_state_handle_message(&client->state, &message);
         if (old == NULL || strcmp(old, client->state.content) != 0) {
             clamp_cursor(client);
         }
         free(old);
+=======
+        ts_client_state_handle_message(&client->state, &message);
+        clamp_cursor_to_projected_content(client);
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
         ts_message_free(&message);
     }
 }
 
+<<<<<<< HEAD
+=======
+/* 在当前光标位置排队插入一个 UTF-8 字符，并让本地光标先向后移动。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void queue_insert(TerminalClient *client, const char *utf8)
 {
     TsOperation op;
@@ -262,6 +427,10 @@ static void queue_insert(TerminalClient *client, const char *utf8)
     client->cursor_pos++;
 }
 
+<<<<<<< HEAD
+=======
+/* 删除光标前一个字符。实际是否成功由服务端最终 ACK 的权威操作决定。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void delete_before_cursor(TerminalClient *client)
 {
     if (client->cursor_pos == 0) {
@@ -273,13 +442,23 @@ static void delete_before_cursor(TerminalClient *client)
     client->cursor_pos--;
 }
 
+<<<<<<< HEAD
+=======
+/* 处理 ncurses 读到的按键。
+ * 特殊键走 KEY_CODE_YES 分支，普通可打印字符会转成 UTF-8 后进入编辑队列。
+ */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void handle_key(TerminalClient *client, wint_t key, int key_result)
 {
     if (key_result == KEY_CODE_YES) {
         if (key == KEY_LEFT && client->cursor_pos > 0) {
             client->cursor_pos--;
         } else if (key == KEY_RIGHT) {
+<<<<<<< HEAD
             size_t len = ts_utf8_char_count(client->state.content);
+=======
+            size_t len = projected_content_length(client);
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
             if (client->cursor_pos < len) {
                 client->cursor_pos++;
             }
@@ -320,6 +499,10 @@ static void handle_key(TerminalClient *client, wint_t key, int key_result)
     }
 }
 
+<<<<<<< HEAD
+=======
+/* 简单命令行字符串参数解析。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static const char *parse_str_arg(int argc, char **argv, const char *name, const char *fallback)
 {
     for (int i = 1; i + 1 < argc; ++i) {
@@ -330,6 +513,10 @@ static const char *parse_str_arg(int argc, char **argv, const char *name, const 
     return fallback;
 }
 
+<<<<<<< HEAD
+=======
+/* 简单命令行整数参数解析。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int parse_int_arg(int argc, char **argv, const char *name, int fallback)
 {
     for (int i = 1; i + 1 < argc; ++i) {
@@ -340,6 +527,10 @@ static int parse_int_arg(int argc, char **argv, const char *name, int fallback)
     return fallback;
 }
 
+<<<<<<< HEAD
+=======
+/* 客户端入口：连接服务端、发送 JOIN、启动 reader 线程并进入 ncurses 主循环。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int main(int argc, char **argv)
 {
     setlocale(LC_ALL, "");
@@ -364,21 +555,34 @@ int main(int argc, char **argv)
     snprintf(join.type, sizeof(join.type), "JOIN");
     snprintf(join.client_id, sizeof(join.client_id), "%s", client.client_id);
     ts_transport_send(&client.transport, &join);
+<<<<<<< HEAD
+=======
+    /* 网络读取放到后台线程，UI 主线程保持响应键盘和绘制。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
     pthread_create(&client.reader, NULL, reader_main, &client);
 
     initscr();
     cbreak();
     noecho();
     keypad(stdscr, TRUE);
+<<<<<<< HEAD
     nodelay(stdscr, TRUE);
     curs_set(1);
+=======
+    timeout(50);
+    curs_set(1);
+    /* 主循环以较短 timeout 轮询键盘，同时定期处理网络消息并重绘。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
     while (client.running) {
         drain_messages(&client);
         render(&client);
         wint_t key = 0;
         int rc = get_wch(&key);
         if (rc == ERR) {
+<<<<<<< HEAD
             ts_msleep(25);
+=======
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
             continue;
         }
         handle_key(&client, key, rc);

@@ -2,6 +2,10 @@
 
 #include <arpa/inet.h>
 #include <errno.h>
+<<<<<<< HEAD
+=======
+#include <fcntl.h>
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <signal.h>
@@ -10,9 +14,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+<<<<<<< HEAD
 #include <sys/socket.h>
 #include <unistd.h>
 
+=======
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <unistd.h>
+
+/* 每个 TCP 连接对应一个客户端结构，由独立线程负责读取和分发消息。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct TsClientConnection {
     char client_id[TS_MAX_CLIENT_ID];
     char address[128];
@@ -22,6 +34,12 @@ typedef struct TsClientConnection {
     struct TsClientConnection *next;
 } TsClientConnection;
 
+<<<<<<< HEAD
+=======
+/* 服务端全局状态。
+ * document 是唯一权威文档；clients 链表记录当前在线连接；autosave 负责异步落盘。
+ */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 typedef struct TsServer {
     char host[128];
     int port;
@@ -38,6 +56,10 @@ typedef struct TsServer {
     TsAutosaveProcess autosave;
 } TsServer;
 
+<<<<<<< HEAD
+=======
+/* 信号处理函数只设置标志位，真正清理工作在主循环中完成。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static volatile sig_atomic_t g_stop_requested = 0;
 static TsServer *g_server = NULL;
 
@@ -47,6 +69,34 @@ static void signal_stop(int signum)
     g_stop_requested = 1;
 }
 
+<<<<<<< HEAD
+=======
+/* 安装 Ctrl-C/SIGTERM 退出处理，并忽略 SIGPIPE，避免断开连接上的写入杀死进程。 */
+static int install_signal_handlers(void)
+{
+    struct sigaction action;
+    memset(&action, 0, sizeof(action));
+    action.sa_handler = signal_stop;
+    sigemptyset(&action.sa_mask);
+    if (sigaction(SIGINT, &action, NULL) != 0) {
+        return -1;
+    }
+    if (sigaction(SIGTERM, &action, NULL) != 0) {
+        return -1;
+    }
+
+    struct sigaction ignore;
+    memset(&ignore, 0, sizeof(ignore));
+    ignore.sa_handler = SIG_IGN;
+    sigemptyset(&ignore.sa_mask);
+    if (sigaction(SIGPIPE, &ignore, NULL) != 0) {
+        return -1;
+    }
+    return 0;
+}
+
+/* 服务端终端输出统一走这里，确保每条事件立即 flush。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void print_event(const char *message)
 {
     if (message != NULL && message[0] != '\0') {
@@ -55,6 +105,10 @@ static void print_event(const char *message)
     }
 }
 
+<<<<<<< HEAD
+=======
+/* 事件既写入 JSON 日志，也格式化成人类可读文本打印到终端。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void server_log(TsServer *server, const char *entry_json)
 {
     char line[512];
@@ -63,6 +117,10 @@ static void server_log(TsServer *server, const char *entry_json)
     print_event(line);
 }
 
+<<<<<<< HEAD
+=======
+/* 调用方已经持有 clients_lock，因此函数名带 locked，避免误以为这里会自己加锁。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static bool client_id_exists_locked(TsServer *server, const char *client_id)
 {
     for (TsClientConnection *client = server->clients; client != NULL; client = client->next) {
@@ -73,6 +131,12 @@ static bool client_id_exists_locked(TsServer *server, const char *client_id)
     return false;
 }
 
+<<<<<<< HEAD
+=======
+/* 为新连接选择客户端 ID。
+ * 如果请求的 ID 未被占用就尊重请求，否则按 u1/u2/... 自动分配。
+ */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void choose_client_id(TsServer *server, const char *requested, char *out, size_t out_size)
 {
     pthread_mutex_lock(&server->clients_lock);
@@ -86,6 +150,10 @@ static void choose_client_id(TsServer *server, const char *requested, char *out,
     pthread_mutex_unlock(&server->clients_lock);
 }
 
+<<<<<<< HEAD
+=======
+/* 把客户端加入在线链表。链表只在持锁时修改。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void register_client(TsServer *server, TsClientConnection *client)
 {
     pthread_mutex_lock(&server->clients_lock);
@@ -94,6 +162,10 @@ static void register_client(TsServer *server, TsClientConnection *client)
     pthread_mutex_unlock(&server->clients_lock);
 }
 
+<<<<<<< HEAD
+=======
+/* 客户端线程退出前从在线链表移除自己。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void unregister_client(TsServer *server, const char *client_id)
 {
     pthread_mutex_lock(&server->clients_lock);
@@ -108,6 +180,10 @@ static void unregister_client(TsServer *server, const char *client_id)
     pthread_mutex_unlock(&server->clients_lock);
 }
 
+<<<<<<< HEAD
+=======
+/* 广播消息给所有在线客户端，可排除提交者，避免对方重复收到自己的 REMOTE_OP。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void broadcast_message(TsServer *server, const TsMessage *message, const char *exclude_client_id)
 {
     pthread_mutex_lock(&server->clients_lock);
@@ -120,6 +196,12 @@ static void broadcast_message(TsServer *server, const TsMessage *message, const 
     pthread_mutex_unlock(&server->clients_lock);
 }
 
+<<<<<<< HEAD
+=======
+/* 处理单条客户端消息。
+ * OP 会进入文档临界区并产生 ACK/广播/保存快照；其他消息多是控制类请求。
+ */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void dispatch_message(TsClientConnection *client, const TsMessage *message)
 {
     TsServer *server = client->server;
@@ -132,6 +214,10 @@ static void dispatch_message(TsClientConnection *client, const TsMessage *messag
             message->has_op ? &message->op : NULL
         );
         if (result.status == TS_PROCESS_OK) {
+<<<<<<< HEAD
+=======
+            /* 文档修改成功后，把最新快照交给自动保存进程，并把最终操作广播出去。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
             ts_autosave_send_snapshot(server->autosave.write_fd, result.snapshot_content, result.snapshot_version);
             server_log(server, result.log_json);
             if (result.has_ack) {
@@ -147,6 +233,10 @@ static void dispatch_message(TsClientConnection *client, const TsMessage *messag
         }
         ts_process_result_free(&result);
     } else if (strcmp(message->type, "SAVE") == 0) {
+<<<<<<< HEAD
+=======
+        /* 手动保存只排队给子进程执行，服务端线程不直接写磁盘。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
         TsMessage snapshot;
         ts_document_snapshot(&server->document, &snapshot);
         ts_autosave_send_save_now(server->autosave.write_fd, snapshot.content, snapshot.version);
@@ -160,6 +250,10 @@ static void dispatch_message(TsClientConnection *client, const TsMessage *messag
         ts_transport_send(&client->transport, &response);
         ts_message_free(&snapshot);
     } else if (strcmp(message->type, "REQUEST_DOC") == 0) {
+<<<<<<< HEAD
+=======
+        /* 客户端检测到版本缺口或收到 RESYNC_REQUIRED 后，会请求完整文档快照。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
         TsMessage snapshot;
         ts_document_snapshot(&server->document, &snapshot);
         ts_transport_send(&client->transport, &snapshot);
@@ -178,6 +272,12 @@ static void dispatch_message(TsClientConnection *client, const TsMessage *messag
     }
 }
 
+<<<<<<< HEAD
+=======
+/* 客户端工作线程。
+ * 第一个消息必须是 JOIN；握手成功后发送 WELCOME 和 DOC_STATE，然后持续读消息直到断开。
+ */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void *client_thread_main(void *arg)
 {
     TsClientConnection *client = arg;
@@ -234,6 +334,10 @@ done:
     return NULL;
 }
 
+<<<<<<< HEAD
+=======
+/* 简单命令行整数参数解析，未知或缺失时使用 fallback。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int parse_int_arg(int argc, char **argv, const char *name, int fallback)
 {
     for (int i = 1; i + 1 < argc; ++i) {
@@ -244,6 +348,10 @@ static int parse_int_arg(int argc, char **argv, const char *name, int fallback)
     return fallback;
 }
 
+<<<<<<< HEAD
+=======
+/* 简单命令行字符串参数解析。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static const char *parse_str_arg(int argc, char **argv, const char *name, const char *fallback)
 {
     for (int i = 1; i + 1 < argc; ++i) {
@@ -254,6 +362,10 @@ static const char *parse_str_arg(int argc, char **argv, const char *name, const 
     return fallback;
 }
 
+<<<<<<< HEAD
+=======
+/* 创建监听 socket，并设置为非阻塞，主循环通过 select 周期性检查退出标志。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int server_listen(TsServer *server)
 {
     int fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -286,10 +398,43 @@ static int server_listen(TsServer *server)
         close(fd);
         return -1;
     }
+<<<<<<< HEAD
+=======
+    int flags = fcntl(fd, F_GETFL, 0);
+    if (flags < 0 || fcntl(fd, F_SETFL, flags | O_NONBLOCK) != 0) {
+        perror("fcntl");
+        close(fd);
+        return -1;
+    }
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
     server->server_fd = fd;
     return 0;
 }
 
+<<<<<<< HEAD
+=======
+/* 等待新连接最多 200ms，这样 Ctrl-C 或 SIGTERM 能被主循环及时响应。 */
+static int wait_for_client(TsServer *server)
+{
+    fd_set set;
+    FD_ZERO(&set);
+    FD_SET(server->server_fd, &set);
+    struct timeval tv;
+    tv.tv_sec = 0;
+    tv.tv_usec = 200000;
+    int ready = select(server->server_fd + 1, &set, NULL, NULL, &tv);
+    if (ready < 0) {
+        if (errno == EINTR) {
+            return 0;
+        }
+        perror("select");
+        return -1;
+    }
+    return ready > 0 && FD_ISSET(server->server_fd, &set);
+}
+
+/* 关闭服务端：停止接收新连接、保存最终文档、停止自动保存子进程。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void server_shutdown(TsServer *server)
 {
     if (server->stopping) {
@@ -309,6 +454,10 @@ static void server_shutdown(TsServer *server)
     ts_stop_autosave_process(&server->autosave);
 }
 
+<<<<<<< HEAD
+=======
+/* 服务端入口：加载初始文件、启动保存进程、监听连接并为每个客户端创建线程。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int main(int argc, char **argv)
 {
     TsServer server;
@@ -325,6 +474,15 @@ int main(int argc, char **argv)
     server.next_client_number = 1;
     pthread_mutex_init(&server.clients_lock, NULL);
 
+<<<<<<< HEAD
+=======
+    if (install_signal_handlers() != 0) {
+        perror("sigaction");
+        pthread_mutex_destroy(&server.clients_lock);
+        return 1;
+    }
+
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
     char *initial_text = ts_read_file_text(server.document_path);
     ts_document_init(&server.document, initial_text ? initial_text : "", (size_t)server.history_limit);
     free(initial_text);
@@ -344,18 +502,39 @@ int main(int argc, char **argv)
     }
 
     g_server = &server;
+<<<<<<< HEAD
     signal(SIGINT, signal_stop);
     signal(SIGTERM, signal_stop);
+=======
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 
     printf("Collaborative server listening on %s:%d\n", server.host, server.port);
     printf("Document: %s\n", server.document_path);
     fflush(stdout);
 
+<<<<<<< HEAD
     while (!server.stopping && !g_stop_requested) {
+=======
+    /* 主线程只负责 accept；每个连接的协议处理在独立线程中进行。 */
+    while (!server.stopping && !g_stop_requested) {
+        int ready = wait_for_client(&server);
+        if (ready < 0) {
+            break;
+        }
+        if (ready == 0) {
+            continue;
+        }
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
         struct sockaddr_in peer;
         socklen_t peer_len = sizeof(peer);
         int client_fd = accept(server.server_fd, (struct sockaddr *)&peer, &peer_len);
         if (client_fd < 0) {
+<<<<<<< HEAD
+=======
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                continue;
+            }
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
             if (errno == EINTR) {
                 continue;
             }
@@ -364,6 +543,10 @@ int main(int argc, char **argv)
         }
         int yes = 1;
         setsockopt(client_fd, IPPROTO_TCP, TCP_NODELAY, &yes, sizeof(yes));
+<<<<<<< HEAD
+=======
+        /* 连接对象交给客户端线程，线程结束时会负责释放。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
         TsClientConnection *client = calloc(1, sizeof(*client));
         if (client == NULL) {
             close(client_fd);

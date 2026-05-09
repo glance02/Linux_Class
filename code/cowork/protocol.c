@@ -14,6 +14,10 @@ typedef struct {
     size_t cap;
 } TsStringBuilder;
 
+<<<<<<< HEAD
+=======
+/* 简单动态字符串，供 JSON 编码/解析时逐步追加内容。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int sb_reserve(TsStringBuilder *sb, size_t extra)
 {
     if (sb->len + extra + 1 <= sb->cap) {
@@ -32,6 +36,10 @@ static int sb_reserve(TsStringBuilder *sb, size_t extra)
     return 0;
 }
 
+<<<<<<< HEAD
+=======
+/* 追加普通字符串，内部会保证末尾始终有 '\0'，方便后续作为 C 字符串使用。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int sb_append(TsStringBuilder *sb, const char *text)
 {
     size_t len = strlen(text);
@@ -44,6 +52,10 @@ static int sb_append(TsStringBuilder *sb, const char *text)
     return 0;
 }
 
+<<<<<<< HEAD
+=======
+/* 追加格式化文本。先用 vsnprintf 计算长度，再一次性扩容避免截断。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int sb_appendf(TsStringBuilder *sb, const char *fmt, ...)
 {
     va_list args;
@@ -66,6 +78,10 @@ static int sb_appendf(TsStringBuilder *sb, const char *fmt, ...)
     return 0;
 }
 
+<<<<<<< HEAD
+=======
+/* JSON 字符串转义：处理引号、反斜杠、换行等协议中最容易破坏一行消息的字符。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static char *json_escape(const char *value)
 {
     TsStringBuilder sb = {0};
@@ -104,6 +120,10 @@ static char *json_escape(const char *value)
     return sb.data;
 }
 
+<<<<<<< HEAD
+=======
+/* 写字段名前处理逗号。first 由调用方维护，避免编码时产生尾逗号。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void append_json_field_prefix(TsStringBuilder *sb, bool *first, const char *name)
 {
     if (!*first) {
@@ -113,6 +133,10 @@ static void append_json_field_prefix(TsStringBuilder *sb, bool *first, const cha
     sb_appendf(sb, "\"%s\":", name);
 }
 
+<<<<<<< HEAD
+=======
+/* 空字符串字段不会编码进消息，减少网络包体积，也让默认值保持简单。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void append_string_field(TsStringBuilder *sb, bool *first, const char *name, const char *value)
 {
     if (value == NULL || value[0] == '\0') {
@@ -124,6 +148,10 @@ static void append_string_field(TsStringBuilder *sb, bool *first, const char *na
     free(escaped);
 }
 
+<<<<<<< HEAD
+=======
+/* 版本号字段用 -1 表示未设置，因此只编码非负值。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void append_int_field(TsStringBuilder *sb, bool *first, const char *name, int value)
 {
     if (value < 0) {
@@ -133,6 +161,10 @@ static void append_int_field(TsStringBuilder *sb, bool *first, const char *name,
     sb_appendf(sb, "%d", value);
 }
 
+<<<<<<< HEAD
+=======
+/* 把编辑操作编码成嵌套对象。insert 才需要 char，NOOP 可额外携带 reason。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static void append_operation_field(TsStringBuilder *sb, bool *first, const char *name, const TsOperation *op)
 {
     char *escaped_char = json_escape(op->ch);
@@ -150,6 +182,10 @@ static void append_operation_field(TsStringBuilder *sb, bool *first, const char 
     free(escaped_reason);
 }
 
+<<<<<<< HEAD
+=======
+/* 消息初始化时把版本字段设为 -1，后续编码即可区分“未设置”和版本 0。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_message_init(TsMessage *message)
 {
     memset(message, 0, sizeof(*message));
@@ -159,6 +195,10 @@ void ts_message_init(TsMessage *message)
     message->history_start_version = -1;
 }
 
+<<<<<<< HEAD
+=======
+/* 当前只有 content 是动态分配字段，释放后置空便于重复调用。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_message_free(TsMessage *message)
 {
     if (message != NULL) {
@@ -167,6 +207,10 @@ void ts_message_free(TsMessage *message)
     }
 }
 
+<<<<<<< HEAD
+=======
+/* 编码为一行 JSON，并以 '\n' 结尾，和 ts_transport_recv 的按行解析配套。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 char *ts_encode_message(const TsMessage *message)
 {
     TsStringBuilder sb = {0};
@@ -197,6 +241,10 @@ char *ts_encode_message(const TsMessage *message)
     return sb.data;
 }
 
+<<<<<<< HEAD
+=======
+/* 解析辅助：跳过空白字符，允许收到的 JSON 行前后带少量空格。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static const char *skip_ws(const char *p)
 {
     while (*p != '\0' && isspace((unsigned char)*p)) {
@@ -205,6 +253,12 @@ static const char *skip_ws(const char *p)
     return p;
 }
 
+<<<<<<< HEAD
+=======
+/* 在一个扁平 JSON 对象中查找字段值起点。
+ * 这是项目自用的轻量解析器，不是通用 JSON 库；输入来自本项目编码器或受控客户端。
+ */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static const char *find_key(const char *json, const char *key)
 {
     char pattern[96];
@@ -220,6 +274,10 @@ static const char *find_key(const char *json, const char *key)
     return NULL;
 }
 
+<<<<<<< HEAD
+=======
+/* 解析 \u00xx 时把单个十六进制字符转成数值。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int hex_value(char ch)
 {
     if (ch >= '0' && ch <= '9') {
@@ -234,6 +292,12 @@ static int hex_value(char ch)
     return -1;
 }
 
+<<<<<<< HEAD
+=======
+/* 解析 JSON 字符串并分配新内存。
+ * 当前只完整还原 ASCII 范围的 \u 转义；普通 UTF-8 字节会原样保留。
+ */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static char *parse_json_string_alloc(const char *start, const char **end_out)
 {
     if (*start != '"') {
@@ -300,6 +364,10 @@ static char *parse_json_string_alloc(const char *start, const char **end_out)
     return NULL;
 }
 
+<<<<<<< HEAD
+=======
+/* 读取字符串字段到固定缓冲区，超长内容会被 snprintf 安全截断。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static bool json_get_string(const char *json, const char *key, char *out, size_t out_size)
 {
     const char *value = find_key(json, key);
@@ -315,6 +383,10 @@ static bool json_get_string(const char *json, const char *key, char *out, size_t
     return true;
 }
 
+<<<<<<< HEAD
+=======
+/* content 可能是整份文档，必须动态分配，不能塞进固定大小字段。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static bool json_get_content(const char *json, const char *key, char **out)
 {
     const char *value = find_key(json, key);
@@ -329,6 +401,10 @@ static bool json_get_content(const char *json, const char *key, char **out)
     return true;
 }
 
+<<<<<<< HEAD
+=======
+/* 读取整数版本号。调用方会保留初始化时的 -1，表示字段不存在。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static bool json_get_int(const char *json, const char *key, int *out)
 {
     const char *value = find_key(json, key);
@@ -346,6 +422,12 @@ static bool json_get_int(const char *json, const char *key, int *out)
     return true;
 }
 
+<<<<<<< HEAD
+=======
+/* 截取嵌套对象字段，例如 op/original_op。
+ * 扫描时会跟踪字符串状态，避免把字符串里的花括号误认为对象边界。
+ */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static char *json_get_object(const char *json, const char *key)
 {
     const char *value = find_key(json, key);
@@ -389,6 +471,10 @@ static char *json_get_object(const char *json, const char *key)
     return NULL;
 }
 
+<<<<<<< HEAD
+=======
+/* 将 op 对象还原为 TsOperation，并在这里完成必填字段和 UTF-8 单字符校验。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 static int parse_operation_object(const char *json, TsOperation *op, char *error, size_t error_size)
 {
     char kind[TS_MAX_TYPE] = "";
@@ -418,6 +504,10 @@ static int parse_operation_object(const char *json, TsOperation *op, char *error
     return 0;
 }
 
+<<<<<<< HEAD
+=======
+/* 解码一行协议消息。出错时 error 会带上便于发送 ERROR 或测试断言的信息。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_decode_message(const char *line, TsMessage *message, char *error, size_t error_size)
 {
     ts_message_init(message);
@@ -460,6 +550,10 @@ int ts_decode_message(const char *line, TsMessage *message, char *error, size_t 
     return 0;
 }
 
+<<<<<<< HEAD
+=======
+/* 初始化传输对象；接收缓冲区按最大行长度一次分配，避免频繁 realloc。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_transport_init(TsTransport *transport, int fd)
 {
     transport->fd = fd;
@@ -468,6 +562,10 @@ void ts_transport_init(TsTransport *transport, int fd)
     pthread_mutex_init(&transport->send_lock, NULL);
 }
 
+<<<<<<< HEAD
+=======
+/* 销毁传输层资源。fd 的关闭由调用方负责，以便明确控制连接生命周期。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 void ts_transport_destroy(TsTransport *transport)
 {
     if (transport == NULL) {
@@ -479,6 +577,10 @@ void ts_transport_destroy(TsTransport *transport)
     pthread_mutex_destroy(&transport->send_lock);
 }
 
+<<<<<<< HEAD
+=======
+/* 发送时加锁，保证同一个 socket 被多个线程写入时仍然是一条完整 JSON 行。 */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_transport_send(TsTransport *transport, const TsMessage *message)
 {
     char *encoded = ts_encode_message(message);
@@ -492,6 +594,12 @@ int ts_transport_send(TsTransport *transport, const TsMessage *message)
     return rc;
 }
 
+<<<<<<< HEAD
+=======
+/* 从 socket 中读取一整行 JSON。
+ * 如果一次 read 读到多条消息，剩余字节会留在 buffer 中供下次调用继续解析。
+ */
+>>>>>>> 3554b095a6dd8b680c68b535d0d32507d5098e5e
 int ts_transport_recv(TsTransport *transport, TsMessage *message, char *error, size_t error_size)
 {
     while (true) {
