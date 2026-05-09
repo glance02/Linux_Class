@@ -19,17 +19,22 @@
 #define CTRL_Q 17
 #define CTRL_S 19
 
+/* 后台网络线程收到的消息节点。消息内容按值搬进队列，主线程稍后处理。 */
 typedef struct IncomingNode {
     TsMessage message;
     struct IncomingNode *next;
 } IncomingNode;
 
+/* 简单线程安全队列：reader 线程 push，UI 主线程 pop。 */
 typedef struct {
     pthread_mutex_t lock;
     IncomingNode *head;
     IncomingNode *tail;
 } IncomingQueue;
 
+/* 终端客户端总状态。
+ * state 负责协议和编辑队列；cursor_pos/scroll_line 负责本地 UI 视图。
+ */
 typedef struct {
     char host[128];
     int port;
@@ -43,12 +48,14 @@ typedef struct {
     int scroll_line;
 } TerminalClient;
 
+/* 初始化入站消息队列。 */
 static void queue_init(IncomingQueue *queue)
 {
     memset(queue, 0, sizeof(*queue));
     pthread_mutex_init(&queue->lock, NULL);
 }
 
+/* reader 线程把服务端消息推入队列，避免直接在后台线程里操作 ncurses。 */
 static void queue_push(IncomingQueue *queue, const TsMessage *message)
 {
     IncomingNode *node = calloc(1, sizeof(*node));
@@ -66,6 +73,7 @@ static void queue_push(IncomingQueue *queue, const TsMessage *message)
     pthread_mutex_unlock(&queue->lock);
 }
 
+/* UI 主线程取出一条消息处理。取出的 TsMessage 由调用方负责 ts_message_free。 */
 static bool queue_pop(IncomingQueue *queue, TsMessage *message)
 {
     pthread_mutex_lock(&queue->lock);
@@ -84,12 +92,14 @@ static bool queue_pop(IncomingQueue *queue, TsMessage *message)
     return true;
 }
 
+/* TsClientState 的发送回调，最终走同一个 transport 发送 JSON Lines。 */
 static int send_from_state(const TsMessage *message, void *userdata)
 {
     TerminalClient *client = userdata;
     return ts_transport_send(&client->transport, message);
 }
 
+/* 使用 getaddrinfo 支持域名、IPv4/IPv6，连接成功后返回 socket fd。 */
 static int connect_tcp(const char *host, int port)
 {
     char port_text[32];
@@ -118,6 +128,9 @@ static int connect_tcp(const char *host, int port)
     return fd;
 }
 
+/* 后台读线程：持续接收服务端消息并交给主线程。
+ * 一旦连接断开，会把错误包装成 ERROR 消息进入同一个处理通道。
+ */
 static void *reader_main(void *arg)
 {
     TerminalClient *client = arg;
@@ -137,6 +150,7 @@ static void *reader_main(void *arg)
     return NULL;
 }
 
+/* 根据 UTF-8 字符位置计算所在行号，用于滚动和光标定位。 */
 static int line_for_pos(const char *content, size_t pos)
 {
     size_t byte_limit = ts_utf8_byte_offset(content, pos);
@@ -149,6 +163,7 @@ static int line_for_pos(const char *content, size_t pos)
     return line;
 }
 
+/* 在给定 [start, end) 范围内安全读取一个 UTF-8 字符长度，避免跨过行尾/缓冲区尾。 */
 static size_t bounded_utf8_char_bytes(const char *start, const char *end)
 {
     size_t bytes = ts_utf8_char_bytes(start);
@@ -159,6 +174,7 @@ static size_t bounded_utf8_char_bytes(const char *start, const char *end)
     return bytes;
 }
 
+/* 把一个 UTF-8 字符转换成 wchar_t 后计算终端显示宽度；中文通常宽度为 2。 */
 static int utf8_display_width(const char *start, size_t bytes)
 {
     wchar_t wc;
@@ -175,6 +191,7 @@ static int utf8_display_width(const char *start, size_t bytes)
     return width < 0 ? 1 : width;
 }
 
+/* 根据 UTF-8 字符位置计算屏幕列号，不能简单用字节数，否则中文会错位。 */
 static int col_for_pos(const char *content, size_t pos)
 {
     size_t byte_limit = ts_utf8_byte_offset(content, pos);
@@ -194,6 +211,7 @@ static int col_for_pos(const char *content, size_t pos)
     return col;
 }
 
+/* 渲染单行的可见片段。超过窗口宽度时停止，避免 ncurses 写出屏幕边界。 */
 static void render_line_segment(int row, int col, const char *start, const char *end, int max_cols)
 {
     int used = 0;
@@ -210,6 +228,7 @@ static void render_line_segment(int row, int col, const char *start, const char 
     }
 }
 
+/* 渲染文档正文和行号，同时根据光标所在行调整滚动位置。 */
 static void render_lines(WINDOW *stdscr, TerminalClient *client)
 {
     int height;
@@ -246,6 +265,7 @@ static void render_lines(WINDOW *stdscr, TerminalClient *client)
     }
 }
 
+/* 完整重绘终端界面：顶部状态栏、正文、底部快捷键和光标位置。 */
 static void render(TerminalClient *client)
 {
     erase();
@@ -278,6 +298,7 @@ static void render(TerminalClient *client)
     refresh();
 }
 
+/* 估算一个尚未确认的本地操作对文档字符长度的影响。 */
 static long pending_operation_delta(const TsOperation *op)
 {
     if (op->kind == TS_OP_INSERT) {
@@ -289,6 +310,7 @@ static long pending_operation_delta(const TsOperation *op)
     return 0;
 }
 
+/* 根据权威内容 + inflight + 队列估算最终长度，让光标能跟随连续输入移动。 */
 static size_t projected_content_length(TerminalClient *client)
 {
     long len = (long)ts_utf8_char_count(client->state.content);
@@ -301,6 +323,7 @@ static size_t projected_content_length(TerminalClient *client)
     return len < 0 ? 0 : (size_t)len;
 }
 
+/* 服务端快照或远程操作可能缩短文档，因此每次处理消息后都要夹紧光标。 */
 static void clamp_cursor_to_projected_content(TerminalClient *client)
 {
     size_t len = projected_content_length(client);
@@ -309,6 +332,7 @@ static void clamp_cursor_to_projected_content(TerminalClient *client)
     }
 }
 
+/* 把后台线程积累的服务端消息全部处理掉，再进入下一轮渲染/按键读取。 */
 static void drain_messages(TerminalClient *client)
 {
     TsMessage message;
@@ -319,6 +343,7 @@ static void drain_messages(TerminalClient *client)
     }
 }
 
+/* 在当前光标位置排队插入一个 UTF-8 字符，并让本地光标先向后移动。 */
 static void queue_insert(TerminalClient *client, const char *utf8)
 {
     TsOperation op;
@@ -327,6 +352,7 @@ static void queue_insert(TerminalClient *client, const char *utf8)
     client->cursor_pos++;
 }
 
+/* 删除光标前一个字符。实际是否成功由服务端最终 ACK 的权威操作决定。 */
 static void delete_before_cursor(TerminalClient *client)
 {
     if (client->cursor_pos == 0) {
@@ -338,6 +364,9 @@ static void delete_before_cursor(TerminalClient *client)
     client->cursor_pos--;
 }
 
+/* 处理 ncurses 读到的按键。
+ * 特殊键走 KEY_CODE_YES 分支，普通可打印字符会转成 UTF-8 后进入编辑队列。
+ */
 static void handle_key(TerminalClient *client, wint_t key, int key_result)
 {
     if (key_result == KEY_CODE_YES) {
@@ -385,6 +414,7 @@ static void handle_key(TerminalClient *client, wint_t key, int key_result)
     }
 }
 
+/* 简单命令行字符串参数解析。 */
 static const char *parse_str_arg(int argc, char **argv, const char *name, const char *fallback)
 {
     for (int i = 1; i + 1 < argc; ++i) {
@@ -395,6 +425,7 @@ static const char *parse_str_arg(int argc, char **argv, const char *name, const 
     return fallback;
 }
 
+/* 简单命令行整数参数解析。 */
 static int parse_int_arg(int argc, char **argv, const char *name, int fallback)
 {
     for (int i = 1; i + 1 < argc; ++i) {
@@ -405,6 +436,7 @@ static int parse_int_arg(int argc, char **argv, const char *name, int fallback)
     return fallback;
 }
 
+/* 客户端入口：连接服务端、发送 JOIN、启动 reader 线程并进入 ncurses 主循环。 */
 int main(int argc, char **argv)
 {
     setlocale(LC_ALL, "");
@@ -429,6 +461,7 @@ int main(int argc, char **argv)
     snprintf(join.type, sizeof(join.type), "JOIN");
     snprintf(join.client_id, sizeof(join.client_id), "%s", client.client_id);
     ts_transport_send(&client.transport, &join);
+    /* 网络读取放到后台线程，UI 主线程保持响应键盘和绘制。 */
     pthread_create(&client.reader, NULL, reader_main, &client);
 
     initscr();
@@ -437,6 +470,7 @@ int main(int argc, char **argv)
     keypad(stdscr, TRUE);
     timeout(50);
     curs_set(1);
+    /* 主循环以较短 timeout 轮询键盘，同时定期处理网络消息并重绘。 */
     while (client.running) {
         drain_messages(&client);
         render(&client);

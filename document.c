@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* 构造发给客户端的错误消息，op_id 用于让客户端知道哪次操作失败。 */
 static void set_message_error(TsMessage *message, const char *op_id, const char *text)
 {
     ts_message_init(message);
@@ -12,6 +13,7 @@ static void set_message_error(TsMessage *message, const char *op_id, const char 
     snprintf(message->message, sizeof(message->message), "%s", text);
 }
 
+/* 初始化处理结果，内部消息也先置为默认值，方便后续只填需要的字段。 */
 void ts_process_result_init(TsProcessResult *result)
 {
     memset(result, 0, sizeof(*result));
@@ -21,6 +23,7 @@ void ts_process_result_init(TsProcessResult *result)
     ts_message_init(&result->remote);
 }
 
+/* 释放处理结果中可能持有的动态内存，尤其是 DOC_STATE 快照和 snapshot_content。 */
 void ts_process_result_free(TsProcessResult *result)
 {
     if (result == NULL) {
@@ -35,6 +38,7 @@ void ts_process_result_free(TsProcessResult *result)
     result->snapshot_content = NULL;
 }
 
+/* 创建服务端权威文档。history_limit 为 0 时使用默认上限，防止历史无限增长。 */
 void ts_document_init(TsDocument *doc, const char *initial_text, size_t history_limit)
 {
     memset(doc, 0, sizeof(*doc));
@@ -46,6 +50,7 @@ void ts_document_init(TsDocument *doc, const char *initial_text, size_t history_
     pthread_mutex_init(&doc->lock, NULL);
 }
 
+/* 销毁文档及其历史，并清空结构体，避免后续误用旧指针。 */
 void ts_document_destroy(TsDocument *doc)
 {
     if (doc == NULL) {
@@ -57,6 +62,7 @@ void ts_document_destroy(TsDocument *doc)
     memset(doc, 0, sizeof(*doc));
 }
 
+/* 返回当前文档内容副本。调用方拿到的是独立内存，不需要继续持有文档锁。 */
 char *ts_document_content(TsDocument *doc)
 {
     pthread_mutex_lock(&doc->lock);
@@ -65,6 +71,7 @@ char *ts_document_content(TsDocument *doc)
     return copy;
 }
 
+/* 生成 DOC_STATE 快照，用于新客户端加入或客户端需要重同步。 */
 void ts_document_snapshot(TsDocument *doc, TsMessage *snapshot)
 {
     ts_message_init(snapshot);
@@ -76,6 +83,12 @@ void ts_document_snapshot(TsDocument *doc, TsMessage *snapshot)
     pthread_mutex_unlock(&doc->lock);
 }
 
+/* 将一个操作转换到“已经应用 previous 之后”的坐标系。
+ * 规则说明：
+ * - 前面插入字符会把后续同位置/更后位置的操作右移；
+ * - 前面删除字符会把后续位置左移；
+ * - 两个删除命中同一个字符时，后来的删除变成 NOOP。
+ */
 TsOperation ts_transform_against(const TsOperation *op, const TsOperation *previous)
 {
     TsOperation result = ts_operation_clone(op);
@@ -102,6 +115,9 @@ TsOperation ts_transform_against(const TsOperation *op, const TsOperation *previ
     return result;
 }
 
+/* 在真正应用前做最后规范化：
+ * 插入越界夹到末尾，删除越界转成 NOOP，无效操作也转成 NOOP。
+ */
 static TsOperation normalize_for_apply(TsDocument *doc, const TsOperation *op)
 {
     size_t text_len = ts_utf8_char_count(doc->text);
@@ -124,6 +140,7 @@ static TsOperation normalize_for_apply(TsDocument *doc, const TsOperation *op)
     return ts_operation_noop(op, "invalid operation");
 }
 
+/* 追加服务端历史。超过上限时丢弃最旧条目，并更新可支持的最早 base_version。 */
 static void append_history(TsDocument *doc, const TsHistoryEntry *entry)
 {
     if (doc->history_count == doc->history_limit) {
@@ -141,6 +158,7 @@ static void append_history(TsDocument *doc, const TsHistoryEntry *entry)
     }
 }
 
+/* 生成一条 JSON Lines 日志，记录原始操作、转换后操作和文档长度，供服务端终端和日志文件使用。 */
 static void build_operation_log(
     char *out,
     size_t out_size,
@@ -179,6 +197,10 @@ static void build_operation_log(
     );
 }
 
+/* 处理一次客户端提交的编辑操作。
+ * 这是服务端文档的临界区：进入锁后确定全局顺序，随后基于历史做 OT 转换，
+ * 最后一次性产出 ACK、REMOTE_OP、保存快照和日志事件。
+ */
 TsProcessResult ts_document_process_operation(
     TsDocument *doc,
     const char *client_id,
@@ -190,6 +212,7 @@ TsProcessResult ts_document_process_operation(
     TsProcessResult result;
     ts_process_result_init(&result);
 
+    /* 协议层已经做过基本解析，这里再守住文档层的操作合法性。 */
     if (op == NULL || op->kind == TS_OP_INVALID) {
         result.status = TS_PROCESS_ERROR;
         result.message_count = 1;
@@ -204,6 +227,7 @@ TsProcessResult ts_document_process_operation(
     }
 
     pthread_mutex_lock(&doc->lock);
+    /* 客户端版本太旧时历史已经被裁剪，太新则说明客户端状态不可信，二者都要求重同步。 */
     if (base_version < doc->history_start_version || base_version > doc->version) {
         result.status = TS_PROCESS_RESYNC;
         result.message_count = 2;
@@ -228,6 +252,7 @@ TsProcessResult ts_document_process_operation(
         return result;
     }
 
+    /* 从客户端的 base_version 开始，把之后每一条服务端历史操作折叠到当前操作上。 */
     TsOperation transformed = ts_operation_clone(op);
     for (size_t i = 0; i < doc->history_count; ++i) {
         if (doc->history[i].server_version > base_version) {
@@ -237,6 +262,7 @@ TsProcessResult ts_document_process_operation(
     transformed = normalize_for_apply(doc, &transformed);
     doc->version++;
     int server_version = doc->version;
+    /* 即使转换结果是 NOOP，也会推进版本号，保证所有客户端看到一致的全局操作序列。 */
     char *updated = ts_apply_operation_to_text(doc->text, &transformed);
     if (updated != NULL) {
         free(doc->text);
@@ -255,6 +281,7 @@ TsProcessResult ts_document_process_operation(
 
     result.status = TS_PROCESS_OK;
     result.has_ack = true;
+    /* ACK 发回提交者：包含原始操作和转换后操作，便于客户端确认 inflight 已被服务端接收。 */
     snprintf(result.ack.type, sizeof(result.ack.type), "ACK");
     snprintf(result.ack.client_id, sizeof(result.ack.client_id), "%s", client_id);
     snprintf(result.ack.op_id, sizeof(result.ack.op_id), "%s", op_id);
@@ -267,6 +294,7 @@ TsProcessResult ts_document_process_operation(
     result.ack.has_original_op = true;
 
     result.has_remote = true;
+    /* REMOTE_OP 广播给其他客户端，只需要携带服务端最终应用的操作。 */
     snprintf(result.remote.type, sizeof(result.remote.type), "REMOTE_OP");
     snprintf(result.remote.client_id, sizeof(result.remote.client_id), "%s", client_id);
     snprintf(result.remote.op_id, sizeof(result.remote.op_id), "%s", op_id);

@@ -4,6 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* 事件格式化只面对本项目自己生成的 JSON 日志，因此用轻量字符串查找即可。
+ * 这里不是通用 JSON 解析器，目标是把终端输出保持简单、可读。
+ */
 static void json_get_for_format(const char *json, const char *key, char *out, size_t out_size)
 {
     char pattern[96];
@@ -22,6 +25,7 @@ static void json_get_for_format(const char *json, const char *key, char *out, si
     out[len] = '\0';
 }
 
+/* 从日志 JSON 中读取整数字段，缺失时使用 fallback。 */
 static int json_int_for_format(const char *json, const char *key, int fallback)
 {
     char pattern[96];
@@ -34,6 +38,7 @@ static int json_int_for_format(const char *json, const char *key, int fallback)
     return atoi(p + strlen(pattern));
 }
 
+/* 将 operation 日志转成单行终端事件，优先展示转换后的最终操作。 */
 void ts_format_operation_event(const char *entry_json, char *out, size_t out_size)
 {
     char client_id[TS_MAX_CLIENT_ID];
@@ -53,6 +58,7 @@ void ts_format_operation_event(const char *entry_json, char *out, size_t out_siz
     }
 }
 
+/* 格式化保存事件。client_id 为空时表示服务端自身触发，例如关闭前保存。 */
 void ts_format_save_event(const char *reason, const char *client_id, int version, const char *path, char *out, size_t out_size)
 {
     if (client_id != NULL && client_id[0] != '\0') {
@@ -62,6 +68,7 @@ void ts_format_save_event(const char *reason, const char *client_id, int version
     }
 }
 
+/* 服务端统一事件入口：按 event 字段分派到具体格式化逻辑。 */
 void ts_format_server_event(const char *entry_json, char *out, size_t out_size)
 {
     char event[32];

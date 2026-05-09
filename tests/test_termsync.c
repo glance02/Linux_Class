@@ -14,8 +14,11 @@ typedef struct {
     size_t len;
 } SentMessages;
 
+typedef void (*TestFn)(void);
+
 static int failures = 0;
 
+/* 轻量测试断言宏：失败时打印文件和行号，并立即结束当前测试函数。 */
 #define ASSERT_TRUE(expr) do { \
     if (!(expr)) { \
         fprintf(stderr, "FAIL %s:%d: %s\n", __FILE__, __LINE__, #expr); \
@@ -44,6 +47,20 @@ static int failures = 0;
     } \
 } while (0)
 
+/* 统一执行单个测试，并打印这个测试覆盖的功能点和最终结果。 */
+static void run_test(const char *name, const char *description, TestFn fn)
+{
+    int before = failures;
+    printf("[TEST] %s\n       %s\n", name, description);
+    fn();
+    if (failures == before) {
+        printf("[PASS] %s\n", name);
+    } else {
+        printf("[FAIL] %s\n", name);
+    }
+}
+
+/* 测试用发送回调：不真正走网络，只把客户端状态机想发送的消息记录下来。 */
 static int record_send(const TsMessage *message, void *userdata)
 {
     SentMessages *sent = userdata;
@@ -55,6 +72,7 @@ static int record_send(const TsMessage *message, void *userdata)
     return 0;
 }
 
+/* 验证旧版本删除操作会被之后的插入操作正确右移。 */
 static void test_delete_position_transforms_after_prior_inserts(void)
 {
     TsDocument doc;
@@ -79,6 +97,7 @@ static void test_delete_position_transforms_after_prior_inserts(void)
     ts_document_destroy(&doc);
 }
 
+/* 验证两个客户端同时删除同一字符时，后到的删除会变成 NOOP。 */
 static void test_same_character_delete_becomes_noop(void)
 {
     TsDocument doc;
@@ -99,6 +118,7 @@ static void test_same_character_delete_becomes_noop(void)
     ts_document_destroy(&doc);
 }
 
+/* 验证历史被裁剪后，过旧 base_version 的操作会触发 RESYNC_REQUIRED。 */
 static void test_history_expiry_requests_resync(void)
 {
     TsDocument doc;
@@ -121,6 +141,7 @@ static void test_history_expiry_requests_resync(void)
     ts_document_destroy(&doc);
 }
 
+/* 验证服务端版本递增和 UTF-8 字符计数不会把中文拆成多个字符。 */
 static void test_server_version_increment_and_utf8(void)
 {
     TsDocument doc;
@@ -140,6 +161,7 @@ static void test_server_version_increment_and_utf8(void)
     ts_document_destroy(&doc);
 }
 
+/* 验证客户端同一时间只发送一个 inflight 操作，收到 ACK 后才发送下一条。 */
 static void test_client_pending_queue_sends_after_ack(void)
 {
     SentMessages sent = {0};
@@ -174,6 +196,7 @@ static void test_client_pending_queue_sends_after_ack(void)
     ts_client_state_destroy(&state);
 }
 
+/* 验证客户端发现远程版本跳跃时，会请求完整文档快照进行修复。 */
 static void test_remote_gap_requests_document(void)
 {
     SentMessages sent = {0};
@@ -192,6 +215,7 @@ static void test_remote_gap_requests_document(void)
     ts_client_state_destroy(&state);
 }
 
+/* 验证 JSON Lines 编解码能处理换行和 UTF-8 内容。 */
 static void test_protocol_json_lines_handles_newline_and_utf8(void)
 {
     TsMessage message;
@@ -212,6 +236,7 @@ static void test_protocol_json_lines_handles_newline_and_utf8(void)
     ts_message_free(&decoded);
 }
 
+/* 测试中读取很小的文本文件，用于确认备份和 autosave 文件内容。 */
 static char *read_small_file(const char *path)
 {
     FILE *fp = fopen(path, "rb");
@@ -225,6 +250,7 @@ static char *read_small_file(const char *path)
     return data;
 }
 
+/* 验证正式保存会生成 .bak，自动保存子进程会周期性写 .autosave。 */
 static void test_save_backup_and_autosave_file(void)
 {
     char dir[256];
@@ -258,6 +284,7 @@ static void test_save_backup_and_autosave_file(void)
     free(autosave_content);
 }
 
+/* 验证服务端日志能被格式化成人类可读的终端事件。 */
 static void test_server_event_formatting(void)
 {
     char out[256];
@@ -274,17 +301,54 @@ static void test_server_event_formatting(void)
     ASSERT_STR("LEAVE client=u1", out);
 }
 
+/* 手写测试 runner，按核心模块顺序执行所有测试。 */
 int main(void)
 {
-    test_delete_position_transforms_after_prior_inserts();
-    test_same_character_delete_becomes_noop();
-    test_history_expiry_requests_resync();
-    test_server_version_increment_and_utf8();
-    test_client_pending_queue_sends_after_ack();
-    test_remote_gap_requests_document();
-    test_protocol_json_lines_handles_newline_and_utf8();
-    test_save_backup_and_autosave_file();
-    test_server_event_formatting();
+    run_test(
+        "OT 删除位置转换",
+        "验证旧版本删除操作会被之后的插入操作正确右移。",
+        test_delete_position_transforms_after_prior_inserts
+    );
+    run_test(
+        "OT 重复删除冲突",
+        "验证两个客户端同时删除同一字符时，后到的删除会变成 NOOP。",
+        test_same_character_delete_becomes_noop
+    );
+    run_test(
+        "历史过期重同步",
+        "验证历史被裁剪后，过旧 base_version 的操作会触发 RESYNC_REQUIRED。",
+        test_history_expiry_requests_resync
+    );
+    run_test(
+        "版本递增与 UTF-8",
+        "验证服务端版本递增，并确认中文字符不会被按字节拆开。",
+        test_server_version_increment_and_utf8
+    );
+    run_test(
+        "客户端 ACK 节奏",
+        "验证客户端同一时间只发送一个 inflight 操作，收到 ACK 后才发送下一条。",
+        test_client_pending_queue_sends_after_ack
+    );
+    run_test(
+        "远程版本缺口修复",
+        "验证客户端发现远程版本跳跃时，会请求完整文档快照。",
+        test_remote_gap_requests_document
+    );
+    run_test(
+        "JSON Lines 协议",
+        "验证协议编解码能处理换行和 UTF-8 文档内容。",
+        test_protocol_json_lines_handles_newline_and_utf8
+    );
+    run_test(
+        "备份与自动保存",
+        "验证正式保存会生成 .bak，自动保存子进程会写 .autosave。",
+        test_save_backup_and_autosave_file
+    );
+    run_test(
+        "服务端事件格式化",
+        "验证 JSON 日志能被格式化成人类可读的终端事件。",
+        test_server_event_formatting
+    );
     if (failures == 0) {
         printf("All TermSync C tests passed.\n");
         return 0;

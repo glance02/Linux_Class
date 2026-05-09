@@ -1,14 +1,17 @@
 CC ?= gcc
 CFLAGS ?= -std=c11 -Wall -Wextra -pedantic -D_XOPEN_SOURCE=700 -D_DEFAULT_SOURCE -O2
 LDFLAGS ?=
+# 公共模块都依赖 pthread；只有 ncurses 客户端需要额外链接 ncursesw。
 LDLIBS_COMMON = -pthread
 LDLIBS_CLIENT = -lncursesw
 
 BUILD_DIR = build
+# server/client/test 共用同一批核心对象文件，入口文件分别单独编译。
 COMMON_OBJS = $(BUILD_DIR)/util.o $(BUILD_DIR)/protocol.o $(BUILD_DIR)/document.o $(BUILD_DIR)/client_state.o $(BUILD_DIR)/autosave.o $(BUILD_DIR)/events.o
 
 .PHONY: all server client test test-bin clean check-ncurses
 
+# 默认构建服务端、客户端和测试二进制。
 all: server client test-bin
 
 server: $(BUILD_DIR)/termsync_server
@@ -20,6 +23,7 @@ test-bin: $(BUILD_DIR)/test_termsync
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
+# 编译客户端前先做一个最小 ncursesw 链接检查，缺依赖时给出安装提示。
 check-ncurses: | $(BUILD_DIR)
 	@printf '%s\n' '#include <curses.h>' 'int main(void) { return 0; }' | $(CC) $(CFLAGS) -x c - -o $(BUILD_DIR)/.ncurses_check $(LDLIBS_CLIENT) >/dev/null 2>&1 || { \
 		echo "error: missing ncursesw development headers/libraries."; \
@@ -51,6 +55,7 @@ $(BUILD_DIR)/termsync_client: $(COMMON_OBJS) $(BUILD_DIR)/client.o
 $(BUILD_DIR)/test_termsync: $(COMMON_OBJS) $(BUILD_DIR)/test_termsync.o
 	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS_COMMON)
 
+# 运行自带 C 测试 runner，覆盖 OT、协议、客户端队列、保存和事件格式化。
 test: $(BUILD_DIR)/test_termsync
 	./$(BUILD_DIR)/test_termsync
 
