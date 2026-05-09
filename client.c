@@ -137,15 +137,6 @@ static void *reader_main(void *arg)
     return NULL;
 }
 
-static size_t clamp_cursor(TerminalClient *client)
-{
-    size_t len = ts_utf8_char_count(client->state.content);
-    if (client->cursor_pos > len) {
-        client->cursor_pos = len;
-    }
-    return len;
-}
-
 static int line_for_pos(const char *content, size_t pos)
 {
     size_t byte_limit = ts_utf8_byte_offset(content, pos);
@@ -158,18 +149,65 @@ static int line_for_pos(const char *content, size_t pos)
     return line;
 }
 
+static size_t bounded_utf8_char_bytes(const char *start, const char *end)
+{
+    size_t bytes = ts_utf8_char_bytes(start);
+    size_t remaining = (size_t)(end - start);
+    if (bytes == 0 || bytes > remaining) {
+        return 1;
+    }
+    return bytes;
+}
+
+static int utf8_display_width(const char *start, size_t bytes)
+{
+    wchar_t wc;
+    mbstate_t state;
+    memset(&state, 0, sizeof(state));
+    size_t converted = mbrtowc(&wc, start, bytes, &state);
+    if (converted == (size_t)-1 || converted == (size_t)-2) {
+        return 1;
+    }
+    if (converted == 0) {
+        return 0;
+    }
+    int width = wcwidth(wc);
+    return width < 0 ? 1 : width;
+}
+
 static int col_for_pos(const char *content, size_t pos)
 {
     size_t byte_limit = ts_utf8_byte_offset(content, pos);
     int col = 0;
-    for (size_t i = 0; i < byte_limit && content[i] != '\0'; ++i) {
+    for (size_t i = 0; i < byte_limit && content[i] != '\0';) {
         if (content[i] == '\n') {
             col = 0;
-        } else if (((unsigned char)content[i] & 0xC0u) != 0x80u) {
-            col++;
+            i++;
+        } else {
+            const char *start = content + i;
+            const char *end = content + byte_limit;
+            size_t bytes = bounded_utf8_char_bytes(start, end);
+            col += utf8_display_width(start, bytes);
+            i += bytes;
         }
     }
     return col;
+}
+
+static void render_line_segment(int row, int col, const char *start, const char *end, int max_cols)
+{
+    int used = 0;
+    const char *p = start;
+    while (p < end && used < max_cols) {
+        size_t bytes = bounded_utf8_char_bytes(p, end);
+        int width = utf8_display_width(p, bytes);
+        if (used + width > max_cols) {
+            break;
+        }
+        mvaddnstr(row, col + used, p, (int)bytes);
+        used += width;
+        p += bytes;
+    }
 }
 
 static void render_lines(WINDOW *stdscr, TerminalClient *client)
@@ -196,7 +234,7 @@ static void render_lines(WINDOW *stdscr, TerminalClient *client)
                 snprintf(prefix, sizeof(prefix), "%4d ", line + 1);
                 mvaddnstr(row, 0, prefix, width - 1);
                 int body_width = width - (int)strlen(prefix) - 1;
-                mvaddnstr(row, (int)strlen(prefix), start, body_width < 0 ? 0 : (p - start < body_width ? (int)(p - start) : body_width));
+                render_line_segment(row, (int)strlen(prefix), start, p, body_width < 0 ? 0 : body_width);
                 row++;
             }
             if (*p == '\0') {
@@ -240,16 +278,43 @@ static void render(TerminalClient *client)
     refresh();
 }
 
+static long pending_operation_delta(const TsOperation *op)
+{
+    if (op->kind == TS_OP_INSERT) {
+        return 1;
+    }
+    if (op->kind == TS_OP_DELETE) {
+        return -1;
+    }
+    return 0;
+}
+
+static size_t projected_content_length(TerminalClient *client)
+{
+    long len = (long)ts_utf8_char_count(client->state.content);
+    if (client->state.has_inflight) {
+        len += pending_operation_delta(&client->state.inflight.op);
+    }
+    for (size_t i = 0; i < client->state.queue_len; ++i) {
+        len += pending_operation_delta(&client->state.queue[i].op);
+    }
+    return len < 0 ? 0 : (size_t)len;
+}
+
+static void clamp_cursor_to_projected_content(TerminalClient *client)
+{
+    size_t len = projected_content_length(client);
+    if (client->cursor_pos > len) {
+        client->cursor_pos = len;
+    }
+}
+
 static void drain_messages(TerminalClient *client)
 {
     TsMessage message;
     while (queue_pop(&client->incoming, &message)) {
-        char *old = ts_strdup(client->state.content);
         ts_client_state_handle_message(&client->state, &message);
-        if (old == NULL || strcmp(old, client->state.content) != 0) {
-            clamp_cursor(client);
-        }
-        free(old);
+        clamp_cursor_to_projected_content(client);
         ts_message_free(&message);
     }
 }
@@ -279,7 +344,7 @@ static void handle_key(TerminalClient *client, wint_t key, int key_result)
         if (key == KEY_LEFT && client->cursor_pos > 0) {
             client->cursor_pos--;
         } else if (key == KEY_RIGHT) {
-            size_t len = ts_utf8_char_count(client->state.content);
+            size_t len = projected_content_length(client);
             if (client->cursor_pos < len) {
                 client->cursor_pos++;
             }
@@ -370,7 +435,7 @@ int main(int argc, char **argv)
     cbreak();
     noecho();
     keypad(stdscr, TRUE);
-    nodelay(stdscr, TRUE);
+    timeout(50);
     curs_set(1);
     while (client.running) {
         drain_messages(&client);
@@ -378,7 +443,6 @@ int main(int argc, char **argv)
         wint_t key = 0;
         int rc = get_wch(&key);
         if (rc == ERR) {
-            ts_msleep(25);
             continue;
         }
         handle_key(&client, key, rc);

@@ -2,6 +2,7 @@
 
 #include <arpa/inet.h>
 #include <errno.h>
+#include <fcntl.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <signal.h>
@@ -10,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/select.h>
 #include <sys/socket.h>
 #include <unistd.h>
 
@@ -45,6 +47,29 @@ static void signal_stop(int signum)
 {
     (void)signum;
     g_stop_requested = 1;
+}
+
+static int install_signal_handlers(void)
+{
+    struct sigaction action;
+    memset(&action, 0, sizeof(action));
+    action.sa_handler = signal_stop;
+    sigemptyset(&action.sa_mask);
+    if (sigaction(SIGINT, &action, NULL) != 0) {
+        return -1;
+    }
+    if (sigaction(SIGTERM, &action, NULL) != 0) {
+        return -1;
+    }
+
+    struct sigaction ignore;
+    memset(&ignore, 0, sizeof(ignore));
+    ignore.sa_handler = SIG_IGN;
+    sigemptyset(&ignore.sa_mask);
+    if (sigaction(SIGPIPE, &ignore, NULL) != 0) {
+        return -1;
+    }
+    return 0;
 }
 
 static void print_event(const char *message)
@@ -286,8 +311,33 @@ static int server_listen(TsServer *server)
         close(fd);
         return -1;
     }
+    int flags = fcntl(fd, F_GETFL, 0);
+    if (flags < 0 || fcntl(fd, F_SETFL, flags | O_NONBLOCK) != 0) {
+        perror("fcntl");
+        close(fd);
+        return -1;
+    }
     server->server_fd = fd;
     return 0;
+}
+
+static int wait_for_client(TsServer *server)
+{
+    fd_set set;
+    FD_ZERO(&set);
+    FD_SET(server->server_fd, &set);
+    struct timeval tv;
+    tv.tv_sec = 0;
+    tv.tv_usec = 200000;
+    int ready = select(server->server_fd + 1, &set, NULL, NULL, &tv);
+    if (ready < 0) {
+        if (errno == EINTR) {
+            return 0;
+        }
+        perror("select");
+        return -1;
+    }
+    return ready > 0 && FD_ISSET(server->server_fd, &set);
 }
 
 static void server_shutdown(TsServer *server)
@@ -325,6 +375,12 @@ int main(int argc, char **argv)
     server.next_client_number = 1;
     pthread_mutex_init(&server.clients_lock, NULL);
 
+    if (install_signal_handlers() != 0) {
+        perror("sigaction");
+        pthread_mutex_destroy(&server.clients_lock);
+        return 1;
+    }
+
     char *initial_text = ts_read_file_text(server.document_path);
     ts_document_init(&server.document, initial_text ? initial_text : "", (size_t)server.history_limit);
     free(initial_text);
@@ -344,18 +400,26 @@ int main(int argc, char **argv)
     }
 
     g_server = &server;
-    signal(SIGINT, signal_stop);
-    signal(SIGTERM, signal_stop);
 
     printf("Collaborative server listening on %s:%d\n", server.host, server.port);
     printf("Document: %s\n", server.document_path);
     fflush(stdout);
 
     while (!server.stopping && !g_stop_requested) {
+        int ready = wait_for_client(&server);
+        if (ready < 0) {
+            break;
+        }
+        if (ready == 0) {
+            continue;
+        }
         struct sockaddr_in peer;
         socklen_t peer_len = sizeof(peer);
         int client_fd = accept(server.server_fd, (struct sockaddr *)&peer, &peer_len);
         if (client_fd < 0) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                continue;
+            }
             if (errno == EINTR) {
                 continue;
             }
