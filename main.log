@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  9 MAY 2026 22:35
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.2)  11 MAY 2026 00:33
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1526,7 +1526,7 @@ Package fontspec Info:
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
- [3] (./chapter/cowork.tex
+ [3] (./chapter/task1.tex
 
 Package fontspec Info: 
 (fontspec)             Could not resolve font "FangSong/BI" (it probably
@@ -1553,50 +1553,174 @@ Package fontspec Info:
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->"FangSong/OT:script=hani;language=dflt;"
 
+File: pic/task1/image.png Graphic file (type bmp)
+<pic/task1/image.png>
 
 [1
 
 ]
+File: pic/task1/image copy.png Graphic file (type bmp)
+<pic/task1/image copy.png>
+File: pic/task1/image copy 2.png Graphic file (type bmp)
+<pic/task1/image copy 2.png>
+ [2]
+\pydata@fh@0=\write7
+\openout7 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
+
+runsystem(latexminted config  --timestamp 20260511003300 FAD58DE7366495DB4650CF
+EFAC2FCD61)...executed.
+
+ (./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
+runsystem(latexminted cleanconfig  --timestamp 20260511003300 FAD58DE7366495DB4
+650CFEFAC2FCD61)...executed.
+
+
+(./_minted/default.style.minted)
+(./_minted/41039B30F63228BB07320D23D8E1A4B7.highlight.minted)
+File: pic/task1/image copy 3.png Graphic file (type bmp)
+<pic/task1/image copy 3.png>
+File: pic/task1/image copy 4.png Graphic file (type bmp)
+<pic/task1/image copy 4.png>
+ [3]
+File: pic/task1/image copy 5.png Graphic file (type bmp)
+<pic/task1/image copy 5.png>
+ [4]
+File: pic/task1/image copy 6.png Graphic file (type bmp)
+<pic/task1/image copy 6.png>
+File: pic/task1/image copy 7.png Graphic file (type bmp)
+<pic/task1/image copy 7.png>
+File: pic/task1/image copy 8.png Graphic file (type bmp)
+<pic/task1/image copy 8.png>
+ [5]
+File: pic/task1/image copy 9.png Graphic file (type bmp)
+<pic/task1/image copy 9.png>
+File: pic/task1/image copy 10.png Graphic file (type bmp)
+<pic/task1/image copy 10.png>
+
+[6] [7]
+File: pic/task1/image copy 11.png Graphic file (type bmp)
+<pic/task1/image copy 11.png>
+ [8] [9]
+Underfull \hbox (badness 1087) in paragraph at lines 207--208
+[]\TU/SimSun(0)/m/n/10.95 某 些 命 令 可 以 从 指 定 文 件 中 读 取
+ []
+
+
+Underfull \hbox (badness 1087) in paragraph at lines 209--210
+[]\TU/SimSun(0)/m/n/10.95 常 用 于 同 时 保 存 正 常 输 出 和 错 误
+ []
+
+[10]
+File: pic/task1/image copy 12.png Graphic file (type bmp)
+<pic/task1/image copy 12.png>
+File: pic/task1/image copy 13.png Graphic file (type bmp)
+<pic/task1/image copy 13.png>
+File: pic/task1/image copy 14.png Graphic file (type bmp)
+<pic/task1/image copy 14.png>
+File: pic/task1/image copy 15.png Graphic file (type bmp)
+<pic/task1/image copy 15.png>
+ [11]
+File: pic/task1/image copy 16.png Graphic file (type bmp)
+<pic/task1/image copy 16.png>
+File: pic/task1/image copy 17.png Graphic file (type bmp)
+<pic/task1/image copy 17.png>
+ [12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 291--291
+[][]\TU/lmtt/m/n/10.95 No such file or
+ []
+
+[14] (./_minted/F33B0A01D40F49B6393F93CA88D5C38E.highlight.minted)
+Underfull \hbox (badness 2564) in paragraph at lines 322--323
+[]\TU/SimSun(0)/m/n/10.95 把 文 本 文 件 内 容 作 为 后 续 命 令
+ []
+
+[15]) [16] (./chapter/task2.tex
+(./_minted/417130E53260CCEB480BDB92B269F5CF.highlight.minted) [17]
+File: pic/task2/Shell 答题系统流程图.png Graphic file (type bmp)
+<pic/task2/Shell 答题系统流程图.png>
+ [18]
+[19]
+File: pic/task2/image.png Graphic file (type bmp)
+<pic/task2/image.png>
+File: pic/task2/image copy.png Graphic file (type bmp)
+<pic/task2/image copy.png>
+File: pic/task2/image copy 3.png Graphic file (type bmp)
+<pic/task2/image copy 3.png>
+File: pic/task2/image copy 4.png Graphic file (type bmp)
+<pic/task2/image copy 4.png>
+File: pic/task2/image copy 5.png Graphic file (type bmp)
+<pic/task2/image copy 5.png>
+File: pic/task2/image copy 6.png Graphic file (type bmp)
+<pic/task2/image copy 6.png>
+ [20]
+File: pic/task2/image copy 2.png Graphic file (type bmp)
+<pic/task2/image copy 2.png>
+File: pic/task2/image copy 7.png Graphic file (type bmp)
+<pic/task2/image copy 7.png>
+ [21]
+File: pic/task2/image copy 8.png Graphic file (type bmp)
+<pic/task2/image copy 8.png>
+File: pic/task2/image copy 9.png Graphic file (type bmp)
+<pic/task2/image copy 9.png>
+File: pic/task2/image copy 10.png Graphic file (type bmp)
+<pic/task2/image copy 10.png>
+ [22]
+File: pic/task2/image copy 11.png Graphic file (type bmp)
+<pic/task2/image copy 11.png>
+File: pic/task2/image copy 12.png Graphic file (type bmp)
+<pic/task2/image copy 12.png>
+ [23]
+File: pic/task2/image copy 13.png Graphic file (type bmp)
+<pic/task2/image copy 13.png>
+File: pic/task2/image copy 14.png Graphic file (type bmp)
+<pic/task2/image copy 14.png>
+File: pic/task2/image copy 15.png Graphic file (type bmp)
+<pic/task2/image copy 15.png>
+ [24]
+File: pic/task2/image copy 16.png Graphic file (type bmp)
+<pic/task2/image copy 16.png>
+File: pic/task2/image copy 17.png Graphic file (type bmp)
+<pic/task2/image copy 17.png>
+File: pic/task2/image copy 18.png Graphic file (type bmp)
+<pic/task2/image copy 18.png>
+ [25]
+File: pic/task2/image copy 19.png Graphic file (type bmp)
+<pic/task2/image copy 19.png>
+ [26] [27] [28]
+(./_minted/CB3896DC6A0CFD8D2F3B852CF2BC6D3D.highlight.minted
+
+LaTeX Font Warning: Font shape `TU/FangSong(0)/m/it' undefined
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 8.
+
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 10.
+[29] [30] [31] [32])
+(./_minted/55045A647B750BA0D167C6E371862414.highlight.minted [33])) [34]
+(./chapter/cowork.tex [35]
 File: pic/cowork/服务端运行界面.png Graphic file (type bmp)
 <pic/cowork/服务端运行界面.png>
 File: pic/cowork/客户1连接服务端.png Graphic file (type bmp)
 <pic/cowork/客户1连接服务端.png>
 File: pic/cowork/客户2连接服务端.png Graphic file (type bmp)
 <pic/cowork/客户2连接服务端.png>
- [2] [3] [4]
+ [36] [37] [38]
 File: pic/cowork/服务端u1英文演示.png Graphic file (type bmp)
 <pic/cowork/服务端u1英文演示.png>
- [5]
+ [39]
 File: pic/cowork/服务端u1中文演示.png Graphic file (type bmp)
 <pic/cowork/服务端u1中文演示.png>
- [6]
+ [40]
 File: pic/cowork/服务日志图片.png Graphic file (type bmp)
 <pic/cowork/服务日志图片.png>
- [7] [8]
+ [41] [42]
 File: pic/cowork/TermSync总体架构图.png Graphic file (type bmp)
 <pic/cowork/TermSync总体架构图.png>
- [9]
-\pydata@fh@0=\write7
-\openout7 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
-
-runsystem(latexminted config  --timestamp 20260509223540 FAD58DE7366495DB4650CF
-EFAC2FCD61)...executed.
-
-
-(./_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260509223540 FAD58DE7366495DB4
-650CFEFAC2FCD61)...executed.
-
-
-(./_minted/default.style.minted)
-(./_minted/486E5B541463B895A2D2E0A9091BD363.highlight.minted [10]
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 3.
-)
+ [43]
+(./_minted/486E5B541463B895A2D2E0A9091BD363.highlight.minted [44])
 File: pic/cowork/客户端到服务端的数据流图.png Graphic file (type bmp)
 <pic/cowork/客户端到服务端的数据流图.png>
- [11]
-[12]
+ [45]
+[46]
 File: pic/cowork/OT位置变换示意图.png Graphic file (type bmp)
 <pic/cowork/OT位置变换示意图.png>
 
@@ -1614,38 +1738,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 230--231
 []\TU/SimSun(0)/m/n/10.95 服 务 端 规 范 化 为
  []
 
-[13]
+[47]
 File: pic/cowork/自动保存与备份流程图.png Graphic file (type bmp)
 <pic/cowork/自动保存与备份流程图.png>
- [14] [15]
+ [48] [49]
 File: pic/cowork/测试验证覆盖图.png Graphic file (type bmp)
 <pic/cowork/测试验证覆盖图.png>
  (./_minted/236A966F2304D7A052A532A8675B2FF8.highlight.minted)
 File: pic/cowork/test1.png Graphic file (type bmp)
 <pic/cowork/test1.png>
 
-[16]
+[50]
 Overfull \hbox (44.91203pt too wide) in paragraph at lines 299--300
 [][]\TU/FangSong(0)/m/n/12 历 史 过 期 重 同 步[]\TU/SimSun(0)/m/n/12 ：|  历 史 记 录 被 裁 
 剪 后，|  过 旧 []\TU/lmtt/m/n/12 base_version[] \TU/SimSun(0)/m/n/12 的 操 作 会 触 发 []
 \TU/lmtt/m/n/12 RESYNC_REQUIRED[]\TU/SimSun(0)/m/n/12 。| 
  []
 
-[17] (./_minted/98367D3BFCAEADC6E436D082ECD6BEF9.highlight.minted)
+[51] (./_minted/98367D3BFCAEADC6E436D082ECD6BEF9.highlight.minted)
 File: pic/cowork/本地运行服务端.png Graphic file (type bmp)
 <pic/cowork/本地运行服务端.png>
- [18]
+ [52]
 (./_minted/766652617C38392A473978FECC318F33.highlight.minted)
 File: pic/cowork/本地运行客户端界面.png Graphic file (type bmp)
 <pic/cowork/本地运行客户端界面.png>
 File: pic/cowork/服务端关闭后客户端表现.png Graphic file (type bmp)
 <pic/cowork/服务端关闭后客户端表现.png>
- [19]
+ [53]
 File: pic/cowork/阿里云开放端口.png Graphic file (type bmp)
 <pic/cowork/阿里云开放端口.png>
- [20]
+ [54]
 (./_minted/35DCA918725C5EB9198DB5450ED48059.highlight.minted)
-(./_minted/E3547A42E14B2819CE7151A77D587312.highlight.minted) [21]
+(./_minted/E3547A42E14B2819CE7151A77D587312.highlight.minted) [55]
 File: pic/cowork/client-sync-sputnik.png Graphic file (type bmp)
 <pic/cowork/client-sync-sputnik.png>
 File: pic/cowork/client-sync-glance.png Graphic file (type bmp)
@@ -1654,15 +1778,15 @@ File: pic/cowork/服务端界面日志.png Graphic file (type bmp)
 <pic/cowork/服务端界面日志.png>
 File: pic/cowork/transform_trace日志.png Graphic file (type bmp)
 <pic/cowork/transform_trace日志.png>
- [22]
-[23] [24]
+ [56]
+[57] [58]
 Overfull \hbox (19.43454pt too wide) in paragraph at lines 468--469
 []\TU/SimSun(0)/m/n/12 问 题：|  客 户 端 采 用 服 务 端 权 威 模 型，|  本 地 输 入 会 先 进 入 []\TU/
 lmtt/m/n/12 pending_queue[] \TU/SimSun(0)/m/n/12 或 []\TU/lmtt/m/n/12 inflight_o
 p[]\TU/SimSun(0)/m/n/12 ，|
  []
 
-[25] [26] [27] [28]
+[59] [60] [61] [62]
 Underfull \hbox (badness 10000) in paragraph at lines 523--523
 [][]\TU/lmtt/m/n/10.95 server.c[] \TU/SimSun(0)/m/n/10.95 监 听 端 口，|
  []
@@ -1687,12 +1811,12 @@ Underfull \hbox (badness 1087) in paragraph at lines 529--530
 []\TU/SimSun(0)/m/n/10.95 用 可 重 复 测 试 验 证 同 步 算 法 和 边
  []
 
-[29] [30]
+[63] [64]
 Underfull \hbox (badness 3536) in paragraph at lines 584--585
 []\TU/SimSun(0)/m/n/10.95 将 最 新 快 照 写 入 []\TU/lmtt/m/n/10.95 .autosave[]
  []
 
-[31]
+[65]
 Underfull \hbox (badness 10000) in paragraph at lines 617--618
 []\TU/SimSun(0)/m/n/10.95 服 务 端 输 出 和
  []
@@ -1723,7 +1847,7 @@ Underfull \hbox (badness 1087) in paragraph at lines 638--639
 []\TU/SimSun(0)/m/n/10.95 版 本 缺 口 或 历 史 过 期 时 回 到 服 务
  []
 
-[32] [33] [34]
+[66] [67] [68]
 Overfull \hbox (11.30524pt too wide) in paragraph at lines 653--654
 []\TU/SimSun(0)/m/n/12 本 文 所 对 应 的 项 目 代 码 托 管 于 \TU/lmr/m/n/12 GitHub \TU/SimS
 un(0)/m/n/12 仓 库 [][]$[][][][][] [] [] [] [][][][][][] [] [][][] [] [][][][][][
@@ -1738,150 +1862,26 @@ ave.c[] \TU/SimSun(0)/m/n/12 构 成 服 务 端 核 心；| []\TU/lmtt/m/n/12 c
 imSun(0)/m/n/12 和 []\TU/lmtt/m/n/12 client_state.c[]
  []
 
-[35] (./_minted/50F8D8C5995C7966CF8A18B6EBD2583D.highlight.minted
-
-LaTeX Font Warning: Font shape `TU/FangSong(0)/m/it' undefined
-(Font)              using `TU/FangSong(0)/m/n' instead on input line 5.
-
-[36]) (./_minted/7C5E4224F7E182B8E17E3AC0694AE2A9.highlight.minted [37]
-[38] [39] [40] [41]) [42]
-(./_minted/A30EE218E84598A1CAD8B79F6233D30E.highlight.minted [43] [44] [45]
-[46] [47] [48] [49] [50] [51] [52] [53] [54] [55])
-(./_minted/635FFE6F467ED5855071438673500DDA.highlight.minted [56] [57] [58]
-[59] [60] [61]) (./_minted/9F678C4F98EBD6B0CE28B4AF1B09F996.highlight.minted
-[62] [63] [64] [65] [66] [67] [68])
-(./_minted/C8364EC9EB57E77166365AECD0B0BC9B.highlight.minted [69] [70] [71])
-(./_minted/9E4A06ECA7DEB05B4D43CE981C758D12.highlight.minted [72] [73] [74]
-[75] [76] [77] [78] [79] [80] [81] [82])
-(./_minted/F43E69F65447ECEFFA6EA0960E9737E6.highlight.minted [83] [84] [85]
-[86] [87]) [88] (./_minted/38DBADF2C4173B49F4D586446816D38D.highlight.minted
-[89] [90] [91] [92] [93] [94] [95] [96] [97] [98] [99])
-(./_minted/DDD8A9FDA7F551FFA6FA7E1A53308B8E.highlight.minted [100] [101]
-[102] [103] [104] [105] [106] [107])
-(./_minted/D0707482C01D502099815BC6BE58701F.highlight.minted [108] [109]
-[110] [111] [112] [113] [114] [115] [116])) [117] (./chapter/task1.tex
-File: pic/task1/image.png Graphic file (type bmp)
-<pic/task1/image.png>
- [118]
-File: pic/task1/image copy.png Graphic file (type bmp)
-<pic/task1/image copy.png>
-File: pic/task1/image copy 2.png Graphic file (type bmp)
-<pic/task1/image copy 2.png>
-
-[119] (./_minted/41039B30F63228BB07320D23D8E1A4B7.highlight.minted)
-File: pic/task1/image copy 3.png Graphic file (type bmp)
-<pic/task1/image copy 3.png>
-File: pic/task1/image copy 4.png Graphic file (type bmp)
-<pic/task1/image copy 4.png>
- [120]
-File: pic/task1/image copy 5.png Graphic file (type bmp)
-<pic/task1/image copy 5.png>
-
-[121]
-File: pic/task1/image copy 6.png Graphic file (type bmp)
-<pic/task1/image copy 6.png>
-File: pic/task1/image copy 7.png Graphic file (type bmp)
-<pic/task1/image copy 7.png>
-File: pic/task1/image copy 8.png Graphic file (type bmp)
-<pic/task1/image copy 8.png>
- [122]
-File: pic/task1/image copy 9.png Graphic file (type bmp)
-<pic/task1/image copy 9.png>
-File: pic/task1/image copy 10.png Graphic file (type bmp)
-<pic/task1/image copy 10.png>
- [123] [124]
-File: pic/task1/image copy 11.png Graphic file (type bmp)
-<pic/task1/image copy 11.png>
- [125] [126]
-Underfull \hbox (badness 1087) in paragraph at lines 207--208
-[]\TU/SimSun(0)/m/n/10.95 某 些 命 令 可 以 从 指 定 文 件 中 读 取
- []
-
-
-Underfull \hbox (badness 1087) in paragraph at lines 209--210
-[]\TU/SimSun(0)/m/n/10.95 常 用 于 同 时 保 存 正 常 输 出 和 错 误
- []
-
-[127]
-File: pic/task1/image copy 12.png Graphic file (type bmp)
-<pic/task1/image copy 12.png>
-File: pic/task1/image copy 13.png Graphic file (type bmp)
-<pic/task1/image copy 13.png>
-File: pic/task1/image copy 14.png Graphic file (type bmp)
-<pic/task1/image copy 14.png>
-File: pic/task1/image copy 15.png Graphic file (type bmp)
-<pic/task1/image copy 15.png>
- [128]
-File: pic/task1/image copy 16.png Graphic file (type bmp)
-<pic/task1/image copy 16.png>
-File: pic/task1/image copy 17.png Graphic file (type bmp)
-<pic/task1/image copy 17.png>
- [129] [130]
-Underfull \hbox (badness 10000) in paragraph at lines 291--291
-[][]\TU/lmtt/m/n/10.95 No such file or
- []
-
-[131] (./_minted/F33B0A01D40F49B6393F93CA88D5C38E.highlight.minted)
-Underfull \hbox (badness 2564) in paragraph at lines 322--323
-[]\TU/SimSun(0)/m/n/10.95 把 文 本 文 件 内 容 作 为 后 续 命 令
- []
-
-[132]) [133] (./chapter/task2.tex
-(./_minted/417130E53260CCEB480BDB92B269F5CF.highlight.minted) [134]
-File: pic/task2/Shell 答题系统流程图.png Graphic file (type bmp)
-<pic/task2/Shell 答题系统流程图.png>
- [135]
-[136]
-File: pic/task2/image.png Graphic file (type bmp)
-<pic/task2/image.png>
-File: pic/task2/image copy.png Graphic file (type bmp)
-<pic/task2/image copy.png>
-File: pic/task2/image copy 3.png Graphic file (type bmp)
-<pic/task2/image copy 3.png>
-File: pic/task2/image copy 4.png Graphic file (type bmp)
-<pic/task2/image copy 4.png>
-File: pic/task2/image copy 5.png Graphic file (type bmp)
-<pic/task2/image copy 5.png>
-File: pic/task2/image copy 6.png Graphic file (type bmp)
-<pic/task2/image copy 6.png>
- [137]
-File: pic/task2/image copy 2.png Graphic file (type bmp)
-<pic/task2/image copy 2.png>
-File: pic/task2/image copy 7.png Graphic file (type bmp)
-<pic/task2/image copy 7.png>
- [138]
-File: pic/task2/image copy 8.png Graphic file (type bmp)
-<pic/task2/image copy 8.png>
-File: pic/task2/image copy 9.png Graphic file (type bmp)
-<pic/task2/image copy 9.png>
-File: pic/task2/image copy 10.png Graphic file (type bmp)
-<pic/task2/image copy 10.png>
- [139]
-File: pic/task2/image copy 11.png Graphic file (type bmp)
-<pic/task2/image copy 11.png>
-File: pic/task2/image copy 12.png Graphic file (type bmp)
-<pic/task2/image copy 12.png>
- [140]
-File: pic/task2/image copy 13.png Graphic file (type bmp)
-<pic/task2/image copy 13.png>
-File: pic/task2/image copy 14.png Graphic file (type bmp)
-<pic/task2/image copy 14.png>
-File: pic/task2/image copy 15.png Graphic file (type bmp)
-<pic/task2/image copy 15.png>
- [141]
-File: pic/task2/image copy 16.png Graphic file (type bmp)
-<pic/task2/image copy 16.png>
-File: pic/task2/image copy 17.png Graphic file (type bmp)
-<pic/task2/image copy 17.png>
-File: pic/task2/image copy 18.png Graphic file (type bmp)
-<pic/task2/image copy 18.png>
- [142]
-File: pic/task2/image copy 19.png Graphic file (type bmp)
-<pic/task2/image copy 19.png>
- [143] [144] [145]
-(./_minted/CB3896DC6A0CFD8D2F3B852CF2BC6D3D.highlight.minted [146] [147]
-[148] [149]) (./_minted/55045A647B750BA0D167C6E371862414.highlight.minted
-[150])) [151] (./main.aux)
+[69]
+File: pic/cowork/make项目.png Graphic file (type bmp)
+<pic/cowork/make项目.png>
+ (./_minted/50F8D8C5995C7966CF8A18B6EBD2583D.highlight.minted [70])
+[71] (./_minted/7C5E4224F7E182B8E17E3AC0694AE2A9.highlight.minted [72] [73]
+[74] [75] [76]) (./_minted/A30EE218E84598A1CAD8B79F6233D30E.highlight.minted
+[77] [78] [79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89])
+(./_minted/635FFE6F467ED5855071438673500DDA.highlight.minted [90] [91] [92]
+[93] [94] [95]) (./_minted/9F678C4F98EBD6B0CE28B4AF1B09F996.highlight.minted
+[96] [97] [98] [99] [100] [101] [102]) [103]
+(./_minted/C8364EC9EB57E77166365AECD0B0BC9B.highlight.minted [104] [105])
+(./_minted/9E4A06ECA7DEB05B4D43CE981C758D12.highlight.minted [106] [107]
+[108] [109] [110] [111] [112] [113] [114] [115] [116] [117])
+(./_minted/F43E69F65447ECEFFA6EA0960E9737E6.highlight.minted [118] [119]
+[120] [121] [122]) (./_minted/38DBADF2C4173B49F4D586446816D38D.highlight.minted
+[123] [124] [125] [126] [127] [128] [129] [130] [131] [132] [133])
+(./_minted/DDD8A9FDA7F551FFA6FA7E1A53308B8E.highlight.minted [134] [135]
+[136] [137] [138] [139] [140] [141] [142])
+(./_minted/D0707482C01D502099815BC6BE58701F.highlight.minted [143] [144]
+[145] [146] [147] [148] [149] [150])) [151] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2022/08/05>
@@ -1891,15 +1891,15 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 342B6D39DCBF35E6D4FF96A4E594EDE4;9018.
+(rerunfilecheck)             Checksum: C3C9F9F570249E2D222F500CC84BA834;9018.
  ) 
 Here is how much of TeX's memory you used:
- 39704 strings out of 468219
- 937951 string characters out of 5431931
- 1516630 words of memory out of 5000000
- 67645 multiletter control sequences out of 15000+600000
+ 39714 strings out of 468219
+ 938200 string characters out of 5431931
+ 1515688 words of memory out of 5000000
+ 67654 multiletter control sequences out of 15000+600000
  635103 words of font info for 108 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 102i,13n,115p,1186b,1065s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,13n,115p,1186b,1063s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on main.pdf (154 pages).
